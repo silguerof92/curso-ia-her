@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Fundamentos de IA - Grupo HER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="body-module">
+
+    <div class="main-container">
+
+        <nav class="sidebar-nav">
+            
+            <div>
+                <div class="nav-header mb-6">
+                    <a href="index.html" class="text-sm text-sky-400 hover:text-sky-200">&larr; Volver al Inicio</a>
+                    <h1 class="text-white text-2xl font-bold mt-2">Módulo 1</h1>
+                    <p class="text-sky-400">Fundamentos de IA</p>
+                </div>
+                
+                <ul id="mainNav" class="space-y-2">
+                    <li><a href="#view-inicio" class="nav-link active">Inicio del Módulo</a></li>
+                    <li><a href="#view-desafio" class="nav-link">El Desafío</a></li>
+                    <li><a href="#view-solucion" class="nav-link">La Solución</a></li>
+                    <li><a href="#view-ia-sistemas" class="nav-link">IA en Sistemas</a></li>
+                    <li><a href="#view-aplicaciones" class="nav-link">10 Aplicaciones</a></li>
+                    <li><a href="#view-ejercicios" class="nav-link">Ejercicios Prácticos</a></li>
+                    <li><a href="#view-anotaciones" class="nav-link">Anotaciones (Clase 1)</a></li> <li><a href="#view-autoevaluacion" class="nav-link">Autoevaluación (V/F)</a></li> <li><a href="#view-datos-seguros" class="nav-link">Datos Seguros</a></li>
+                    <li><a href="#view-automatizacion" class="nav-link">Automatización</a></li>
+                    <li><a href="#view-otras-ias" class="nav-link">Otras IAs</a></li>
+                    <li><a href="#view-hoja-ruta" class="nav-link">Hoja de Ruta</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div>
+                    <p class="footer-title">Facilitador</p>
+                    <p class="footer-text-main">Fernando Silguero</p>
+                </div>
+                <div>
+                    <p class="footer-title">Consultora</p>
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer" class="footer-link-main">
+                        RAMUX
+                        <span class="footer-text-sub">Comunicación, Gestión y Desarrollo de Proyectos</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-700">
+                    <p class="footer-title">Organiza</p>
+                    <p class="footer-text-main text-sm">Escuela de Gestión y Negocios</p>
+                    <p class="footer-text-sub text-xs">Facultad de Cs. Económicas - UNER</p>
+                </div>
+            </div>
+        </nav>
+
+        <main id="content-scroll-area" class="content-scroll-area">
+
+            <section id="view-inicio" class="view-section">
+                <h2 class="section-title">Bienvenidos al Módulo 1</h2>
+                <p class="section-subtitle">
+                    Este programa es <strong>100% práctico</strong> y ha sido diseñado a medida para los equipos de <strong>Administración y Contabilidad de Grupo HER</strong>. Nuestro objetivo es claro: dotarlos de herramientas de IA Generativa y buenas prácticas que puedan aplicar de inmediato para optimizar sus tareas diarias.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3>Propósito del Curso</h3>
+                        <p>Transformar la gestión operativa de Grupo HER mediante la integración inteligente de herramientas de IA, liberando tiempo para análisis y decisiones estratégicas.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Agenda Módulo 1: Fundamentos</h3>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Introducción a la IA Generativa (ChatGPT, Gemini).</li>
+                            <li>Laboratorio práctico: Redacción y Resumen.</li>
+                            <li>Bases de eficiencia: Drive y Gestión de Archivos.</li>
+                            <li>Identificación de oportunidades de mejora.</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="section-subtitle-small mt-10 mb-6">Herramientas Prácticas del Día a Día</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>Conversión de Documentos (Word & PDF)</h3>
+                        <p class="text-gray-400 text-sm mb-3">La forma más rápida y segura es usando Google Drive:</p>
+                        <h4 class="font-semibold text-gray-200">De Word (.docx) a PDF:</h4>
+                        <ul class="list-decimal list-inside space-y-1 mb-3 pl-2">
+                            <li>Sube tu archivo Word a Google Drive.</li>
+                            <li>Ábrelo con "Documentos de Google".</li>
+                            <li>Ve a <strong>Archivo</strong> > <strong>Descargar</strong> > <strong>Documento PDF (.pdf)</strong>.</li>
+                        </ul>
+                        <h4 class="font-semibold text-gray-200">De PDF a Word (.docx):</h4>
+                        <ul class="list-decimal list-inside space-y-1 pl-2">
+                            <li>Sube el PDF a Google Drive.</li>
+                            <li>Haz clic derecho > <strong>Abrir con</strong> > <strong>Documentos de Google</strong>.</li>
+                            <li>Google convertirá el texto (puede no ser 100% perfecto si el PDF es complejo).</li>
+                            <li>Ve a <strong>Archivo</strong> > <strong>Descargar</strong> > <strong>Microsoft Word (.docx)</strong>.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>Consejos Prácticos para Google Drive</h3>
+                        <p class="text-gray-400 text-sm mb-3">Optimiza tu gestión de archivos para colaborar mejor:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Estructura de Carpetas:</strong> Crea carpetas claras y lógicas. (Ej: `[2024] > [Contabilidad] > [Facturas Proveedores]`).</li>
+                            <li><strong>Nomenclatura:</strong> Usa nombres descriptivos y consistentes. (Ej: `Factura_ClienteX_2024-10-28.pdf` en lugar de `Factura123.pdf`).</li>
+                            <li><strong>Compartir vs. Enviar:</strong> Evita adjuntar archivos pesados. Comparte el enlace desde Drive y asigna permisos (Lector, Comentador, Editor).</li>
+                            <li><strong>Acceso Sin Conexión:</strong> Habilita el acceso offline en la configuración de Drive para trabajar en tus archivos importantes sin internet.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-desafio" class="view-section">
+                <h2 class="section-title">El Desafío Actual de Grupo HER</h2>
+                <p class="section-subtitle">
+                    En un Grupo en constante expansión con diversas unidades (transporte de pasajeros y turismo), el equipo administrativo enfrenta retos significativos que demandan soluciones innovadoras.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h3 class="section-subtitle-small text-center text-red-400">Puntos de Dolor Identificados</h3>
+                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-300">
+                            <li><strong>Grandes Volúmenes de Datos:</strong> Información dispersa y difícil de procesar manualmente.</li>
+                            <li><strong>Conversión de Reportes:</strong> Tarea recurrente de pasar PDFs/CSV a Excel o sistemas.</li>
+                            <li><strong>Carga Operativa en Sistemas:</strong> Tiempo invertido en tareas repetitivas en Tango y Excel.</li>
+                            <li><strong>Comunicación Interna/Externa:</strong> Redacción de correos e informes consume tiempo valioso.</li>
+                            <li><strong>Errores Humanos:</strong> Propensos en procesos manuales y repetitivos.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="desafioChart"></canvas>
+                        </div>
+                        <p class="text-center text-gray-400 font-medium mt-4">Distribución Estimada del Tiempo de Trabajo</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-solucion" class="view-section">
+                <h2 class="section-title">La Solución: Potenciando su Eficiencia con IA</h2>
+                <p class="section-subtitle">
+                    La IA Generativa no es una inteligencia que "reemplaza", sino una herramienta que "potencia". Actúa como un asistente ultra-eficiente que realiza tareas repetitivas.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="info-card">
+                        <h3>¿Qué es la IA Generativa?</h3>
+                        <p class="mb-2">Un motor que crea contenido nuevo (texto, resúmenes, datos) basándose en patrones aprendidos de vastas cantidades de información.</p>
+                        <p class="text-sm text-gray-400 mt-2 italic">"No piensa como humano, pero opera a una escala inalcanzable para nosotros."</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Herramientas Fundamentales</h3>
+                        <p class="mb-2">Los grandes modelos de lenguaje que utilizaremos como base para nuestras aplicaciones:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>ChatGPT</strong> (OpenAI)</li>
+                            <li><strong>Gemini</strong> (Google)</li>
+                            <li><strong>Copilot</strong> (Microsoft)</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>IAs Específicas para su Rol</h3>
+                        <p class="mb-2">Más allá del chat, existen IAs diseñadas para tareas administrativas y contables:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>IA para Documentos:</strong> Lectura y extracción inteligente de datos de PDFs (facturas, extractos).</li>
+                            <li><strong>IA para Presentaciones:</strong> Generación automática de diapositivas (ej. Gamma).</li>
+                            <li><strong>IA para Hojas de Cálculo:</strong> Asistentes inteligentes dentro de Excel.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-ia-sistemas" class="view-section">
+                <h2 class="section-title">Integrando la IA en sus Sistemas Actuales</h2>
+                <p class="section-subtitle">
+                    La IA no reemplaza a Excel o Tango; los potencia. El objetivo es usar la IA como el "puente inteligente" para preparar o analizar la información que *entra* o *sale* de sus sistemas.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="info-card">
+                        <h3>IA y Excel</h3>
+                        <p>Deje de pelear con las fórmulas. Pídale a la IA que las genere por usted.</p>
+                        <p class="mt-2 text-sm text-sky-300 italic">"Tengo datos en la columna A (Fechas) y B (Montos). Dame una fórmula de Excel para sumar todos los montos de 'Octubre 2024'."</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>IA y Tango (Sistemas)</h3>
+                        <p>La IA es su mejor "Asistente de Carga de Datos". Puede preparar los datos de forma perfecta.</p>
+                        <p class="mt-2">Use la IA para tomar 50 remitos o facturas en PDF, extraer los datos clave y formatearlos en una tabla CSV que Tango pueda importar en 5 segundos.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>IA y PDFs / Documentos</h3>
+                        <p>Su "lector" incansable. Use herramientas como ChatPDF para "conversar" con sus documentos.</p>
+                        <p class="mt-2">Suba un extracto bancario de 20 páginas y pregúntele: "¿Cuál fue el monto total de débitos por 'Combustible'?"</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-aplicaciones" class="view-section">
+                <h2 class="section-title">Casos de Uso: 10 Aplicaciones Prácticas</h2>
+                <p class="section-subtitle">
+                    El secreto del éxito con la IA es el "Prompt Engineering": saber cómo dar instrucciones claras y efectivas. Un buen prompt tiene Contexto, Rol, Tono y Formato.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                    <div>
+                        <h3 class="section-subtitle-small">Calidad del Prompt: Básico vs. Efectivo</h3>
+                        <p class="text-gray-300 mb-4">Un prompt "básico" da resultados genéricos. Un prompt "efectivo" le da a la IA el contexto, rol, tono y formato, ahorrándole el 80% del trabajo.</p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="promptChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+
+                <h3 class="section-subtitle-small text-center mb-6">Galería de Prompts para Grupo HER</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card"><h3>1. Redacción de Cobranza</h3><p class="text-sm italic">"Actúa como Jefe de Admin. de Grupo HER. Redacta un correo profesional y amable para un cliente (Factura #1234, vencida hace 10 días), recordando los plazos de pago..."</p></div>
+                    <div class="info-card"><h3>2. Resumen de Siniestros (Transporte)</h3><p class="text-sm italic">"Toma el siguiente parte de siniestro (pegar texto). Resúmelo para la aseguradora en 3 puntos clave: 1. Fecha y Lugar, 2. Vehículos Involucrados (Dominio/Chofer)..."</p></div>
+                    <div class="info-card"><h3>3. Extracción de Datos de Remitos</h3><p class="text-sm italic">"Del siguiente texto de un remito, extrae el 'Nro de Remito', 'Fecha', 'Cliente' y 'Cantidad de Bultos'. Entrégamelo en formato CSV."</p></div>
+                    <div class="info-card"><h3>4. Clasificación de Gastos (Contable)</h3><p class="text-sm italic">"Tengo esta lista de gastos de un chofer: [Nafta $5000, Peaje $800, Café $500, Multa $2000]. Clasifícalos en una tabla con columnas 'Concepto', 'Monto' y 'Cuenta Contable'..."</p></div>
+                    <div class="info-card"><h3>5. Generar Fórmulas de Excel</h3><p class="text-sm italic">"En mi Excel, la columna A tiene 'Patentes' y la B tiene 'Km Recorridos'. Dame una fórmula BUSCARV para que, al poner una patente en la celda D1, me traiga los Km..."</p></div>
+                    <div class="info-card"><h3>6. Borrador de Procedimiento (SOP)</h3><p class="text-sm italic">"Escribe un procedimiento (SOP) de 5 pasos claros para 'Control de Recepción de Mercadería en Depósito', que incluya la verificación de remito contra orden de compra."</p></div>
+                    <div class="info-card"><h3>7. Optimización de Rutas (Conceptual)</h3><p class="text-sm italic">"Un camión debe salir de nuestra base (Paraná), y entregar en: A) Concordia, B) Gualeguaychú, C) Villaguay, y volver a la base. Dame el orden de ciudades más lógico..."</p></div>
+                    <div class="info-card"><h3>8. Responder Consultas de Seguimiento</h3><p class="text-sm italic">"Un cliente pregunta 'dónde está mi pedido 456?'. Redacta una respuesta amable y profesional diciendo que estamos verificando el estado del seguimiento con el chofer..."</p></div>
+                    <div class="info-card"><h3>9. Analizar Encuestas de Clientes</h3><p class="text-sm italic">"Toma estos 10 comentarios de clientes sobre nuestro servicio de transporte (pegar comentarios). Dime el sentimiento general (positivo/negativo) y los 3 temas que más se repiten..."</p></div>
+                    <div class="info-card"><h3>10. Script de Reclamo a Proveedor</h3><p class="text-sm italic">"Escribe un guion (script) corto para una llamada telefónica para reclamar a un proveedor (Gomería X) por una factura de recapado (Factura #5678) que vino con un monto incorrecto."</p></div>
+                </div>
+            </section>
+
+            <section id="view-ejercicios" class="view-section">
+                <h2 class="section-title">Laboratorio Práctico: 10 Desafíos Reales</h2>
+                <p class="section-subtitle">
+                    Ponga a prueba su habilidad de "Prompt Engineering". Lea el problema, piense en la instrucción perfecta y luego haga clic en "Ver Solución" para comparar.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>Ejercicio 1: Extraer Datos de Email</h3>
+                        <p><strong>Problema:</strong> Le llega un email: "Buenas, adjunto la FC A-0001-12345 por $150.800,50 con vto el 10/12. Nuestro CUIT es 30-12345678-9."</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución Propuesta</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p><strong>Solución Óptima:</strong></p>
+                            <p class="italic text-sm">"Del siguiente texto: [pegar texto del email], extrae el Número de Factura, CUIT, Monto Total y Fecha de Vencimiento. Formatea la salida como una tabla CSV."</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Ejercicio 2: Reformular un Email</h3>
+                        <p><strong>Problema:</strong> Quiere escribir: "Cliente, no pagó la factura. Pague ya o cortamos el servicio." Suena muy agresivo. Necesita que la IA lo haga profesional.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución Propuesta</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p><strong>Solución Óptima:</strong></p>
+                            <p class="italic text-sm">"Actúa como Gerente de Cuentas Corrientes. Reformula el siguiente texto [pegar texto] para que sea profesional, amable pero firme. Menciona que es un segundo recordatorio..."</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Ejercicio 3: Fórmula de Excel Compleja</h3>
+                        <p><strong>Problema:</strong> Columna A (Categoría), Columna B (Monto). Quiere sumar SÓLO los montos de "Combustible" que sean mayores a $10.000.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución Propuesta</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p><strong>Solución Óptima:</strong></p>
+                            <p class="italic text-sm">"Dame una fórmula de Excel en español que sume los valores de la columna B (B2:B100) SÓLO SI el valor en A (A2:A100) es 'Combustible' Y el valor en B es mayor que 10000."</p>
+                            <p class="mt-2"><strong>Respuesta:</strong> <code>=SUMAR.SI.CONJUNTO(B2:B100, A2:A100, "Combustible", B2:B100, ">10000")</code></p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Ejercicio 4: Resumir Cadena de Emails</h3>
+                        <p><strong>Problema:</strong> Tiene 15 emails sobre una entrega fallida. Su gerente le pide: "¿Qué pasó?". Necesita un resumen ya.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución Propuesta</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p><strong>Solución Óptima:</strong></p>
+                            <p class="italic text-sm">"Toma la siguiente cadena de emails [pegar cadena]. Resume la situación en 3 puntos clave para mi gerente: 1. Cuál fue el problema, 2. Qué acciones se tomaron, 3. Cuál es el estado actual."</p>
+                        </div>
+                    </div>
+                    <div class="info-card"><h3>Ejercicio 5: Generar Datos de Prueba</h3><p><strong>Problema:</strong> Probar una planilla de control de flota con datos falsos.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Genera una tabla con 10 filas de datos de prueba para una flota. Columnas: 'Patente' (AA123BB), 'Chofer' (Nombre), 'Estado' (En viaje, En base), 'Km_Hoy' (aleatorio 50-600)."</p></div></div>
+                    <div class="info-card"><h3>Ejercicio 6: Formatear Texto Desordenado</h3><p><strong>Problema:</strong> Le pasan gastos por WhatsApp: "nafta 12000, peaje 900, hotel 15000".</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Toma los siguientes datos: [pegar lista]. Conviértelos en una tabla de dos columnas con los encabezados 'Concepto' y 'Monto'."</p></div></div>
+                    <div class="info-card"><h3>Ejercicio 7: Investigación Contable</h3><p><strong>Problema:</strong> "¿Tope de viáticos deducibles de ganancias para choferes de larga distancia sin comprobante?"</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"(Usar Gemini/Perplexity) Actúa como experto contable en Argentina. ¿Cuál es el monto máximo de viáticos para choferes (CCT 40/89) exento de Ganancias para el período fiscal actual? Cita la fuente."</p></div></div>
+                    <div class="info-card"><h3>Ejercicio 8: Comunicación Interna</h3><p><strong>Problema:</strong> Recordar a choferes la OBLIGACIÓN de entregar remitos firmados en 24hs.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Actúa como Jefe de Tráfico. Redacta un comunicado interno breve (para WhatsApp) para choferes. Tono MUY firme pero profesional. Recordar la importancia crítica de entregar remitos conformados en 24hs."</p></div></div>
+                    <div class="info-card"><h3>Ejercicio 9: Analizar Datos Simples</h3><p><strong>Problema:</strong> Pega una lista de facturas (Fecha Vto / Fecha Pago). Quiere saber el promedio de días de atraso.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Toma los siguientes datos [pegar tabla]. Calcula los días de atraso para cada factura. Dime el promedio de días de atraso y cuál es la factura con mayor demora."</p></div></div>
+                    <div class="info-card"><h3>Ejercicio 10: Escritura Creativa</h3><p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Escribe un borrador de post para LinkedIn (máx 150 palabras) para Grupo HER por el Día del Camionero. Tono inspirador y de agradecimiento. Conectar el trabajo del chofer con la economía. Incluye 3 hashtags relevantes."</p></div></div>
+                </div>
+            </section>
+
+            <section id="view-anotaciones" class="view-section">
+                <h2 class="section-title">Anotaciones y Temas (Clase 1)</h2>
+                <p class="section-subtitle">
+                    Estos son los desafíos y preguntas clave que surgieron durante nuestra primera clase. Quedan aquí registrados para abordarlos a lo largo de los módulos.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>Desafío 1: Conciliaciones Bancarias</h3>
+                        <p><strong>Problema:</strong> El proceso de conciliar resúmenes bancarios (PDF) contra los registros (Excel/Tango) es manual y propenso a errores. La conversión de PDF a Excel suele perder datos o renglones.</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Lo abordaremos de lleno en el <strong>Módulo 2 (Desafío PDF a CSV)</strong> y en <strong>Datos Seguros</strong>. Veremos cómo sanitizar los PDF y usar IAs pagas para extraer tablas completas.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 2: Seguridad de Datos</h3>
+                        <p><strong>Problema:</strong> ¿Qué tan seguro es subir un extracto bancario o facturas a una IA? (Mencionado por Analia, Lorena).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Cubierto en la sección <strong>Datos Seguros</strong>. La regla de oro: NUNCA usar datos sensibles en versiones gratuitas. Las versiones "Paga" (Team/Enterprise) ofrecen protección y no usan tus datos para entrenar.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 3: Integración de Sistemas</h3>
+                        <p><strong>Problema:</strong> Dificultad para extraer datos de sistemas como RDT o Prosis para cruzarlos. (Mencionado por Tony).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> En el <strong>Módulo 2 (Extracción)</strong> veremos cómo la IA puede trabajar con los "crudos" (archivos Excel/CSV) que *sí* se logren exportar, sin importar lo complejos que sean.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 4: "Prueba y Error" con Prompts</h3>
+                        <p><strong>Problema:</strong> A veces, aunque el prompt es complejo, la IA "alucina" o da un resultado incorrecto. (Mencionado por Tony).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Esto es clave para el <strong>Módulo 4 (Prompt Engineering)</strong>. Aprenderemos a "iterar" y "afinar" el prompt, y a "enseñarle" a la IA cómo queremos la respuesta.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Nuevas Herramientas Mencionadas</h3>
+                        <p><strong>Tactiq:</strong> Para grabar, transcribir y resumir reuniones virtuales (como esta). Identifica tareas y oradores.</p>
+                        <p class="mt-2"><strong>Gamma.ai:</strong> Para crear presentaciones visuales y flujogramas a partir de texto simple. Lo veremos en <strong>Módulo 2 (Reportes)</strong>.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 5: Tono de Comunicación</h3>
+                        <p><strong>Problema:</strong> Cómo usar la IA para que los correos (internos o a boleterías) suenen amables pero firmes, sin malinterpretarse. (Mencionado por Stella).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Es un caso de uso perfecto de la IA. Ver <strong>Ejercicio 2</strong> y <strong>Ejercicio 8</strong>. La clave es especificar el "Tono" en el prompt.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-autoevaluacion" class="view-section">
+                <h2 class="section-title">Autoevaluación (Verdadero/Falso)</h2>
+                <p class="section-subtitle">
+                    Pongamos a prueba los conceptos clave del Módulo 1. Esto es solo una instancia de aprendizaje para reforzar ideas.
+                </p>
+                
+                <form id="quiz-form" class="mt-8 space-y-6">
+                    
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. Es 100% seguro pegar un extracto bancario con datos de clientes en la versión gratuita de ChatGPT.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="f" required> Falso</label>
+                            <label><input type="radio" name="q1" value="v"> Verdadero</label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. Un "Prompt Efectivo" debe incluir Contexto, Rol, Tono y Formato.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="f"> Falso</label>
+                            <label><input type="radio" name="q2" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. Las "Alucinaciones" de la IA son cuando inventa datos que parecen correctos pero son falsos.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="f"> Falso</label>
+                            <label><input type="radio" name="q3" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. La IA Generativa solo sirve para chatear y no puede ayudar a crear fórmulas de Excel.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="f" required> Falso</label>
+                            <label><input type="radio" name="q4" value="v"> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. "ChatPDF" es una herramienta que permite "conversar" con un documento PDF y hacerle preguntas.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="f"> Falso</label>
+                            <label><input type="radio" name="q5" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. La forma más segura de convertir un Word a PDF es usando Google Drive, en lugar de una página web desconocida.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q6" value="f"> Falso</label>
+                            <label><input type="radio" name="q6" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. La IA no puede ayudar a optimizar una ruta de transporte porque no tiene sentido de la logística.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q7" value="f" required> Falso</label>
+                            <label><input type="radio" name="q7" value="v"> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. "RPA" (Automatización Robótica de Procesos) es el "Paso 2", donde un "robot" de software usa la IA para ejecutar tareas completas.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q8" value="f"> Falso</label>
+                            <label><input type="radio" name="q8" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. Si la IA redacta un correo incorrecto y yo lo envío, el responsable legal es la IA.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q9" value="f" required> Falso</label>
+                            <label><input type="radio" name="q9" value="v"> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. La IA puede ayudar a clasificar gastos de un ticket o remito en cuentas contables específicas si se le da el contexto correcto.</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q10" value="f"> Falso</label>
+                            <label><input type="radio" name="q10" value="v" required> Verdadero</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación</button>
+                </form>
+
+                <div id="quiz-results" class="info-card mt-8 hidden">
+                    <h3 id="quiz-title" class="text-2xl font-bold text-center"></h3>
+                    <p id="quiz-score" class="text-6xl font-bold text-center my-4"></p>
+                    <p id="quiz-message" class="text-center text-lg"></p>
+                    
+                    <div id="quiz-feedback" class="mt-6 border-t border-slate-600 pt-4 hidden">
+                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
+                        <ul id="quiz-feedback-list" class="list-disc list-inside mt-2 space-y-1">
+                            </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="view-datos-seguros" class="view-section">
+                <h2 class="section-title">Datos Seguros: El Lado Humano de la IA</h2>
+                <p class="section-subtitle">
+                    La IA es poderosa, pero usarla sin precaución es riesgoso. Su rol es ser el "filtro humano" de la IA.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="alert-card">
+                        <h3>ALERTA 1: Confidencialidad</h3>
+                        <p><strong>Lo que pones en un chat público (como ChatGPT gratis), se vuelve público.</strong> La IA usa esa información para entrenarse.</p>
+                        <p class="mt-2 font-semibold">NUNCA pegue datos sensibles: DNI, CBU, balances, contratos, listas de clientes o nóminas salariales en una IA pública.</p>
+                    </div>
+                    <div class="alert-card">
+                        <h3>ALERTA 2: Alucinaciones</h3>
+                        <p><strong>La IA es creativa y a veces INVENTA datos.</strong> Puede "alucinar" fechas, números o artículos de leyes que *parecen* correctos pero están mal.</p>
+                        <p class="mt-2 font-semibold">SIEMPRE verifique la información crítica que le da la IA. Especialmente cálculos y referencias legales/contables.</p>
+                    </div>
+                    <div class="alert-card">
+                        <h3>ALERTA 3: Usted es el Piloto</h3>
+                        <p>Piense en la IA como un "Copiloto". Le da sugerencias, pero el Piloto (usted) es quien toma la decisión y es el responsable final.</p>
+                        <p class="mt-2 font-semibold">Si la IA redacta un correo incorrecto y usted lo envía, el error es suyo, no de la IA. Revise, edite y valide siempre.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-automatizacion" class="view-section">
+                <h2 class="section-title">El Futuro: De Prompts a Procesos Automatizados (RPA)</h2>
+                <p class="section-subtitle">
+                    Lo que aprendemos hoy (Prompts) es el Paso 1. El Paso 2, y el futuro de la eficiencia, es conectar estas IAs a herramientas de automatización.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>Paso 1: Asistencia (Hoy)</h3>
+                        <p>Usamos IA Generativa (ChatGPT, Gemini) para que nos *asista* en tareas.</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>"Ayúdame a redactar..."</li>
+                            <li>"Ayúdame a resumir..."</li>
+                            <li>"Ayúdame a crear una fórmula..."</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Paso 2: Automatización (Mañana)</h3>
+                        <p>Usamos herramientas (RPA, Zapier) que *usan* la IA para *trabajar solas*.</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>Un "robot" monitorea un email.</li>
+                            <li>Cuando llega una factura, la IA la lee.</li>
+                            <li>Extrae los datos (CUIT, Monto, Fecha).</li>
+                            <li>Carga un borrador en Tango y le avisa a usted.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="info-card mt-6">
+                    <h3>Ejemplo de Proceso Logístico Automatizado</h3>
+                    <p>Imagine un flujo donde un cliente envía un email pidiendo una cotización para "llevar 2 pallets a Rosario".</p>
+                    <ol class="list-decimal list-inside mt-2 space-y-1">
+                        <li><strong>Un robot (RPA)</strong> detecta el email y se lo pasa a la IA.</li>
+                        <li><strong>La IA (Gemini)</strong> entiende el email y extrae: [Cliente: X, Carga: 2 Pallets, Destino: Rosario].</li>
+                        <li><strong>El robot</strong> busca esos datos en el sistema de tarifas y prepara un borrador de cotización.</li>
+                        <li><strong>El robot</strong> le envía un email al vendedor: "Borrador de cotización listo para 'Cliente X'. ¿Aprobar y enviar?".</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="view-otras-ias" class="view-section">
+                <h2 class="section-title">Un Universo de Herramientas de IA</h2>
+                <p class="section-subtitle">
+                    Además de los grandes modelos como ChatGPT, existe un ecosistema de IAs especializadas para tareas concretas.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="info-card">
+                        <h3 class="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=G" alt="" class="rounded-lg mr-3">Gamma.ai</h3>
+                        <p><strong>Para qué sirve:</strong> Generador de presentaciones y flujogramas.</p>
+                        <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Ideal para crear informes visuales para gerencia sin perder tiempo en el diseño.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=P" alt="" class="rounded-lg mr-3">Perplexity.ai</h3>
+                        <p><strong>Para qué sirve:</strong> Un motor de búsqueda conversacional que cita sus fuentes.</p>
+                        <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Perfecto para investigar normativas de AFIP o temas contables con fuentes reales.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=PDF" alt="" class="rounded-lg mr-3">ChatPDF / PDF.ai</h3>
+                        <p><strong>Para qué sirve:</strong> Permite "conversar" con sus documentos PDF.</p>
+                        <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Clave. 'Pregúntale' a un PDF de AFIP por una resolución o a un extracto bancario por un monto.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-hoja-ruta" class="view-section">
+                <h2 class="section-title">Hoja de Ruta del Curso</h2>
+                <p class="section-subtitle">
+                    Este es el camino que recorreremos. Hoy sentamos las bases para los desafíos más complejos que resolveremos en los próximos módulos.
+                </p>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="roadmap-card-active">
+                        <span class="roadmap-number">1</span> Módulo 1: <br>Fundamentos y Herramientas
+                    </div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-inactive">
+                        <span class="roadmap-number">2</span> Módulo 2: <br>IA para Datos (Tango, Excel, PDFs)
+                    </div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-inactive">
+                        <span class="roadmap-number">3</span> Módulo 3: <br>Automatización de Tareas
+                    </div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-inactive">
+                        <span class="roadmap-number">4</span> Módulo 4: <br>Prompt Engineering Avanzado
+                    </div>
+                </div>
+                <div class="info-card mt-8">
+                    <h3>Próxima Clase: Módulo 2</h3>
+                    <p>Nos sumergiremos en la <strong>Inteligencia de Negocios y Análisis de Datos</strong>. Abordaremos la integración con <strong>Tango y Excel</strong>, y aprenderemos a convertir esos desafiantes PDFs a CSV de forma automática y precisa. ¡Prepárense para transformar la gestión de sus datos!</p>
+                </div>
+            </section>
+
+        </main>
+        
+    </div> <script src="script.js"></script> </body>
+</html>
