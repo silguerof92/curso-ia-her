@@ -26,6 +26,7 @@
                 </div>
                 
                 <ul id="mainNav" class="space-y-2">
+                    <!-- CONTENIDO PRINCIPAL -->
                     <li><a href="#view-intro-m2" class="nav-link active">Intro Módulo 2</a></li>
                     <li><a href="#view-extraccion" class="nav-link">Extracción (Tango/Excel)</a></li>
                     <li><a href="#view-analisis" class="nav-link">Análisis Avanzado</a></li>
@@ -35,14 +36,14 @@
                     <li><a href="#view-herramientas" class="nav-link">Universo de Herramientas</a></li>
                     <li><a href="#view-links" class="nav-link">Links de Interés</a></li>
                     <li><a href="#view-ejercicios-m2" class="nav-link">Ejercicios (M2)</a></li>
-                    <!-- Secciones de revisión movidas al final -->
+                    <!-- PESTAÑAS DE REVISIÓN AL FINAL -->
                     <li><a href="#view-anotaciones-m2" class="nav-link">Anotaciones (Clase 2)</a></li>
                     <li><a href="#view-autoevaluacion-m2-vf" class="nav-link">Autoevaluación (V/F)</a></li>
                     <li><a href="#view-autoevaluacion-m2-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
                 </ul>
             </div>
 
-            <!-- Bloque de Atribución y Redes (SIN CAMBIOS) -->
+            <!-- Bloque de Atribución y Redes -->
             <div class="sidebar-footer">
                 <div>
                     <p class="footer-title">Facilitador</p>
@@ -144,7 +145,7 @@
                         <p>Como hablamos, no podemos subir datos sensibles a IAs gratuitas. Tenemos dos caminos:</p>
                         <ul class="list-disc list-inside mt-2 space-y-1">
                             <li><strong>Opción A (Recomendada/Paga):</strong> Usar la versión paga (ChatGPT-4o, Gemini Advanced) que garantiza la confidencialidad de los archivos que subes. Esta es la solución profesional.</li>
-                            <li><strong>Opción B (Gratuita/Segura):</strong> "Anonimizar" el PDF. Abrir el PDF, borrar manualmente los datos sensibles (Nombre de la empresa, CUIT, N° de Cuenta), como sugirió Micaela. Es más lento, pero 100% seguro.</li>
+                            <li><strong>Opción B (Gratuita/Segura):</strong> "Anonimizar" el PDF. Abrir el PDF, borrar manually los datos sensibles (Nombre de la empresa, CUIT, N° de Cuenta), como sugirió Micaela en la clase. Es más lento, pero 100% seguro.</li>
                         </ul>
                     </div>
                     <!-- Paso 2 -->
@@ -174,7 +175,7 @@
                 <h2 class="section-title">Creación de Reportes y Flujogramas</h2>
                 <p class="section-subtitle">
                     Una vez que tenemos los datos limpios y analizados, la IA puede ayudarnos a *presentarlos*. Esto es clave para comunicar los hallazgos a la gerencia o a otros equipos.
-                </de>
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
                         <h3>Generación de Flujogramas (Gamma)</h3>
@@ -198,7 +199,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
                         <h3>Tip 1: "Basura Entra, Basura Sale" (GIGO)</h3>
-                        <p>La IA no puede hacer magia. Si el reporte "crudo" de Tango está mal cargado o los datos son incorrectos, el análisis de la IA también será incorrecto. La limpieza y el orden de los datos es el 80% del trabajo.</p>
+                        <p>Este es el principio N°1 del análisis de datos. La IA no puede hacer magia. Si el reporte "crudo" de Tango está mal cargado o los datos son incorrectos, el análisis de la IA también será incorrecto. La limpieza y el orden de los datos es el 80% del trabajo.</p>
                     </div>
                     <div class="info-card">
                         <h3>Tip 2: "No Hiervas el Océano" (Empieza Pequeño)</h3>
@@ -398,7 +399,7 @@
                     <!-- Ej 8 -->
                     <div class="info-card">
                         <h3>Ejercicio 8: Formatear Texto (Rendición)</h3>
-                        <p><strong>Problema:</strong> Un chofer te pasa sus gastos por WhatsApp: "nafta $15000, peaje 950, cena 3500, ayer peaje $800, ypf $12000". Necesitas esto en una tabla.</p>
+                        <p><strong>Problema:</strong> Un chofer te pasa sus gastos por WhatsApp: "Hola, te paso. nafta $15000, peaje 950, cena 3500, ayer peaje $800, ypf $12000". Necesitas esto en una tabla.</p>
                         <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
                         <div class="ejercicio-solucion hidden">
                             <p class="italic text-sm">"Toma el siguiente texto desordenado: [pegar texto del WhatsApp]. Extráelos y agrúpalos por concepto en una tabla con dos columnas: 'Concepto' (ej. Nafta, Peaje, Comida) y 'Monto Total'."</p>
@@ -429,56 +430,59 @@
             <section id="view-anotaciones-m2" class="view-section">
                 <h2 class="section-title">Anotaciones y Temas (Clase 2)</h2>
                 <p class="section-subtitle">
-                    Temas clave que surgieron en nuestra segunda clase, basados en la transcripción y nuestros debates sobre datos.
+                    Estos son los desafíos y preguntas clave que surgieron durante nuestra segunda clase, basados en la transcripción.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
-                        <h3>1. "Extrae" vs. "Convierte"</h3>
-                        <p><strong>Discusión:</strong> Javier preguntó la diferencia. "Convierte" le da a la IA libertad creativa y puede llevar a "alucinaciones" o manipulación del dato. "Extrae" es una orden directa, mucho más segura y precisa para tareas contables.</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> Siempre usaremos "Extrae" para datos sensibles. Seremos híper-específicos, como "no omitas ningún renglón".</p>
+                        <h3>Punto Clave 1: "Extrae" vs. "Convierte"</h3>
+                        <p><strong>Discusión:</strong> Javier preguntó la diferencia entre pedirle a la IA "convierte" vs. "extrae" un PDF. [cite: 01:42:11-01:43:18]</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> "Extrae" es un comando más preciso. Le dice a la IA que *busque y saque* los datos tal cual son. "Convierte" es más vago y le da permiso a la IA para *interpretar* o *manipular* los datos en el proceso, lo que puede llevar a alucinaciones. **Siempre prefiera "Extrae"**.</p>
                     </div>
                     <div class="info-card">
-                        <h3>2. El Poder de los "Modelos de Tabla"</h3>
-                        <p><strong>Discusión:</strong> En lugar de pedirle a la IA que *cree* una tabla, podemos darle nuestro modelo exacto de Excel/Tango.</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> Podemos darle un prompt como: "Toma esta tabla modelo [pegar encabezados]. Ahora, extrae los datos de este PDF y llénala *exactamente* con este formato."</p>
+                        <h3>Punto Clave 2: Usar "Modelos de Tabla"</h3>
+                        <p><strong>Discusión:</strong> Mencionamos que si ya tenemos un modelo de tabla en Excel que usamos para cargar en Tango, podemos dárselo a la IA.</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> En lugar de describir las columnas, es más eficiente decirle: "Tengo este modelo de tabla [pegar el encabezado o un ejemplo]. Por favor, extrae los datos del PDF y llénalo." [cite: 01:45:11-01:45:15]</p>
                     </div>
                     <div class="info-card">
-                        <h3>3. El Desafío de los "Crudos" de Sistemas</h3>
-                        <p><strong>Discusión:</strong> Los datos de RDT o Prosis son difíciles de extraer y no vienen en un formato limpio. (Mencionado por Tony).</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> La IA es perfecta para esto. Aunque la extracción siga siendo manual, podemos subir ese Excel "crudo" y usar la IA para limpiarlo en segundos (ver "Extracción (Tango/Excel)").</p>
+                        <h3>Punto Clave 3: ¿Qué es un "RPA"?</h3>
+                        <p><strong>Discusión:</strong> Susana preguntó por el término "RPA" (Automatización Robótica de Procesos).</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Es un "programita" o "robot" de software que programamos para que haga tareas por nosotros. Es el "Paso 3" de la automatización: el robot revisa el email, la IA lee la factura, y el robot la carga en Tango. [cite: 01:31:18-01:34:24]</p>
                     </div>
                     <div class="info-card">
-                        <h3>4. Un Usuario por Área (Evitar Contaminación)</h3>
-                        <p><strong>Discusión:</strong> ¿Usar un solo usuario pago para toda la empresa? (Mencionado por Analia).</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> Es riesgoso. Si le enseñas a la IA sobre Marketing y luego le preguntas sobre Contabilidad, puede "alucinar" y cruzar información. Lo ideal es tener usuarios separados por área (ej. "IA-Contable", "IA-Turismo") para que cada uno se especialice.</p>
+                        <h3>Punto Clave 4: ¿Un Usuario por Área?</h3>
+                        <p><strong>Discusión:</strong> Analia preguntó cómo organizar el uso de la IA en la empresa.</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Lo ideal es tener un usuario (pago) por área (ej. "Contabilidad", "Turismo"). Si Marketing y Contabilidad usan el mismo chat, la IA puede "contaminarse" y mezclar conceptos, llevando a alucinaciones. Separar los chats por "proyecto" o "área" es fundamental. [cite: 01:58:31-02:01:03]</p>
                     </div>
                     <div class="info-card">
-                        <h3>5. ¿Qué es un RPA (Robot)?</h3>
-                        <p><strong>Discusión:</strong> Aclaramos el término "Robotic Process Automation".</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> No es un robot físico. Es un "programita" (software) que programamos para que haga tareas por nosotros (ej. "revisa este email, extrae el CUIT, búscalo en este Excel y envíame un resumen"). Es el tema central del Módulo 3.</p>
+                        <h3>Punto Clave 5: Vencimientos (Caso Práctico)</h3>
+                        <p><strong>Discusión:</strong> Carina mencionó la carga manual de vencimientos de impuestos en Outlook.</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Este es un caso perfecto para un "Agente" o "RPA". Se puede programar una IA (con Perplexity o Copilot) para que, a fin de mes, *busque en la web* (ej. AFIP) los vencimientos, los extraiga y te genere el archivo para importar al calendario, ahorrando la carga manual. [cite: 01:39:08-01:40:32]</p>
                     </div>
-                    <div class="info-card">
-                        <h3>6. Vencimientos de Impuestos</h3>
-                        <p><strong>Discusión:</strong> Carina mencionó la carga manual de vencimientos en Outlook.</p>
-                        <p class="mt-2 text-sky-300"><strong>Lección:</strong> Este es un caso perfecto para un Agente de IA. Se puede programar una IA (con Perplexity o Gemini) para que *una vez por mes* revise las fuentes de AFIP, extraiga los vencimientos y te genere el archivo para importar al calendario.</p>
+                     <div class="info-card">
+                        <h3>Punto Clave 6: El Control Humano no se negocia</h3>
+                        <p><strong>Discusión:</strong> El análisis de competencia de Tony demostró que la IA puede acertar, pero también cometer errores que solo un experto con "conocimiento previo" puede detectar.</p>
+                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> La IA nos quita el trabajo de *procesar*, pero nos exige ser mejores *analistas* y *controladores* del dato final. El pensamiento crítico es más importante que nunca. [cite: 01:09:04-01:10:04]</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SECCIÓN 10: AUTOEVALUACIÓN M2 (V/F) - ACTUALIZADA -->
+            <!-- SECCIÓN 10: AUTOEVALUACIÓN M2 (V/F) -->
             <section id="view-autoevaluacion-m2-vf" class="view-section">
                 <h2 class="section-title">Autoevaluación (Verdadero/Falso)</h2>
                 <p class="section-subtitle">
                     Repasemos los conceptos clave de este módulo sobre Datos e Inteligencia de Negocios.
                 </p>
                 
-                <form id="quiz-form-m2-vf" class="mt-8 space-y-6"> <!-- ID ÚNICO -->
+                <form id="quiz-form-m2-vf" class="mt-8 space-y-6">
                     
-                    <!-- Campo de Nombre -->
+                    <!-- Campo Nombre -->
                     <div class="quiz-question-card">
-                        <label for="nombre_m2_vf" class="quiz-question">Ingresa tu nombre:</label>
-                        <input type="text" id="nombre_m2_vf" name="nombre" class="w-full mt-2 p-2 rounded bg-slate-700 border border-slate-600 text-white" placeholder="Tu nombre y apellido..." required>
+                        <label for="nombre-m2-vf" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre-m2-vf" name="nombre_alumno" class="quiz-input" required>
                     </div>
+
+                    <!-- Campos ocultos para Formspree -->
+                    <input type="hidden" name="quiz_id" value="Modulo 2 - V/F">
                     
                     <div class="quiz-question-card">
                         <p class="quiz-question">1. La IA puede ayudar a limpiar un reporte "crudo" de Tango, eliminando filas de título y renombrando columnas.</p>
@@ -521,7 +525,7 @@
                     </div>
 
                     <div class="quiz-question-card">
-                        <p class="quiz-question">6. Para pedir un cruce de datos, es mejor decirle a la IA "Usa la fórmula BUSCARV" que "Agrega la Razón Social a esta tabla usando el CUIT".</f>
+                        <p class="quiz-question">6. Para pedir un cruce de datos, es mejor decirle a la IA "Usa la fórmula BUSCARV" que "Agrega la Razón Social a esta tabla usando el CUIT".</p>
                         <div class="quiz-options">
                             <label><input type="radio" name="m2-q6" value="f" required> Falso</label>
                             <label><input type="radio" name="m2-q6" value="v"> Verdadero</label>
@@ -537,31 +541,25 @@
                     </div>
                     
                     <div class="quiz-question-card">
-                        <p class="quiz-question">8. Un "Agente de IA" es un tipo de chat que solo puede responder preguntas sobre el futuro.</p>
+                        <p class="quiz-question">8. Un "RPA" (Agente de IA) es un "programita" que automatiza un proceso completo, como leer un email y cargar datos.</p>
                         <div class="quiz-options">
-                            <label><input type="radio" name="m2-q8" value="f" required> Falso</label>
-                            <label><input type="radio" name="m2-q8" value="v"> Verdadero</label>
+                            <label><input type="radio" name="m2-q8" value="f"> Falso</label>
+                            <label><input type="radio" name="m2-q8" value="v" required> Verdadero</label>
                         </div>
                     </div>
-
-                    <!-- Campos ocultos para enviar resultados -->
-                    <input type="hidden" name="puntaje_final_m2_vf" id="puntaje_final_m2_vf">
-                    <input type="hidden" name="feedback_m2_vf" id="feedback_m2_vf">
 
                     <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (V/F)</button>
                 </form>
 
                 <!-- Cuadro de Resultados (Oculto) -->
-                <div id="quiz-results-m2-vf" class="info-card mt-8 hidden"> <!-- ID ÚNICO -->
+                <div id="quiz-results-m2-vf" class="info-card mt-8 hidden">
                     <h3 id="quiz-title-m2-vf" class="text-2xl font-bold text-center"></h3>
                     <p id="quiz-score-m2-vf" class="text-6xl font-bold text-center my-4"></p>
                     <p id="quiz-message-m2-vf" class="text-center text-lg"></p>
                     
                     <div id="quiz-feedback-m2-vf" class="mt-6 border-t border-slate-600 pt-4 hidden">
                         <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
-                        <ul id="quiz-feedback-list-m2-vf" class="list-disc list-inside mt-2 space-y-1">
-                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
-                        </ul>
+                        <ul id="quiz-feedback-list-m2-vf" class="list-disc list-inside mt-2 space-y-1"></ul>
                     </div>
                 </div>
             </section>
@@ -570,135 +568,122 @@
             <section id="view-autoevaluacion-m2-mc" class="view-section">
                 <h2 class="section-title">Autoevaluación (Opción Múltiple)</h2>
                 <p class="section-subtitle">
-                    Reforcemos los conceptos de análisis y herramientas de este módulo.
+                    Profundicemos un poco más en los conceptos del Módulo 2.
                 </p>
                 
-                <form id="quiz-form-m2-mc" class="mt-8 space-y-6"> <!-- ID NUEVO -->
+                <form id="quiz-form-m2-mc" class="mt-8 space-y-6">
                     
-                    <!-- Campo de Nombre -->
+                    <!-- Campo Nombre -->
                     <div class="quiz-question-card">
-                        <label for="nombre_m2_mc" class="quiz-question">Ingresa tu nombre:</label>
-                        <input type="text" id="nombre_m2_mc" name="nombre" class="w-full mt-2 p-2 rounded bg-slate-700 border border-slate-600 text-white" placeholder="Tu nombre y apellido..." required>
+                        <label for="nombre-m2-mc" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre-m2-mc" name="nombre_alumno" class="quiz-input" required>
                     </div>
 
-                    <!-- Pregunta 1 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">1. ¿Cuál es la diferencia clave entre "Extrae" y "Convierte" al pedirle datos de un PDF a una IA?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc1" value="a" required> a) Son sinónimos, la IA los entiende igual.</label>
-                            <label><input type="radio" name="mc1" value="b"> b) "Extrae" es una orden precisa de "copiar", mientras que "Convierte" le da libertad a la IA para interpretar o "alucinar" datos.</label>
-                            <label><input type="radio" name="mc1" value="c"> c) "Convierte" es para Excel y "Extrae" es para Word.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 2 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">2. Para evitar que la IA "contamine" su conocimiento de Contabilidad con Marketing, la mejor práctica es:</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc2" value="a" required> a) Usar un usuario de IA pago separado para cada área (ej. un chat para Contabilidad, otro para Marketing).</label>
-                            <label><input type="radio" name="mc2" value="b"> b) Usar la misma cuenta gratuita para todos y borrar el historial todos los días.</label>
-                            <label><input type="radio" name="mc2" value="c"> c) Preguntarle a la IA solo los fines de semana.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 3 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">3. ¿Qué herramienta mencionamos, ideal para analizar Excel y CSV, que funciona como un "Analista de Datos" en chat?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc3" value="a" required> a) Suno.ai.</label>
-                            <label><input type="radio" name="mc3" value="b"> b) Tactiq.</label>
-                            <label><input type="radio" name="mc3" value="c"> c) Julius.ai.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 4 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">4. ¿Cuál es la forma más profesional de pedirle a la IA que cruce datos de dos hojas de Excel?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc4" value="a" required> a) "Dame una fórmula BUSCARV."</label>
-                            <label><input type="radio" name="mc4" value="b"> b) "Agrega la 'Razón Social' de la Hoja 2 a la Hoja 1, usando la columna 'CUIT' como clave."</label>
-                            <label><input type="radio" name="mc4" value="c"> c) "Haz magia con estas tablas."</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 5 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">5. "Sanitizar" o "Anonimizar" un PDF antes de subirlo a una IA gratuita implica:</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc5" value="a" required> a) Borrar manually datos sensibles como CUIT, N° de Cuenta y Razón Social.</label>
-                            <label><input type="radio" name="mc5" value="b"> b) Convertir el PDF a un archivo .zip.</label>
-                            <label><input type="radio" name="mc5" value="c"> c) Imprimirlo y volverlo a escanear.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 6 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">6. ¿Qué es un RPA (Robotic Process Automation)?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc6" value="a" required> a) Un robot físico que trabaja en la oficina.</label>
-                            <label><input type="radio" name="mc6" value="b"> b) Un software ("programita") que programamos para que ejecute tareas automáticas (leer emails, llenar planillas, etc.).</label>
-                            <label><input type="radio" name="mc6" value="c"> c) Un tipo especial de fórmula de Excel.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 7 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">7. ¿Qué herramienta usarías para investigar normativas de AFIP y que *cite sus fuentes*?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc7" value="a" required> a) Perplexity.ai.</label>
-                            <label><input type="radio" name="mc7" value="b"> b) Suno.ai.</label>
-                            <label><input type="radio" name="mc7" value="c"> c) Tactiq.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 8 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">8. "Iterar" un prompt significa:</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc8" value="a" required> a) Borrar el chat y empezar de cero si la IA se equivoca.</label>
-                            <label><input type="radio" name="mc8" value="b"> b) Corregir a la IA en el mismo chat, diciéndole "No, eso está mal, inténtalo de nuevo..." para afinar el resultado.</label>
-                            <label><input type="radio" name="mc8" value="c"> c) Usar solo mayúsculas.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 9 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">9. ¿Cuál es el "Paso de Verificación Humana" al extraer datos de un PDF bancario?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc9" value="a" required> a) Confiar 100% en el resultado de la IA.</label>
-                            <label><input type="radio" name="mc9" value="b"> b) Pedirle a la IA que sume los débitos y créditos y comparar esos totales con el PDF original.</label>
-                            <label><input type="radio" name="mc9" value="c"> c) Preguntarle a un compañero si el resultado "le parece" correcto.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 10 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">10. ¿Cuál es la mejor estrategia para automatizar la carga de vencimientos de impuestos en el calendario?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc10" value="a" required> a) Cargar manualmente los vencimientos en Outlook cada mes.</label>
-                            <label><input type="radio" name="mc10" value="b"> b) Programar un Agente de IA para que revise las fuentes de AFIP mensualmente y extraiga las fechas.</label>
-                            <label><input type="radio" name="mc10" value="c"> c) Esperar a que un colega te avise.</label>
-                        </div>
-                    </div>
-
-                    <!-- Campos ocultos para enviar resultados -->
-                    <input type="hidden" name="puntaje_final_m2_mc" id="puntaje_final_m2_mc">
-                    <input type="hidden" name="feedback_m2_mc" id="feedback_m2_mc">
+                    <!-- Campos ocultos para Formspree -->
+                    <input type="hidden" name="quiz_id" value="Modulo 2 - M.C.">
                     
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. Al pedirle a la IA que procese un PDF bancario, ¿cuál es el comando MÁS preciso?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc1" value="a"> "Convierte este PDF a Excel"</label>
+                            <label><input type="radio" name="mc1" value="b" required> "Extrae todas las transacciones de este PDF en una tabla con estas columnas..."</label>
+                            <label><input type="radio" name="mc1" value="c"> "Lee este PDF y dime qué opinas"</label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. ¿Por qué es una buena práctica tener usuarios de IA separados por área (ej. Contabilidad y Marketing)?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc2" value="a" required> Para evitar la "contaminación" del contexto y que la IA mezcle conceptos.</label>
+                            <label><input type="radio" name="mc2" value="b"> Porque la IA cobra más caro si se hablan de muchos temas.</label>
+                            <label><input type="radio" name="mc2" value="c"> Porque las IAs no entienden de contabilidad.</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. ¿Qué herramienta específica mencionamos que es un "Analista de Datos" en formato chat, ideal para subir Excel y pedirle análisis?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc3" value="a"> Tactiq</label>
+                            <label><input type="radio" name="mc3" value="b"> Suno.ai</label>
+                            <label><input type="radio" name="mc3" value="c" required> Julius.ai</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. ¿Cuál es la forma MÁS EFECTIVA de pedirle a la IA que nos ayude con una fórmula de Excel?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc4" value="a"> "Necesito una fórmula."</label>
+                            <label><input type="radio" name="mc4" value="b" required> "Necesito sumar la columna C si la columna A dice 'YPF' y la B es de Octubre."</label>
+                            <label><input type="radio" name="mc4" value="c"> "Dame una fórmula =SUMAR.SI.CONJUNTO(...)"</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. ¿Cuál es la única forma 100% segura de usar una IA gratuita con un PDF sensible?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc5" value="a" required> "Anonimizando" el PDF primero (borrando datos sensibles).</label>
+                            <label><input type="radio" name="mc5" value="b"> Pidiéndole a la IA "por favor no guardes esto".</label>
+                            <label><input type="radio" name="mc5" value="c"> No hay riesgo, las IAs gratuitas son seguras.</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. ¿Qué es un "RPA" (Automatización Robótica de Procesos)?</d>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc6" value="a"> Un brazo robótico físico en la oficina.</label>
+                            <label><input type="radio" name="mc6" value="b" required> Un "programita" de software que automatiza tareas repetitivas (leer emails, copiar datos).</label>
+                            <label><input type="radio" name="mc6" value="c"> El nombre del chat de Microsoft.</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. ¿Qué herramienta es la mejor para investigar normativas de AFIP porque *cita sus fuentes*?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc7" value="a" required> Perplexity.ai</label>
+                            <label><input type="radio" name="mc7" value="b"> Suno.ai</label>
+                            <label><input type="radio" name="mc7" value="c"> Midjourney</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. Si la IA te da un resultado incorrecto en un análisis de Excel, ¿qué debes hacer?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc8" value="a"> Borrar el chat y empezar de cero.</label>
+                            <label><input type="radio" name="mc8" value="b" required> Seguir en el mismo chat y corregirla (Iterar el Prompt).</label>
+                            <label><input type="radio" name="mc8" value="c"> Asumir que la IA no sirve para esa tarea.</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. ¿Cuál es el paso de "Control Humano" OBLIGATORIO al extraer datos de un PDF bancario?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc9" value="a"> Revisar la ortografía del concepto.</label>
+                            <label><input type="radio" name="mc9" value="b" required> Pedirle a la IA que sume los totales y compararlos con el PDF.</label>
+                            <label><input type="radio" name="mc9" value="c"> No hay control, se confía 100% en la IA.</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. El caso de Carina sobre los vencimientos de impuestos es un ejemplo de:</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc10" value="a"> Un problema imposible de automatizar.</label>
+                            <label><input type="radio" name="mc10" value="b" required> Un proceso ideal para un "Agente de IA" que busque en la web y genere alertas.</label>
+                            <label><input type="radio" name="mc10" value="c"> Un problema para resolver con Suno.ai.</label>
+                        </div>
+                    </div>
+
                     <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (M.C.)</button>
                 </form>
 
                 <!-- Cuadro de Resultados (Oculto) -->
-                <div id="quiz-results-m2-mc" class="info-card mt-8 hidden"> <!-- ID NUEVO -->
+                <div id="quiz-results-m2-mc" class="info-card mt-8 hidden">
                     <h3 id="quiz-title-m2-mc" class="text-2xl font-bold text-center"></h3>
                     <p id="quiz-score-m2-mc" class="text-6xl font-bold text-center my-4"></p>
                     <p id="quiz-message-m2-mc" class="text-center text-lg"></p>
                     
                     <div id="quiz-feedback-m2-mc" class="mt-6 border-t border-slate-600 pt-4 hidden">
                         <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
-                        <ul id="quiz-feedback-list-m2-mc" class="list-disc list-inside mt-2 space-y-1">
-                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
-                        </ul>
+                        <ul id="quiz-feedback-list-m2-mc" class="list-disc list-inside mt-2 space-y-1"></ul>
                     </div>
                 </div>
             </section>
