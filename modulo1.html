@@ -15,7 +15,7 @@
 
     <div class="main-container">
 
-        <!-- ===== SIDEBAR DE NAVEGACIÓN ===== -->
+        <!-- ===== SIDEBAR DE NAVEGACIÓN (Orden Correcto) ===== -->
         <nav class="sidebar-nav">
             
             <div>
@@ -36,13 +36,14 @@
                     <li><a href="#view-automatizacion" class="nav-link">Automatización</a></li>
                     <li><a href="#view-otras-ias" class="nav-link">Otras IAs</a></li>
                     <li><a href="#view-hoja-ruta" class="nav-link">Hoja de Ruta</a></li>
-                    <li><a href="#view-anotaciones" class="nav-link">Anotaciones (Clase 1)</a></li> <!-- Movido al final -->
-                    <li><a href="#view-autoevaluacion-vf" class="nav-link">Autoevaluación (V/F)</a></li> <!-- Movido al final -->
-                    <li><a href="#view-autoevaluacion-mc" class="nav-link">Autoevaluación (M.C.)</a></li> <!-- Movido al final -->
+                    <!-- Secciones de Revisión al final -->
+                    <li><a href="#view-anotaciones" class="nav-link">Anotaciones (Clase 1)</a></li>
+                    <li><a href="#view-autoevaluacion-vf" class="nav-link">Autoevaluación (V/F)</a></li>
+                    <li><a href="#view-autoevaluacion-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
                 </ul>
             </div>
 
-            <!-- Bloque de Atribución y Redes (SIN CAMBIOS) -->
+            <!-- Bloque de Atribución y Redes -->
             <div class="sidebar-footer">
                 <div>
                     <p class="footer-title">Facilitador</p>
@@ -68,7 +69,7 @@
             </div>
         </nav>
 
-        <!-- ===== ÁREA DE CONTENIDO CON SCROLL ===== -->
+        <!-- ===== ÁREA DE CONTENIDO CON SCROLL (ORDEN CORREGIDO) ===== -->
         <main id="content-scroll-area" class="content-scroll-area">
 
             <!-- SECCIÓN INICIO -->
@@ -310,301 +311,6 @@
                     <div class="info-card"><h3>Ejercicio 10: Escritura Creativa</h3><p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Escribe un borrador de post para LinkedIn (máx 150 palabras) para Grupo HER por el Día del Camionero. Tono inspirador y de agradecimiento. Conectar el trabajo del chofer con la economía. Incluye 3 hashtags relevantes."</p></div></div>
                 </div>
             </section>
-
-            <!-- SECCIÓN ANOTACIONES (CLASE 1) -->
-            <section id="view-anotaciones" class="view-section">
-                <h2 class="section-title">Anotaciones y Temas (Clase 1)</h2>
-                <p class="section-subtitle">
-                    Estos son los desafíos y preguntas clave que surgieron durante nuestra primera clase. Quedan aquí registrados para abordarlos a lo largo de los módulos.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="info-card">
-                        <h3>Desafío 1: Conciliaciones Bancarias</h3>
-                        <p><strong>Problema:</strong> El proceso de conciliar resúmenes bancarios (PDF) contra los registros (Excel/Tango) es manual y propenso a errores. La conversión de PDF a Excel suele perder datos o renglones.</p>
-                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Lo abordaremos de lleno en el <strong>Módulo 2 (Desafío PDF a CSV)</strong> y en <strong>Datos Seguros</strong>. Veremos cómo sanitizar los PDF y usar IAs pagas para extraer tablas completas.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Desafío 2: Seguridad de Datos</h3>
-                        <p><strong>Problema:</strong> ¿Qué tan seguro es subir un extracto bancario o facturas a una IA? (Mencionado por Analia, Lorena).</p>
-                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Cubierto en la sección <strong>Datos Seguros</strong>. La regla de oro: NUNCA usar datos sensibles en versiones gratuitas. Las versiones "Paga" (Team/Enterprise) ofrecen protección y no usan tus datos para entrenar.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Desafío 3: Integración de Sistemas</h3>
-                        <p><strong>Problema:</strong> Dificultad para extraer datos de sistemas como RDT o Prosis para cruzarlos. (Mencionado por Tony).</p>
-                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> En el <strong>Módulo 2 (Extracción)</strong> veremos cómo la IA puede trabajar con los "crudos" (archivos Excel/CSV) que *sí* se logren exportar, sin importar lo complejos que sean.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Desafío 4: "Prueba y Error" con Prompts</h3>
-                        <p><strong>Problema:</strong> A veces, aunque el prompt es complejo, la IA "alucina" o da un resultado incorrecto. (Mencionado por Tony).</p>
-                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Esto es clave para el <strong>Módulo 4 (Prompt Engineering)</strong>. Aprenderemos a "iterar" y "afinar" el prompt, y a "enseñarle" a la IA cómo queremos la respuesta.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Nuevas Herramientas Mencionadas</h3>
-                        <p><strong>Tactiq:</strong> Para grabar, transcribir y resumir reuniones virtuales (como esta). Identifica tareas y oradores.</p>
-                        <p class="mt-2"><strong>Gamma.ai:</strong> Para crear presentaciones visuales y flujogramas a partir de texto simple. Lo veremos en <strong>Módulo 2 (Reportes)</strong>.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Desafío 5: Tono de Comunicación</h3>
-                        <p><strong>Problema:</strong> Cómo usar la IA para que los correos (internos o a boleterías) suenen amables pero firmes, sin malinterpretarse. (Mencionado por Stella).</p>
-                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Es un caso de uso perfecto de la IA. Ver <strong>Ejercicio 2</strong> y <strong>Ejercicio 8</strong>. La clave es especificar el "Tono" en el prompt.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN AUTOEVALUACIÓN (V/F) -->
-            <section id="view-autoevaluacion-vf" class="view-section">
-                <h2 class="section-title">Autoevaluación (Verdadero/Falso)</h2>
-                <p class="section-subtitle">
-                    Pongamos a prueba los conceptos clave del Módulo 1. Esto es solo una instancia de aprendizaje para reforzar ideas.
-                </p>
-                
-                <form id="quiz-form-vf" class="mt-8 space-y-6"> <!-- ID ACTUALIZADO -->
-                    
-                    <!-- Campo de Nombre -->
-                    <div class="quiz-question-card">
-                        <label for="nombre_vf" class="quiz-question">Ingresa tu nombre:</label>
-                        <input type="text" id="nombre_vf" name="nombre" class="w-full mt-2 p-2 rounded bg-slate-700 border border-slate-600 text-white" placeholder="Tu nombre y apellido..." required>
-                    </div>
-
-                    <!-- Preguntas 1-10 (V/F) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">1. Es 100% seguro pegar un extracto bancario con datos de clientes en la versión gratuita de ChatGPT.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q1" value="f" required> Falso</label>
-                            <label><input type="radio" name="q1" value="v"> Verdadero</label>
-                        </div>
-                    </div>
-                    
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">2. Un "Prompt Efectivo" debe incluir Contexto, Rol, Tono y Formato.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q2" value="f"> Falso</label>
-                            <label><input type="radio" name="q2" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">3. Las "Alucinaciones" de la IA son cuando inventa datos que parecen correctos pero son falsos.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q3" value="f"> Falso</label>
-                            <label><input type="radio" name="q3" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">4. La IA Generativa solo sirve para chatear y no puede ayudar a crear fórmulas de Excel.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q4" value="f" required> Falso</label>
-                            <label><input type="radio" name="q4" value="v"> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">5. "ChatPDF" es una herramienta que permite "conversar" con un documento PDF y hacerle preguntas.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q5" value="f"> Falso</label>
-                            <label><input type="radio" name="q5" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">6. La forma más segura de convertir un Word a PDF es usando Google Drive.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q6" value="f"> Falso</label>
-                            <label><input type="radio" name="q6" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">7. La IA no puede ayudar a optimizar una ruta de transporte porque no tiene sentido de la logística.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q7" value="f" required> Falso</label>
-                            <label><input type="radio" name="q7" value="v"> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">8. "RPA" (Automatización Robótica de Procesos) es el "Paso 2", donde un "robot" de software usa la IA para ejecutar tareas completas.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q8" value="f"> Falso</label>
-                            <label><input type="radio" name="q8" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">9. Si la IA redacta un correo incorrecto y yo lo envío, el responsable legal es la IA.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q9" value="f" required> Falso</label>
-                            <label><input type="radio" name="q9" value="v"> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">10. La IA puede ayudar a clasificar gastos de un ticket o remito en cuentas contables específicas si se le da el contexto correcto.</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q10" value="f"> Falso</label>
-                            <label><input type="radio" name="q10" value="v" required> Verdadero</label>
-                        </div>
-                    </div>
-
-                    <!-- Campos ocultos para enviar resultados -->
-                    <input type="hidden" name="puntaje_final_vf" id="puntaje_final_vf">
-                    <input type="hidden" name="feedback_vf" id="feedback_vf">
-
-                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (V/F)</button>
-                </form>
-
-                <!-- Cuadro de Resultados (Oculto) -->
-                <div id="quiz-results-vf" class="info-card mt-8 hidden"> <!-- ID ACTUALIZADO -->
-                    <h3 id="quiz-title-vf" class="text-2xl font-bold text-center"></h3>
-                    <p id="quiz-score-vf" class="text-6xl font-bold text-center my-4"></p>
-                    <p id="quiz-message-vf" class="text-center text-lg"></p>
-                    
-                    <div id="quiz-feedback-vf" class="mt-6 border-t border-slate-600 pt-4 hidden">
-                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
-                        <ul id="quiz-feedback-list-vf" class="list-disc list-inside mt-2 space-y-1">
-                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== NUEVA SECCIÓN: AUTOEVALUACIÓN (M.C.) ===== -->
-            <section id="view-autoevaluacion-mc" class="view-section">
-                <h2 class="section-title">Autoevaluación (Opción Múltiple)</h2>
-                <p class="section-subtitle">
-                    Segunda parte de la autoevaluación, con preguntas de opción múltiple para reforzar más conceptos.
-                </p>
-                
-                <form id="quiz-form-mc" class="mt-8 space-y-6"> <!-- ID NUEVO -->
-                    
-                    <!-- Campo de Nombre -->
-                    <div class="quiz-question-card">
-                        <label for="nombre_mc" class="quiz-question">Ingresa tu nombre:</label>
-                        <input type="text" id="nombre_mc" name="nombre" class="w-full mt-2 p-2 rounded bg-slate-700 border border-slate-600 text-white" placeholder="Tu nombre y apellido..." required>
-                    </div>
-
-                    <!-- Pregunta 1 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">1. ¿Cuál es el componente MÁS importante de un "Prompt Efectivo"?</p>
-                        <div class="quiz-options-vertical"> <!-- Estilo vertical -->
-                            <label><input type="radio" name="mc1" value="a" required> a) Ser corto y directo.</label>
-                            <label><input type="radio" name="mc1" value="b"> b) Darle a la IA el Contexto, Rol, Tono y Formato deseado.</label>
-                            <label><input type="radio" name="mc1" value="c"> c) Escribir todo en mayúsculas para que la IA entienda.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 2 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">2. ¿Para qué tarea NO es recomendable usar una IA Generativa?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc2" value="a" required> a) Para crear un borrador de un correo de cobranza.</label>
-                            <label><input type="radio" name="mc2" value="b"> b) Para reemplazar 100% el juicio humano en una decisión contable crítica.</label>
-                            <label><input type="radio" name="mc2" value="c"> c) Para resumir una larga cadena de emails.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 3 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">3. ¿Qué herramienta específica mencionamos para transcribir y resumir reuniones virtuales?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc3" value="a" required> a) ChatGPT.</label>
-                            <label><input type="radio" name="mc3" value="b"> b) Tactiq.</label>
-                            <label><input type="radio" name="mc3" value="c"> c) Excel.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 4 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">4. ¿Cuál es el principal RIESGO de usar versiones gratuitas de IA con datos de la empresa?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc4" value="a" required> a) Que la IA se vuelva lenta.</label>
-                            <label><input type="radio" name="mc4" value="b"> b) Que la información se considere pública y se filtre (pérdida de confidencialidad).</label>
-                            <label><input type="radio" name="mc4" value="c"> c) Que la IA te pida pagar.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 5 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">5. Si la IA "alucina", significa que:</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc5" value="a" required> a) Está procesando datos demasiado rápido.</label>
-                            <label><input type="radio" name="mc5" value="b"> b) Inventa hechos, cifras o fuentes que parecen reales pero son falsos.</label>
-                            <label><input type="radio" name="mc5" value="c"> c) Está creando imágenes psicodélicas.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 6 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">6. ¿Qué significa "RPA" en el contexto de la automatización?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc6" value="a" required> a) Automatización Robótica de Procesos (Robotic Process Automation).</label>
-                            <label><input type="radio" name="mc6" value="b"> b) Reporte de Pagos Atrasados.</label>
-                            <label><input type="radio" name="mc6" value="c"> c) Red de Procesamiento Analítico.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 7 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">7. ¿Para qué es ideal una herramienta como Gamma.ai?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc7" value="a" required> a) Para chatear con amigos y familiares.</label>
-                            <label><input type="radio" name="mc7" value="b"> b) Para crear presentaciones visuales y flujogramas a partir de texto.</label>
-                            <label><input type="radio" name="mc7" value="c"> c) Para analizar la base de datos de Tango.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 8 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">8. En el Módulo 1, ¿cuál es el "Paso 1: Asistencia"?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc8" value="a" required> a) Cuando la IA nos ayuda con tareas (redactar, resumir) mientras nosotros ejecutamos.</label>
-                            <label><input type="radio" name="mc8" value="b"> b) Cuando un robot de software monitorea un email y trabaja solo.</label>
-                            <label><input type="radio" name="mc8" value="c"> c) Cuando la IA reemplaza completamente a un empleado.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 9 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">9. ¿Por qué es una buena práctica "anonimizar" un PDF (quitar CUIT, nombres) antes de subirlo a una IA gratuita?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc9" value="a" required> a) Para proteger la confidencialidad de los datos de la empresa.</label>
-                            <label><input type="radio" name="mc9" value="b"> b) Para que el archivo pese menos y se suba más rápido.</label>
-                            <label><input type="radio" name="mc9" value="c"> c) Porque a la IA no le gustan los números.</label>
-                        </div>
-                    </div>
-
-                    <!-- Pregunta 10 (MC) -->
-                    <div class="quiz-question-card">
-                        <p class="quiz-question">10. ¿Cuál es el "Hábito Clave" propuesto en el Módulo 1?</p>
-                        <div class="quiz-options-vertical">
-                            <label><input type="radio" name="mc10" value="a" required> a) Preguntarse: "¿Puede la IA hacer esto por mí?" cuando se repite una tarea manual.</label>
-                            <label><input type="radio" name="mc10" value="b"> b) Tomar un curso de programación avanzada.</label>
-                            <label><input type="radio" name="mc10" value="c"> c) Borrar todos los emails al final del día.</label>
-                        </div>
-                    </div>
-
-                    <!-- Campos ocultos para enviar resultados -->
-                    <input type="hidden" name="puntaje_final_mc" id="puntaje_final_mc">
-                    <input type="hidden" name="feedback_mc" id="feedback_mc">
-                    
-                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (M.C.)</button>
-                </form>
-
-                <!-- Cuadro de Resultados (Oculto) -->
-                <div id="quiz-results-mc" class="info-card mt-8 hidden"> <!-- ID NUEVO -->
-                    <h3 id="quiz-title-mc" class="text-2xl font-bold text-center"></h3>
-                    <p id="quiz-score-mc" class="text-6xl font-bold text-center my-4"></p>
-                    <p id="quiz-message-mc" class="text-center text-lg"></p>
-                    
-                    <div id="quiz-feedback-mc" class="mt-6 border-t border-slate-600 pt-4 hidden">
-                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
-                        <ul id="quiz-feedback-list-mc" class="list-disc list-inside mt-2 space-y-1">
-                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
             
             <!-- SECCIÓN DATOS SEGUROS -->
             <section id="view-datos-seguros" class="view-section">
@@ -706,7 +412,7 @@
                         <span class="roadmap-number">1</span> Módulo 1: <br>Fundamentos y Herramientas
                     </div>
                     <div class="roadmap-arrow">&rarr;</div>
-                    <div class="roadmap-card-inactive">
+                    <div class="roadmap-card-active">
                         <span class="roadmap-number">2</span> Módulo 2: <br>IA para Datos (Tango, Excel, PDFs)
                     </div>
                     <div class="roadmap-arrow">&rarr;</div>
@@ -719,11 +425,243 @@
                     </div>
                 </div>
                 <div class="info-card mt-8">
-                    <h3>Próxima Clase: Módulo 2</h3>
-                    <p>Nos sumergiremos en la <strong>Inteligencia de Negocios y Análisis de Datos</strong>. Abordaremos la integración con <strong>Tango y Excel</strong>, y aprenderemos a convertir esos desafiantes PDFs a CSV de forma automática y precisa. ¡Prepárense para transformar la gestión de sus datos!</p>
+                    <h3>Próxima Clase: Módulo 3</h3>
+                    <p>Nos sumergiremos en la <strong>Automatización de Tareas y Comunicaciones</strong>. Veremos cómo programar correos, generar documentos estándar automáticamente y explorar herramientas que mejorarán la productividad de todo el equipo.</p>
+                </div>
+            </section>
+            
+            <!-- ===== INICIO DE SECCIONES DE REVISIÓN ===== -->
+            
+            <!-- SECCIÓN ANOTACIONES (CLASE 1) -->
+            <section id="view-anotaciones" class="view-section">
+                <h2 class="section-title">Anotaciones y Temas (Clase 1)</h2>
+                <p class="section-subtitle">
+                    Estos son los desafíos y preguntas clave que surgieron durante nuestra primera clase. Quedan aquí registrados para abordarlos a lo largo de los módulos.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>Desafío 1: Conciliaciones Bancarias</h3>
+                        <p><strong>Problema:</strong> El proceso de conciliar resúmenes bancarios (PDF) contra los registros (Excel/Tango) es manual y propenso a errores. La conversión de PDF a Excel suele perder datos o renglones.</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Lo abordaremos de lleno en el <strong>Módulo 2 (Flujo: PDF a Excel)</strong> y en <strong>Datos Seguros</strong>. Veremos cómo sanitizar los PDF y usar IAs pagas para extraer tablas completas.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 2: Seguridad de Datos</h3>
+                        <p><strong>Problema:</strong> ¿Qué tan seguro es subir un extracto bancario o facturas a una IA? (Mencionado por Analia, Lorena).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Cubierto en la sección <strong>Datos Seguros</strong>. La regla de oro: NUNCA usar datos sensibles en versiones gratuitas. Las versiones "Paga" (Team/Enterprise) ofrecen protección y no usan tus datos para entrenar.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 3: Integración de Sistemas</h3>
+                        <p><strong>Problema:</strong> Dificultad para extraer datos de sistemas como RDT o Prosis para cruzarlos. (Mencionado por Tony).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> En el <strong>Módulo 2 (Extracción)</strong> veremos cómo la IA puede trabajar con los "crudos" (archivos Excel/CSV) que *sí* se logren exportar, sin importar lo complejos que sean.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 4: "Prueba y Error" con Prompts</h3>
+                        <p><strong>Problema:</strong> A veces, aunque el prompt es complejo, la IA "alucina" o da un resultado incorrecto. (Mencionado por Tony).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Esto es clave para el <strong>Módulo 4 (Prompt Engineering)</strong>. Aprenderemos a "iterar" y "afinar" el prompt, y a "enseñarle" a la IA cómo queremos la respuesta.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Nuevas Herramientas Mencionadas</h3>
+                        <p><strong>Tactiq:</strong> Para grabar, transcribir y resumir reuniones virtuales (como esta). Identifica tareas y oradores.</p>
+                        <p class="mt-2"><strong>Gamma.ai:</strong> Para crear presentaciones visuales y flujogramas a partir de texto simple. Lo veremos en <strong>Módulo 2 (Reportes)</strong>.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Desafío 5: Tono de Comunicación</h3>
+                        <p><strong>Problema:</strong> Cómo usar la IA para que los correos (internos o a boleterías) suenen amables pero firmes, sin malinterpretarse. (Mencionado por Stella).</p>
+                        <p class="mt-2 text-sky-300"><strong>Plan:</strong> Es un caso de uso perfecto de la IA. Ver <strong>Ejercicio 2</strong> y <strong>Ejercicio 8</strong>. La clave es especificar el "Tono" en el prompt.</p>
+                    </div>
                 </div>
             </section>
 
+            <!-- SECCIÓN AUTOEVALUACIÓN (V/F) -->
+            <section id="view-autoevaluacion-vf" class="view-section">
+                <h2 class="section-title">Autoevaluación (Verdadero/Falso)</h2>
+                <p class="section-subtitle">
+                    Pongamos a prueba los conceptos clave del Módulo 1. Esto es solo una instancia de aprendizaje para reforzar ideas.
+                </p>
+                
+                <!-- Formulario V/F Módulo 1 -->
+                <form id="quiz-form-vf" class="mt-8 space-y-6">
+                    <!-- Campo Nombre -->
+                    <div class="quiz-question-card">
+                        <label for="nombre_vf" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre_vf" name="nombre_alumno" class="quiz-input" placeholder="Tu nombre y apellido..." required>
+                    </div>
+                    <!-- Campos ocultos -->
+                    <input type="hidden" name="quiz_id" value="Modulo 1 - V/F">
+
+                    <!-- Preguntas 1-10 (V/F) -->
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. Es 100% seguro pegar un extracto bancario con datos de clientes en la versión gratuita de ChatGPT.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q1" value="f" required> Falso</label><label><input type="radio" name="q1" value="v"> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. Un "Prompt Efectivo" debe incluir Contexto, Rol, Tono y Formato.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q2" value="f"> Falso</label><label><input type="radio" name="q2" value="v" required> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. Las "Alucinaciones" de la IA son cuando inventa datos que parecen correctos pero son falsos.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q3" value="f"> Falso</label><label><input type="radio" name="q3" value="v" required> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. La IA Generativa solo sirve para chatear y no puede ayudar a crear fórmulas de Excel.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q4" value="f" required> Falso</label><label><input type="radio" name="q4" value="v"> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. "ChatPDF" es una herramienta que permite "conversar" con un documento PDF y hacerle preguntas.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q5" value="f"> Falso</label><label><input type="radio" name="q5" value="v" required> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. La forma más segura de convertir un Word a PDF es usando Google Drive.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q6" value="f"> Falso</label><label><input type="radio" name="q6" value="v" required> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. La IA no puede ayudar a optimizar una ruta de transporte porque no tiene sentido de la logística.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q7" value="f" required> Falso</label><label><input type="radio" name="q7" value="v"> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. "RPA" (Automatización Robótica de Procesos) es el "Paso 2", donde un "robot" de software usa la IA para ejecutar tareas completas.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q8" value="f"> Falso</label><label><input type="radio" name="q8" value="v" required> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. Si la IA redacta un correo incorrecto y yo lo envío, el responsable legal es la IA.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q9" value="f" required> Falso</label><label><input type="radio" name="q9" value="v"> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. La IA puede ayudar a clasificar gastos de un ticket o remito en cuentas contables específicas si se le da el contexto correcto.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q10" value="f"> Falso</label><label><input type="radio" name="q10" value="v" required> Verdadero</label></div>
+                    </div>
+                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (V/F)</button>
+                </form>
+
+                <!-- Cuadro de Resultados (Oculto) -->
+                <div id="quiz-results-vf" class="info-card mt-8 hidden">
+                    <h3 id="quiz-title-vf" class="text-2xl font-bold text-center"></h3>
+                    <p id="quiz-score-vf" class="text-6xl font-bold text-center my-4"></p>
+                    <p id="quiz-message-vf" class="text-center text-lg"></p>
+                    <div id="quiz-feedback-vf" class="mt-6 border-t border-slate-600 pt-4 hidden">
+                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
+                        <ul id="quiz-feedback-list-vf" class="list-disc list-inside mt-2 space-y-1"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN AUTOEVALUACIÓN (M.C.) -->
+            <section id="view-autoevaluacion-mc" class="view-section">
+                <h2 class="section-title">Autoevaluación (Opción Múltiple)</h2>
+                <p class="section-subtitle">
+                    Segunda parte de la autoevaluación, con preguntas de opción múltiple para reforzar más conceptos.
+                </p>
+                
+                <!-- Formulario M.C. Módulo 1 -->
+                <form id="quiz-form-mc" class="mt-8 space-y-6">
+                    <!-- Campo de Nombre -->
+                    <div class="quiz-question-card">
+                        <label for="nombre_mc" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre_mc" name="nombre_alumno" class="quiz-input" placeholder="Tu nombre y apellido..." required>
+                    </div>
+                    <!-- Campos ocultos -->
+                    <input type="hidden" name="quiz_id" value="Modulo 1 - M.C.">
+                    
+                    <!-- Preguntas 1-10 (M.C.) -->
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. ¿Cuál es el componente MÁS importante de un "Prompt Efectivo"?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc1" value="a" required> a) Ser corto y directo.</label>
+                            <label><input type="radio" name="mc1" value="b"> b) Darle a la IA el Contexto, Rol, Tono y Formato deseado.</label>
+                            <label><input type="radio" name="mc1" value="c"> c) Escribir todo en mayúsculas.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. ¿Para qué tarea NO es recomendable usar una IA Generativa?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc2" value="a" required> a) Para crear un borrador de un correo de cobranza.</label>
+                            <label><input type="radio" name="mc2" value="b"> b) Para reemplazar 100% el juicio humano en una decisión contable crítica.</label>
+                            <label><input type="radio" name="mc2" value="c"> c) Para resumir una larga cadena de emails.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. ¿Qué herramienta específica mencionamos para transcribir y resumir reuniones virtuales?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc3" value="a" required> a) ChatGPT.</label>
+                            <label><input type="radio" name="mc3" value="b"> b) Tactiq.</label>
+                            <label><input type="radio" name="mc3" value="c"> c) Excel.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. ¿Cuál es el principal RIESGO de usar versiones gratuitas de IA con datos de la empresa?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc4" value="a" required> a) Que la IA se vuelva lenta.</label>
+                            <label><input type="radio" name="mc4" value="b"> b) Que la información se considere pública y se filtre (pérdida de confidencialidad).</label>
+                            <label><input type="radio" name="mc4" value="c"> c) Que la IA te pida pagar.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. Si la IA "alucina", significa que:</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc5" value="a" required> a) Está procesando datos demasiado rápido.</label>
+                            <label><input type="radio" name="mc5" value="b"> b) Inventa hechos, cifras o fuentes que parecen reales pero son falsos.</label>
+                            <label><input type="radio" name="mc5" value="c"> c) Está creando imágenes psicodélicas.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. ¿Qué significa "RPA" en el contexto de la automatización?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc6" value="a" required> a) Automatización Robótica de Procesos (Robotic Process Automation).</label>
+                            <label><input type="radio" name="mc6" value="b"> b) Reporte de Pagos Atrasados.</label>
+                            <label><input type="radio" name="mc6" value="c"> c) Red de Procesamiento Analítico.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. ¿Para qué es ideal una herramienta como Gamma.ai?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc7" value="a" required> a) Para chatear con amigos y familiares.</label>
+                            <label><input type="radio" name="mc7" value="b"> b) Para crear presentaciones visuales y flujogramas a partir de texto.</label>
+                            <label><input type="radio" name="mc7" value="c"> c) Para analizar la base de datos de Tango.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. En el Módulo 1, ¿cuál es el "Paso 1: Asistencia"?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc8" value="a" required> a) Cuando la IA nos ayuda con tareas (redactar, resumir) mientras nosotros ejecutamos.</label>
+                            <label><input type="radio" name="mc8" value="b"> b) Cuando un robot de software monitorea un email y trabaja solo.</label>
+                            <label><input type="radio" name="mc8" value="c"> c) Cuando la IA reemplaza completamente a un empleado.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. ¿Por qué es una buena práctica "anonimizar" un PDF (quitar CUIT, nombres) antes de subirlo a una IA gratuita?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc9" value="a" required> a) Para proteger la confidencialidad de los datos de la empresa.</label>
+                            <label><input type="radio" name="mc9" value="b"> b) Para que el archivo pese menos y se suba más rápido.</label>
+                            <label><input type="radio" name="mc9" value="c"> c) Porque a la IA no le gustan los números.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. ¿Cuál es el "Hábito Clave" propuesto en el Módulo 1?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc10" value="a" required> a) Preguntarse: "¿Puede la IA hacer esto por mí?" cuando se repite una tarea manual.</label>
+                            <label><input type="radio" name="mc10" value="b"> b) Tomar un curso de programación avanzada.</label>
+                            <label><input type="radio" name="mc10" value="c"> c) Borrar todos los emails al final del día.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (M.C.)</button>
+                </form>
+
+                <!-- Cuadro de Resultados (Oculto) -->
+                <div id="quiz-results-mc" class="info-card mt-8 hidden"> <!-- ID NUEVO -->
+                    <h3 id="quiz-title-mc" class="text-2xl font-bold text-center"></h3>
+                    <p id="quiz-score-mc" class="text-6xl font-bold text-center my-4"></p>
+                    <p id="quiz-message-mc" class="text-center text-lg"></p>
+                    
+                    <div id="quiz-feedback-mc" class="mt-6 border-t border-slate-600 pt-4 hidden">
+                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
+                        <ul id="quiz-feedback-list-mc" class="list-disc list-inside mt-2 space-y-1">
+                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
         </main>
         
     </div> <!-- Fin .main-container -->
