@@ -1,10 +1,10 @@
 /* ===== ESTILOS GENERALES Y DE LA LANDING PAGE ===== */
 
 /*
-* NUEVO: Animación de fondo sutil.
-* Se aplica a todas las páginas.
+* NUEVO: Animación de fondo "Aurora".
+* Más compleja y fluida que el gradiente anterior.
 */
-@keyframes subtleGradient {
+@keyframes auroraGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
@@ -12,32 +12,31 @@
 
 body.body-general, body.body-module {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #000000, #0f172a); 
-    background-size: 200% 200%; /* Gradiente más grande para la animación */
+    /* NUEVO: Fondo Aurora más complejo */
+    background: linear-gradient(-45deg, #0f172a, #132244, #000000, #1e3a8a);
+    background-size: 400% 400%; /* Gradiente más grande para la animación */
     color: #e2e8f0; 
     padding: 2rem 1rem; 
     min-height: 100vh;
-    animation: subtleGradient 30s ease infinite; /* Aplicar animación lenta */
+    animation: auroraGradient 25s ease infinite; /* Aplicar animación */
 }
 
-/*
-* NUEVO: Animación de brillo (glow) pulsante.
-* Solo para la página de inicio (index.html).
-*/
 @keyframes pulseGlow {
-    0% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); }
-    50% { box-shadow: 0 10px 45px rgba(56, 189, 248, 0.3); } /* Brillo más intenso */
-    100% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); }
+    0% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.2); }
+    50% { box-shadow: 0 10px 45px rgba(56, 189, 248, 0.3); border-color: rgba(56, 189, 248, 0.4); }
+    100% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.2); }
 }
 
 .landing-container {
-    background-color: #1e293b; 
+    /* NUEVO: Efecto Glassmorphism */
+    background-color: rgba(30, 41, 59, 0.6); /* Fondo semitransparente */
+    backdrop-filter: blur(12px); /* El efecto "vidrio esmerilado" */
+    -webkit-backdrop-filter: blur(12px); /* Para Safari */
     border-radius: 15px;
-    border: 1px solid #334155; 
+    border: 1px solid rgba(56, 189, 248, 0.2); /* Borde neón sutil */
     width: 100%;
     max-width: 1200px; /* max-w-6xl */
     margin: 0 auto;
-    /* Aplicar la animación de pulso */
     animation: pulseGlow 6s ease-in-out infinite;
 }
 
@@ -51,8 +50,11 @@ body.body-general, body.body-module {
     transform: scale(1.1) translateY(-2px); /* Efecto hover mejorado */
 }
 
+/* NUEVO: Efecto Glassmorphism para tarjetas de módulo */
 .module-card, .module-card-disabled {
-    background-color: #334155; /* slate-700 */
+    background-color: rgba(51, 65, 85, 0.6); /* Fondo de vidrio más claro */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid #475569; /* slate-600 */
     border-radius: 0.75rem; /* rounded-xl */
     padding: 1.5rem; /* p-6 */
@@ -70,6 +72,7 @@ body.body-general, body.body-module {
     border-color: #38bdf8;
     transform: translateY(-5px); /* Efecto de "levantar" */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    background-color: rgba(51, 65, 85, 0.8); /* Más opaco al pasar el mouse */
 }
 
 .module-number {
@@ -79,20 +82,17 @@ body.body-general, body.body-module {
     color: #38bdf8;
     margin-bottom: 0.5rem;
 }
-
 .module-title {
     font-size: 1.25rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 0.75rem;
 }
-
 .module-description {
     font-size: 0.95rem;
     color: #cbd5e1; /* slate-300 */
     flex-grow: 1; /* Empuja el link hacia abajo */
 }
-
 .module-link {
     display: block;
     font-weight: 600;
@@ -103,12 +103,11 @@ body.body-general, body.body-module {
 .module-card:hover .module-link {
     color: #ffffff;
 }
-
 .module-card-disabled {
     opacity: 0.6;
     box-shadow: none;
+    backdrop-filter: blur(2px); /* Menos blur para deshabilitados */
 }
-
 .module-link-disabled {
     display: block;
     font-weight: 600;
@@ -128,7 +127,10 @@ body.body-general, body.body-module {
 }
 
 .main-container {
-    background-color: #1e293b; 
+    /* NUEVO: Fondo de vidrio principal (ligeramente transparente) */
+    background-color: rgba(30, 41, 59, 0.6); /* slate-800 con 60% opacidad */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra estática más fuerte */
     border: 1px solid #334155; 
@@ -152,6 +154,10 @@ body.body-general, body.body-module {
     width: 100%; 
     padding: 1.5rem;
     border-bottom: 1px solid #334155;
+    /* NUEVO: Efecto de vidrio en la barra lateral */
+    background-color: rgba(15, 23, 42, 0.7); /* slate-900 más transparente */
+    backdrop-filter: blur(16px); /* Blur más intenso para legibilidad */
+    -webkit-backdrop-filter: blur(16px);
 }
 
 @media (min-width: 768px) {
@@ -164,6 +170,7 @@ body.body-general, body.body-module {
         display: flex;
         flex-direction: column;
         justify-content: space-between; 
+        background-color: rgba(30, 41, 59, 0.5); /* Más transparente en escritorio */
     }
 }
 
@@ -187,7 +194,7 @@ body.body-general, body.body-module {
     border: 1px solid transparent;
 }
 .nav-link:hover {
-    background-color: #334155; 
+    background-color: rgba(51, 65, 85, 0.7); /* Vidrio sutil al pasar */
     color: #e2e8f0; 
 }
 .nav-link.active {
@@ -202,6 +209,11 @@ body.body-general, body.body-module {
     padding-top: 1.5rem; /* pt-6 */
     border-top: 1px solid #475569; /* border-slate-700 */
     space-y: 1rem; /* space-y-4 */
+    /* Efecto de vidrio también en el pie de página */
+    background-color: rgba(30, 41, 59, 0.5);
+    margin: 0 -1.5rem -1.5rem; /* Expandir para cubrir el padding */
+    padding: 1.5rem 1.5rem 1rem;
+    border-top-right-radius: 15px; /* Redondear esquina */
 }
 .footer-title {
     font-size: 0.75rem; /* text-xs */
@@ -256,28 +268,24 @@ body.body-general, body.body-module {
     }
 }
 
-/* * NUEVO: Scrollbar personalizado
-* Funciona en Chrome, Edge, Safari
-*/
+/* Scrollbar personalizado */
 .content-scroll-area::-webkit-scrollbar {
     width: 10px;
 }
 .content-scroll-area::-webkit-scrollbar-track {
-    background: #1e293b; /* Fondo de la barra */
-    border-radius: 10px;
+    background: transparent; /* Hacer la pista transparente */
 }
 .content-scroll-area::-webkit-scrollbar-thumb {
     background-color: #38bdf8; /* Color del "pulgar" */
     border-radius: 10px;
-    border: 3px solid #1e293b; /* Efecto de padding */
+    border: 3px solid rgba(0,0,0,0); /* Sin borde, para que sea más sutil */
 }
 .content-scroll-area::-webkit-scrollbar-thumb:hover {
     background-color: #7dd3fc; /* Color al pasar el mouse */
 }
 
 
-/* * NUEVO: Animación de entrada de sección
-*/
+/* Animación de entrada de sección */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px) scale(0.98); }
     to { opacity: 1; transform: translateY(0) scale(1); }
@@ -316,8 +324,11 @@ body.body-general, body.body-module {
 
 .chart-container { position: relative; width: 100%; max-width: 450px; margin: 2rem auto; height: 300px; }
 
-.info-card, .alert-card {
-    background-color: #334155;
+/* NUEVO: Glassmorphism para todas las tarjetas internas */
+.info-card, .alert-card, .quiz-question-card {
+    background-color: rgba(51, 65, 85, 0.6); /* slate-700 con 60% opacidad */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-left: 4px solid #38bdf8;
     padding: 1.25rem;
     border-radius: 0.5rem;
@@ -325,10 +336,11 @@ body.body-general, body.body-module {
     transition: all 0.3s ease; /* Transición suave */
 }
 
-.info-card:hover {
+.info-card:hover, .quiz-question-card:hover {
     transform: translateY(-5px); /* Efecto "levantar" */
     border-color: #7dd3fc; /* Borde más brillante */
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    background-color: rgba(51, 65, 85, 0.8);
 }
 
 .info-card h3 { color: #7dd3fc; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
@@ -338,14 +350,17 @@ body.body-general, body.body-module {
 .info-card p, .info-card li { color: #cbd5e1; }
 
 .alert-card { 
-    background-color: #450a0a; 
+    background-color: rgba(71, 10, 10, 0.6); /* red-900/60 */
     border-left: 4px solid #f87171; 
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 .alert-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     border-color: #fca5a5;
+    background-color: rgba(71, 10, 10, 0.8);
 }
 .alert-card h3 { color: #fca5a5; font-size: 1.25rem; font-weight: 600; }
 .alert-card p { color: #fecaca; }
@@ -358,17 +373,17 @@ body.body-general, body.body-module {
     font-weight: 600;
     width: 100%;
     transition: all 0.3s ease;
-}
-@media (min-width: 768px) {
-    .roadmap-card-active, .roadmap-card-inactive { width: 25%; }
+    /* Efecto de vidrio */
+    background-color: rgba(51, 65, 85, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 .roadmap-card-active {
-    background-color: #334155;
     border: 1px solid #38bdf8;
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
 }
 .roadmap-card-inactive {
-    background-color: #334155;
+    border: 1px solid #475569;
     opacity: 0.6;
 }
 .roadmap-number {
@@ -398,11 +413,13 @@ body.body-general, body.body-module {
     border-radius: 0.375rem;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(56, 189, 248, 0); /* Sin brillo por defecto */
+    border: 1px solid #0369a1;
 }
 .ejercicio-toggle-btn:hover {
     background-color: #0369a1; /* sky-700 */
     transform: scale(1.02); /* Efecto pop */
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); /* Efecto de brillo */
+    border-color: #38bdf8;
 }
 .ejercicio-solucion { 
     background-color: #0f172a; 
@@ -416,11 +433,7 @@ body.body-general, body.body-module {
 
 /* Quiz (Autoevaluación) */
 .quiz-question-card {
-    background-color: #334155;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
     border: 1px solid #475569;
-    transition: all 0.3s ease;
 }
 .quiz-question-card:hover {
     border-color: #38bdf8;
