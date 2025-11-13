@@ -7,11 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Iconos para redes sociales (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- ===== CSS INTEGRADO ===== -->
-    <!-- Aquí se integran los estilos que antes estaban en 'style.css' -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -20,7 +17,7 @@
             overscroll-behavior: none;
         }
 
-        /* Contenedor principal que divide sidebar y contenido */
+        /* Contenedor principal */
         .main-container {
             display: flex;
             height: 100vh;
@@ -37,58 +34,58 @@
             justify-content: space-between;
             overflow-y: auto;
             border-right: 1px solid #334155; /* border-slate-700 */
-            padding: 1.5rem; /* p-6 */
+            padding: 1.5rem; 
         }
         
         .nav-header h1 {
-            font-size: 1.875rem; /* text-3xl */
+            font-size: 1.875rem; 
         }
         
-        /* Enlaces de navegación */
+        /* Enlaces de navegación - Azul (Sky) */
         .nav-link {
             display: block;
-            padding: 0.5rem 0.75rem; /* py-2 px-3 */
-            border-radius: 0.375rem; /* rounded-md */
-            color: #cbd5e1; /* text-slate-300 */
-            font-weight: 600; /* font-semibold */
+            padding: 0.5rem 0.75rem; 
+            border-radius: 0.375rem; 
+            color: #cbd5e1; 
+            font-weight: 600; 
             transition: all 0.2s ease-in-out;
             text-decoration: none;
         }
         .nav-link:hover {
-            background-color: #334155; /* hover:bg-slate-700 */
-            color: #ffffff; /* hover:text-white */
+            background-color: #334155; 
+            color: #ffffff; 
         }
-        /* Enlace activo (controlado por JS) */
+        /* Enlace activo (Sky) */
         .nav-link.active {
             background-color: #0ea5e9; /* bg-sky-500 */
-            color: #ffffff; /* text-white */
+            color: #ffffff; 
         }
 
         /* Footer de la Sidebar */
         .sidebar-footer {
-            border-top: 1px solid #334155; /* border-slate-700 */
-            padding-top: 1.5rem; /* pt-6 */
-            margin-top: 1.5rem; /* mt-6 */
+            border-top: 1px solid #334155; 
+            padding-top: 1.5rem; 
+            margin-top: 1.5rem; 
         }
         .footer-title {
-            font-size: 0.75rem; /* text-xs */
-            font-weight: 600; /* font-semibold */
-            color: #64748b; /* text-slate-500 */
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: #64748b; 
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         .footer-text-main {
-            color: #f1f5f9; /* text-slate-100 */
-            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; 
+            font-weight: 600; 
         }
         .footer-text-sub {
             display: block;
-            font-size: 0.875rem; /* text-sm */
-            color: #94a3b8; /* text-slate-400 */
+            font-size: 0.875rem; 
+            color: #94a3b8; 
         }
         .footer-link-main {
-            color: #f1f5f9; /* text-slate-100 */
-            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; 
+            font-weight: 600; 
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -96,26 +93,26 @@
             color: #38bdf8; /* hover:text-sky-400 */
         }
         .social-link-sidebar {
-            color: #94a3b8; /* text-slate-400 */
-            font-size: 1.25rem; /* text-xl */
+            color: #94a3b8; 
+            font-size: 1.25rem; 
             text-decoration: none;
             transition: color 0.2s;
         }
         .social-link-sidebar:hover {
-            color: #e2e8f0; /* hover:text-slate-200 */
+            color: #e2e8f0; 
         }
 
         /* --- Área de Contenido Principal --- */
         .content-scroll-area {
             flex-grow: 1;
             overflow-y: auto;
-            padding: 2.5rem; /* p-10 */
+            padding: 2.5rem; 
         }
-        /* Cada sección individual */
+        
         .view-section {
-            padding-bottom: 4rem; /* pb-16 */
-            margin-bottom: 4rem; /* mb-16 */
-            border-bottom: 1px solid #334155; /* border-b border-slate-700 */
+            padding-bottom: 4rem; 
+            margin-bottom: 4rem; 
+            border-bottom: 1px solid #334155; 
         }
         .view-section:last-child {
             border-bottom: none;
@@ -123,66 +120,66 @@
             padding-bottom: 0;
         }
 
-        /* Estilos de Título y Párrafo */
+        /* Estilos de Texto */
         .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #ffffff; /* text-white */
-            margin-bottom: 0.5rem; /* mb-2 */
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: 0.5rem; 
         }
         .section-subtitle {
-            font-size: 1.125rem; /* text-lg */
-            color: #cbd5e1; /* text-slate-300 */
+            font-size: 1.125rem; 
+            color: #cbd5e1; 
             max-width: 800px;
             line-height: 1.6;
         }
         .section-subtitle-small {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: #e2e8f0; /* text-slate-200 */
-            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            color: #e2e8f0; 
+            margin-bottom: 1rem; 
         }
 
         /* Tarjetas de Información */
         .info-card {
-            background-color: #1e293b; /* bg-slate-800 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            border: 1px solid #334155; /* border-slate-700 */
-            height: 100%; /* Para que las tarjetas en grid tengan misma altura */
+            background-color: #1e293b; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
+            border: 1px solid #334155; 
+            height: 100%; 
         }
         .info-card h3 {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            color: #f1f5f9; /* text-slate-100 */
-            margin-bottom: 0.75rem; /* mb-3 */
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 0.75rem; 
         }
         .info-card p, .info-card ul, .info-card ol {
-            color: #cbd5e1; /* text-slate-300 */
+            color: #cbd5e1; 
         }
 
         /* Contenedor de Gráficos */
         .chart-container {
-            background-color: #1e293b; /* bg-slate-800 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            border: 1px solid #334155; /* border-slate-700 */
+            background-color: #1e293b; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
+            border: 1px solid #334155; 
         }
 
         /* Divisor */
         .section-divider {
-            border-color: #334155; /* border-slate-700 */
-            margin-top: 2rem; /* my-8 */
+            border-color: #334155; 
+            margin-top: 2rem; 
             margin-bottom: 2rem;
         }
 
-        /* --- Botón de Ejercicio (LA CLAVE DE TU PROBLEMA) --- */
+        /* --- Botón de Ejercicio (Sky/Azul) --- */
         .ejercicio-toggle-btn {
             background-color: #0ea5e9; /* bg-sky-500 */
-            color: #ffffff; /* text-white */
-            font-weight: 600; /* font-semibold */
-            padding: 0.5rem 1rem; /* py-2 px-4 */
-            border-radius: 0.375rem; /* rounded-md */
+            color: #ffffff; 
+            font-weight: 600; 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.375rem; 
             transition: background-color 0.2s;
             border: none;
             cursor: pointer;
@@ -191,76 +188,76 @@
             background-color: #0284c7; /* bg-sky-600 */
         }
 
-        /* Solución de Ejercicio (inicialmente oculta con Tailwind) */
+        /* Solución de Ejercicio */
         .ejercicio-solucion {
-            margin-top: 1rem; /* mt-4 */
-            padding-top: 1rem; /* pt-4 */
-            border-top: 1px solid #334155; /* border-t border-slate-700 */
-            background-color: #0f172a; /* bg-slate-900 */
-            padding: 0.75rem; /* p-3 */
-            border-radius: 0.375rem; /* rounded-md */
+            margin-top: 1rem; 
+            padding-top: 1rem; 
+            border-top: 1px solid #334155; 
+            background-color: #0f172a; 
+            padding: 0.75rem; 
+            border-radius: 0.375rem; 
         }
 
         /* Tarjetas de Alerta */
         .alert-card {
-            background-color: #3f1212; /* bg-red-900/50 */
-            border: 1px solid #ef4444; /* border-red-500 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
+            background-color: #3f1212; 
+            border: 1px solid #ef4444; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
         }
         .alert-card h3 {
-            color: #f87171; /* text-red-400 */
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 700; /* font-bold */
-            margin-bottom: 0.75rem; /* mb-3 */
+            color: #f87171; 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            margin-bottom: 0.75rem; 
         }
 
         /* Hoja de Ruta */
         .roadmap-card-active, .roadmap-card-inactive {
-            padding: 1rem 1.5rem; /* px-6 py-4 */
-            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1rem 1.5rem; 
+            border-radius: 0.5rem; 
             text-align: center;
-            font-weight: 600; /* font-semibold */
+            font-weight: 600; 
         }
         .roadmap-card-active {
             background-color: #0ea5e9; /* bg-sky-500 */
-            color: #ffffff; /* text-white */
+            color: #ffffff; 
         }
         .roadmap-card-inactive {
-            background-color: #1e293b; /* bg-slate-800 */
-            color: #94a3b8; /* text-slate-400 */
-            border: 1px solid #334155; /* border-slate-700 */
+            background-color: #1e293b; 
+            color: #94a3b8; 
+            border: 1px solid #334155; 
         }
         .roadmap-number {
             display: block;
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 700; /* font-bold */
+            font-size: 1.25rem; 
+            font-weight: 700; 
         }
         .roadmap-arrow {
-            font-size: 1.5rem; /* text-2xl */
-            color: #64748b; /* text-slate-500 */
+            font-size: 1.5rem; 
+            color: #64748b; 
         }
 
         /* --- Formularios de Quiz --- */
         .quiz-question-card {
-            background-color: #1e293b; /* bg-slate-800 */
-            padding: 1.5rem; /* p-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            border: 1px solid #334155; /* border-slate-700 */
+            background-color: #1e293b; 
+            padding: 1.5rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid #334155; 
         }
         .quiz-question {
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            color: #f1f5f9; /* text-slate-100 */
-            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1.125rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 1rem; 
         }
         .quiz-input {
             width: 100%;
-            background-color: #0f172a; /* bg-slate-900 */
-            border: 1px solid #334155; /* border-slate-700 */
-            color: #f1f5f9; /* text-slate-100 */
-            padding: 0.75rem 1rem; /* py-3 px-4 */
-            border-radius: 0.375rem; /* rounded-md */
+            background-color: #0f172a; 
+            border: 1px solid #334155; 
+            color: #f1f5f9; 
+            padding: 0.75rem 1rem; 
+            border-radius: 0.375rem; 
         }
         .quiz-input:focus {
             outline: none;
@@ -269,7 +266,7 @@
         }
         .quiz-options, .quiz-options-vertical {
             display: flex;
-            gap: 1rem; /* space-x-4 */
+            gap: 1rem; 
         }
         .quiz-options-vertical {
             flex-direction: column;
@@ -277,21 +274,25 @@
         .quiz-options label, .quiz-options-vertical label {
             display: flex;
             align-items: center;
-            gap: 0.5rem; /* space-x-2 */
-            padding: 0.75rem 1rem; /* p-3 px-4 */
-            background-color: #334155; /* bg-slate-700 */
-            border-radius: 0.375rem; /* rounded-md */
+            gap: 0.5rem; 
+            padding: 0.75rem 1rem; 
+            background-color: #334155; 
+            border-radius: 0.375rem; 
             flex-grow: 1;
             cursor: pointer;
             transition: background-color 0.2s;
         }
         .quiz-options label:hover, .quiz-options-vertical label:hover {
-            background-color: #475569; /* bg-slate-600 */
+            background-color: #475569; 
         }
         .quiz-options input[type="radio"], .quiz-options-vertical input[type="radio"] {
             width: 1rem;
             height: 1rem;
             accent-color: #0ea5e9; /* text-sky-500 */
+        }
+        
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -299,7 +300,6 @@
 
     <div class="main-container">
 
-        <!-- ===== SIDEBAR DE NAVEGACIÓN ===== -->
         <nav class="sidebar-nav">
             
             <div>
@@ -310,7 +310,6 @@
                 </div>
                 
                 <ul id="mainNav" class="space-y-2">
-                    <!-- El JS marcará 'active' en el enlace correcto -->
                     <li><a href="#view-inicio" class="nav-link">Inicio del Módulo</a></li>
                     <li><a href="#view-desafio" class="nav-link">El Desafío</a></li>
                     <li><a href="#view-solucion" class="nav-link">La Solución</a></li>
@@ -327,7 +326,6 @@
                 </ul>
             </div>
 
-            <!-- Bloque de Atribución y Redes -->
             <div class="sidebar-footer">
                 <div>
                     <p class="footer-title">Facilitador</p>
@@ -353,10 +351,8 @@
             </div>
         </nav>
 
-        <!-- ===== ÁREA DE CONTENIDO CON SCROLL ===== -->
         <main id="content-scroll-area" class="content-scroll-area">
 
-            <!-- SECCIÓN INICIO -->
             <section id="view-inicio" class="view-section">
                 <h2 class="section-title">Bienvenidos al Módulo 1</h2>
                 <p class="section-subtitle">
@@ -410,7 +406,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN DESAFÍO -->
             <section id="view-desafio" class="view-section">
                 <h2 class="section-title">El Desafío Actual de Grupo HER</h2>
                 <p class="section-subtitle">
@@ -436,7 +431,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN SOLUCIÓN -->
             <section id="view-solucion" class="view-section">
                 <h2 class="section-title">La Solución: Potenciando su Eficiencia con IA</h2>
                 <p class="section-subtitle">
@@ -469,7 +463,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN IA EN SISTEMAS -->
             <section id="view-ia-sistemas" class="view-section">
                 <h2 class="section-title">Integrando la IA en sus Sistemas Actuales</h2>
                 <p class="section-subtitle">
@@ -494,7 +487,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 10 APLICACIONES -->
             <section id="view-aplicaciones" class="view-section">
                 <h2 class="section-title">Casos de Uso: 10 Aplicaciones Prácticas</h2>
                 <p class="section-subtitle">
@@ -516,7 +508,6 @@
 
                 <h3 class="section-subtitle-small text-center mb-6">Galería de Prompts para Grupo HER</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Prompts del 1 al 10 -->
                     <div class="info-card"><h3>1. Redacción de Cobranza</h3><p class="text-sm italic">"Actúa como Jefe de Admin. de Grupo HER. Redacta un correo profesional y amable para un cliente (Factura #1234, vencida hace 10 días)..."</p></div>
                     <div class="info-card"><h3>2. Resumen de Siniestros (Transporte)</h3><p class="text-sm italic">"Toma el siguiente parte de siniestro (pegar texto). Resúmelo para la aseguradora en 3 puntos clave: 1. Fecha y Lugar, 2. Vehículos Involucrados..."</p></div>
                     <div class="info-card"><h3>3. Extracción de Datos de Remitos</h3><p class="text-sm italic">"Del siguiente texto de un remito, extrae el 'Nro de Remito', 'Fecha', 'Cliente' y 'Cantidad de Bultos'. Entrégamelo en formato CSV."</p></div>
@@ -530,7 +521,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN EJERCICIOS (HTML CORREGIDO) -->
             <section id="view-ejercicios" class="view-section">
                 <h2 class="section-title">Laboratorio Práctico: 10 Desafíos Reales</h2>
                 <p class="section-subtitle">
@@ -538,7 +528,6 @@
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
-                    <!-- Ejercicio 1 -->
                     <div class="info-card">
                         <h3>Ejercicio 1: Extraer Datos de Email</h3>
                         <p><strong>Problema:</strong> Le llega un email: "Buenas, adjunto la FC A-0001-12345 por $150.800,50 con vto el 10/12. Nuestro CUIT es 30-12345678-9."</p>
@@ -551,7 +540,6 @@
                         </div>
                     </div>
                     
-                    <!-- Ejercicio 2 -->
                     <div class="info-card">
                         <h3>Ejercicio 2: Reformular un Email</h3>
                         <p><strong>Problema:</strong> Quiere escribir: "Cliente, no pagó la factura. Pague ya o cortamos el servicio." Suena muy agresivo. Necesita que la IA lo haga profesional.</p>
@@ -564,7 +552,6 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 3 -->
                     <div class="info-card">
                         <h3>Ejercicio 3: Fórmula de Excel Compleja</h3>
                         <p><strong>Problema:</strong> Columna A (Categoría), Columna B (Monto). Quiere sumar SÓLO los montos de "Combustible" que sean mayores a $10.000.</p>
@@ -578,7 +565,6 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 4 -->
                     <div class="info-card">
                         <h3>Ejercicio 4: Resumir Cadena de Emails</h3>
                         <p><strong>Problema:</strong> Tiene 15 emails sobre una entrega fallida. Su gerente le pide: "¿Qué pasó?". Necesita un resumen ya.</p>
@@ -591,7 +577,6 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 5 -->
                     <div class="info-card">
                         <h3>Ejercicio 5: Generar Datos de Prueba</h3>
                         <p><strong>Problema:</strong> Probar una planilla de control de flota con datos falsos.</p>
@@ -602,7 +587,6 @@
                             <p class="italic text-sm">"Genera una tabla con 10 filas de datos de prueba para una flota. Columnas: 'Patente' (AA123BB), 'Chofer' (Nombre), 'Estado' (En viaje, En base), 'Km_Hoy' (aleatorio 50-600)."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 6 -->
                     <div class="info-card">
                         <h3>Ejercicio 6: Formatear Texto Desordenado</h3>
                         <p><strong>Problema:</strong> Le pasan gastos por WhatsApp: "nafta 12000, peaje 900, hotel 15000".</p>
@@ -613,7 +597,6 @@
                             <p class="italic text-sm">"Toma los siguientes datos: [pegar lista]. Conviértelos en una tabla de dos columnas con los encabezados 'Concepto' y 'Monto'."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 7 -->
                     <div class="info-card">
                         <h3>Ejercicio 7: Investigación Contable</h3>
                         <p><strong>Problema:</strong> "¿Tope de viáticos deducibles de ganancias para choferes de larga distancia sin comprobante?"</p>
@@ -624,7 +607,6 @@
                             <p class="italic text-sm">"(Usar Gemini/Perplexity) Actúa como experto contable en Argentina. ¿Cuál es el monto máximo de viáticos para choferes (CCT 40/89) exento de Ganancias para el período fiscal actual? Cita la fuente."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 8 -->
                     <div class="info-card">
                         <h3>Ejercicio 8: Comunicación Interna</h3>
                         <p><strong>Problema:</strong> Recordar a choferes la OBLIGACIÓN de entregar remitos firmados en 24hs.</p>
@@ -635,7 +617,6 @@
                             <p class="italic text-sm">"Actúa como Jefe de Tráfico. Redacta un comunicado interno breve (para WhatsApp) para choferes. Tono MUY firme pero profesional. Recordar la importancia crítica de entregar remitos conformados en 24hs."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 9 -->
                     <div class="info-card">
                         <h3>Ejercicio 9: Analizar Datos Simples</h3>
                         <p><strong>Problema:</strong> Pega una lista de facturas (Fecha Vto / Fecha Pago). Quiere saber el promedio de días de atraso.</p>
@@ -646,7 +627,6 @@
                             <p class="italic text-sm">"Toma los siguientes datos [pegar tabla]. Calcula los días de atraso para cada factura. Dime el promedio de días de atraso y cuál es la factura con mayor demora."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 10 -->
                     <div class="info-card">
                         <h3>Ejercicio 10: Escritura Creativa</h3>
                         <p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p>
@@ -660,7 +640,6 @@
                 </div>
             </section>
             
-            <!-- SECCIÓN DATOS SEGUROS -->
             <section id="view-datos-seguros" class="view-section">
                 <h2 class="section-title">Datos Seguros: El Lado Humano de la IA</h2>
                 <p class="section-subtitle">
@@ -685,7 +664,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN AUTOMATIZACIÓN -->
             <section id="view-automatizacion" class="view-section">
                 <h2 class="section-title">El Futuro: De Prompts a Procesos Automatizados (RPA)</h2>
                 <p class="section-subtitle">
@@ -724,7 +702,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN OTRAS IAs -->
             <section id="view-otras-ias" class="view-section">
                 <h2 class="section-title">Un Universo de Herramientas de IA</h2>
                 <p class="section-subtitle">
@@ -749,7 +726,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN HOJA DE RUTA -->
             <section id="view-hoja-ruta" class="view-section">
                 <h2 class="section-title">Hoja de Ruta del Curso</h2>
                 <p class="section-subtitle">
@@ -778,9 +754,6 @@
                 </div>
             </section>
             
-            <!-- ===== INICIO DE SECCIONES DE REVISIÓN ===== -->
-            
-            <!-- SECCIÓN ANOTACIONES (CLASE 1) -->
             <section id="view-anotaciones" class="view-section">
                 <h2 class="section-title">Anotaciones y Temas (Clase 1)</h2>
                 <p class="section-subtitle">
@@ -820,24 +793,20 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN AUTOEVALUACIÓN (V/F) -->
             <section id="view-autoevaluacion-vf" class="view-section">
                 <h2 class="section-title">Autoevaluación (Verdadero/Falso)</h2>
                 <p class="section-subtitle">
                     Pongamos a prueba los conceptos clave del Módulo 1. Esto es solo una instancia de aprendizaje para reforzar ideas.
                 </p>
                 
-                <!-- Formulario V/F Módulo 1 -->
-                <form id="quiz-form-vf" class="mt-8 space-y-6">
-                    <!-- Campo Nombre -->
+                <form id="quiz-form-vf" action="https://formspree.io/f/mpwkwwvk" method="POST" class="mt-8 space-y-6">
                     <div class="quiz-question-card">
                         <label for="nombre_vf" class="quiz-question">Ingresa tu nombre:</label>
                         <input type="text" id="nombre_vf" name="nombre_alumno" class="quiz-input" placeholder="Tu nombre y apellido..." required>
                     </div>
-                    <!-- Campos ocultos -->
                     <input type="hidden" name="quiz_id" value="Modulo 1 - V/F">
+                    <input type="hidden" id="score-input-vf" name="calificacion_final">
 
-                    <!-- Preguntas 1-10 (V/F) -->
                     <div class="quiz-question-card">
                         <p class="quiz-question">1. Es 100% seguro pegar un extracto bancario con datos de clientes en la versión gratuita de ChatGPT.</p>
                         <div class="quiz-options"><label><input type="radio" name="q1" value="f" required> Falso</label><label><input type="radio" name="q1" value="v"> Verdadero</label></div>
@@ -881,7 +850,6 @@
                     <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (V/F)</button>
                 </form>
 
-                <!-- Cuadro de Resultados (Oculto) -->
                 <div id="quiz-results-vf" class="info-card mt-8 hidden">
                     <h3 id="quiz-title-vf" class="text-2xl font-bold text-center"></h3>
                     <p id="quiz-score-vf" class="text-6xl font-bold text-center my-4"></p>
@@ -893,24 +861,20 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN AUTOEVALUACIÓN (M.C.) -->
             <section id="view-autoevaluacion-mc" class="view-section">
                 <h2 class="section-title">Autoevaluación (Opción Múltiple)</h2>
                 <p class="section-subtitle">
                     Segunda parte de la autoevaluación, con preguntas de opción múltiple para reforzar más conceptos.
                 </p>
                 
-                <!-- Formulario M.C. Módulo 1 -->
-                <form id="quiz-form-mc" class="mt-8 space-y-6">
-                    <!-- Campo de Nombre -->
+                <form id="quiz-form-mc" action="https://formspree.io/f/mkgkggdy" method="POST" class="mt-8 space-y-6">
                     <div class="quiz-question-card">
                         <label for="nombre_mc" class="quiz-question">Ingresa tu nombre:</label>
                         <input type="text" id="nombre_mc" name="nombre_alumno" class="quiz-input" placeholder="Tu nombre y apellido..." required>
                     </div>
-                    <!-- Campos ocultos -->
                     <input type="hidden" name="quiz_id" value="Modulo 1 - M.C.">
+                    <input type="hidden" id="score-input-mc" name="calificacion_final">
                     
-                    <!-- Preguntas 1-10 (M.C.) -->
                     <div class="quiz-question-card">
                         <p class="quiz-question">1. ¿Cuál es el componente MÁS importante de un "Prompt Efectivo"?</p>
                         <div class="quiz-options-vertical">
@@ -995,8 +959,7 @@
                     <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (M.C.)</button>
                 </form>
 
-                <!-- Cuadro de Resultados (Oculto) -->
-                <div id="quiz-results-mc" class="info-card mt-8 hidden"> <!-- ID NUEVO -->
+                <div id="quiz-results-mc" class="info-card mt-8 hidden"> 
                     <h3 id="quiz-title-mc" class="text-2xl font-bold text-center"></h3>
                     <p id="quiz-score-mc" class="text-6xl font-bold text-center my-4"></p>
                     <p id="quiz-message-mc" class="text-center text-lg"></p>
@@ -1004,19 +967,14 @@
                     <div id="quiz-feedback-mc" class="mt-6 border-t border-slate-600 pt-4 hidden">
                         <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
                         <ul id="quiz-feedback-list-mc" class="list-disc list-inside mt-2 space-y-1">
-                            <!-- Los temas a repasar se insertarán aquí dinámicamente -->
-                        </ul>
+                            </ul>
                     </div>
                 </div>
             </section>
             
         </main>
         
-    </div> <!-- Fin .main-container -->
-
-    <!-- ===== JAVASCRIPT INTEGRADO ===== -->
-    <!-- Aquí se integra todo el código que antes estaba en 'script.js' -->
-    <script>
+    </div> <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- 1. Lógica de Gráficos (Chart.js) ---
@@ -1133,9 +1091,12 @@
                 console.error("Error al inicializar el IntersectionObserver:", e);
             }
 
-            // --- 3. Lógica para Ocultar/Mostrar Soluciones (TU PROBLEMA) ---
+            // --- 3. Lógica para Ocultar/Mostrar Soluciones ---
             try {
                 document.querySelectorAll('.ejercicio-toggle-btn').forEach(button => {
+                    // Verificar que NO sea un botón de tipo submit (los de los formularios)
+                    if(button.getAttribute('type') === 'submit') return;
+
                     // Busca el div de solución DENTRO de la misma info-card
                     const solucion = button.closest('.info-card').querySelector('.ejercicio-solucion');
                     if (solucion) {
@@ -1158,10 +1119,10 @@
                 console.error("Error en la lógica de los botones de ejercicio:", e);
             }
 
-            // --- 4. Lógica de Autoevaluaciones ---
+            // --- 4. Lógica de Autoevaluaciones (AJAX Formspree) ---
             
             // Función genérica para manejar los quizzes
-            function handleQuizSubmit(formId, resultsId, answers, feedbackMap) {
+            function handleQuizSubmit(formId, resultsId, answers, feedbackMap, scoreInputId) {
                 const form = document.getElementById(formId);
                 const resultsContainer = document.getElementById(resultsId);
                 
@@ -1228,6 +1189,29 @@
 
                     // Hacer scroll suave hacia los resultados
                     resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // --- Enviar a Formspree (AJAX) ---
+                    // Asignar el puntaje calculado al campo oculto
+                    if(scoreInputId) {
+                        document.getElementById(scoreInputId).value = `${percentage}%`;
+                        formData.append('calificacion_final', `${percentage}%`);
+                    }
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            console.log("Formulario enviado con éxito a Formspree");
+                        } else {
+                            console.error("Error al enviar a Formspree");
+                        }
+                    }).catch(error => {
+                        console.error("Error de red:", error);
+                    });
                 });
             }
 
@@ -1239,7 +1223,7 @@
                 q7: 'Capacidades de la IA (Logística)',
                 q9: 'Responsabilidad Humana (El Piloto)',
             };
-            handleQuizSubmit('quiz-form-vf', 'quiz-results-vf', answersVF, feedbackVF);
+            handleQuizSubmit('quiz-form-vf', 'quiz-results-vf', answersVF, feedbackVF, 'score-input-vf');
 
             // Quiz M.C.
             const answersMC = { mc1: 'b', mc2: 'b', mc3: 'b', mc4: 'b', mc5: 'b', mc6: 'a', mc7: 'b', mc8: 'a', mc9: 'a', mc10: 'a' };
@@ -1255,7 +1239,7 @@
                 mc9: 'Seguridad de Datos (Anonimización)',
                 mc10: 'Hábito Clave de IA'
             };
-            handleQuizSubmit('quiz-form-mc', 'quiz-results-mc', answersMC, feedbackMC);
+            handleQuizSubmit('quiz-form-mc', 'quiz-results-mc', answersMC, feedbackMC, 'score-input-mc');
 
         });
     </script>
