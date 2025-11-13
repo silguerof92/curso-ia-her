@@ -46,6 +46,14 @@
             border-color: rgba(14, 165, 233, 0.4);
         }
 
+        /* Navbar específica con glassmorphism más suave */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
         /* Tarjeta Deshabilitada (Módulos futuros) */
         .glass-card-disabled {
             background: rgba(15, 23, 42, 0.6);
@@ -65,10 +73,30 @@
         /* Iconos Sociales */
         .social-icon {
             transition: all 0.3s ease;
+            color: #94a3b8;
         }
         .social-icon:hover {
             color: #38bdf8; /* Sky-400 */
             transform: scale(1.1);
+        }
+
+        /* Logo Ramux en el Header */
+        .ramux-header-logo {
+            font-family: 'Inter', sans-serif; /* Usamos Inter como base, pero con los colores específicos */
+            font-weight: 800; /* Extra bold */
+            color: #E2E8F0; /* Color principal del texto, casi blanco */
+            letter-spacing: 0.05em; /* Ajuste de espacio entre letras */
+        }
+        .ramux-header-logo-dot {
+            color: #F76B1C; /* Naranja específico del logo */
+        }
+        .ramux-slogan {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400; /* Regular */
+            color: #94A3B8; /* Gris claro para el slogan */
+            font-size: 0.75rem; /* Pequeño */
+            letter-spacing: 0.1em; /* Más espacio para el slogan */
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -76,21 +104,41 @@
 
     <div class="fixed-background"></div>
 
-    <div class="min-h-screen flex flex-col justify-between">
-        
-        <header class="w-full p-6 flex justify-between items-center max-w-7xl mx-auto">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-sky-600 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20">
-                    <i class="fa-solid fa-robot text-white text-xl"></i>
+    <div class="min-h-screen flex flex-col justify-between pt-24">
+        <header class="fixed top-0 left-0 w-full z-50 glass-nav">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+                
+                <div class="flex flex-col items-center md:items-start w-full md:w-1/3 justify-center md:justify-start">
+                    <span class="font-semibold text-slate-200 tracking-wide text-sm">Fernando Silguero</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest font-medium mt-0.5">CEO & Founder</span>
                 </div>
-                <div>
-                    <h1 class="font-bold text-xl text-white tracking-tight">Fernando Silguero</h1>
-                    <p class="text-xs text-sky-400 font-semibold tracking-widest uppercase">RAMUX Consultora</p>
+
+                <div class="flex flex-col items-center justify-center w-full md:w-1/3 text-center group">
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="flex items-center gap-1.5 mb-1">
+                        <span class="ramux-header-logo text-2xl">RAMUX<span class="ramux-header-logo-dot">.</span></span>
+                    </a>
+                    <p class="ramux-slogan">Comunicación – Gestión – Desarrollo</p>
                 </div>
+
+                <div class="flex items-center justify-center md:justify-end gap-5 w-full md:w-1/3">
+                    <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" title="WhatsApp" class="social-icon text-xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" title="Instagram" class="social-icon text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" title="LinkedIn" class="social-icon text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" title="Sitio Web" class="social-icon text-xl">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+
             </div>
         </header>
 
-        <main class="flex-grow flex flex-col items-center px-4 py-10 text-center max-w-6xl mx-auto w-full">
+        <main class="flex-grow flex flex-col items-center px-4 py-6 text-center max-w-6xl mx-auto w-full">
             
             <span class="px-3 py-1 rounded-full bg-sky-900/30 border border-sky-700/50 text-sky-300 text-sm font-medium mb-6 animate-pulse">
                 Programa de Capacitación Interna 2025
@@ -104,7 +152,7 @@
                 Optimización de procesos, análisis de datos y automatización para transformar la productividad diaria.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left mb-8">
                 
                 <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -172,33 +220,7 @@
 
             </div>
 
-            <div class="w-full max-w-4xl mx-auto">
-                <div class="glass-card px-8 py-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="text-left">
-                        <p class="text-slate-400 text-sm mb-1">Presentado por:</p>
-                        <h3 class="text-xl font-bold text-white">Fernando Silguero</h3>
-                        <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="text-sky-400 font-bold hover:text-sky-300 text-lg">RAMUX</a>
-                        <p class="text-xs text-slate-500 mt-1">Comunicación, Gestión y Desarrollo de Proyectos</p>
-                    </div>
-                    
-                    <div class="flex gap-6 text-slate-400">
-                        <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" title="WhatsApp" class="social-icon text-2xl">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" title="Instagram" class="social-icon text-2xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" title="LinkedIn" class="social-icon text-2xl">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" title="Sitio Web" class="social-icon text-2xl">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </main>
+            </main>
 
         <footer class="w-full p-8 text-center border-t border-slate-800/50 bg-slate-900/50 mt-8">
             <p class="text-sm font-medium text-slate-300 mb-1">Escuela de Gestión y Negocios</p>
@@ -212,3 +234,4 @@
 
 </body>
 </html>
+```http://googleusercontent.com/image_generation_content/0
