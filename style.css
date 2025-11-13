@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Módulo 1: Fundamentos de IA - Grupo HER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -10,22 +10,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* === RESET Y BASE === */
-        html, body {
+        /* === RESET Y ESTABILIZACIÓN === */
+        html {
+            height: 100%;
+            overscroll-behavior: none; /* Evita el rebote elástico en Mac/iOS */
+        }
+        
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* bg-slate-900 */
-            color: #e2e8f0; /* text-slate-200 */
-            overflow: hidden; /* CLAVE: Bloquea el scroll del navegador base */
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow: hidden; /* Bloquea el scroll del body para usar el del div */
+            position: fixed; /* Fija el body para evitar saltos en móviles */
+            width: 100%;
         }
 
         /* === LAYOUT PRINCIPAL === */
         .main-container {
             display: flex;
-            height: 100vh; /* Ocupa toda la pantalla */
-            height: 100dvh; /* Mejor soporte para móviles */
+            height: 100%; /* Usa 100% del body fijo */
+            width: 100%;
             overflow: hidden;
         }
 
@@ -40,6 +47,7 @@
             overflow-y: auto;
             border-right: 1px solid #334155;
             padding: 1.5rem;
+            z-index: 10;
         }
         
         /* Enlaces de navegación */
@@ -70,16 +78,19 @@
         .footer-title { font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
         .footer-text-main { color: #f1f5f9; font-weight: 600; }
         .footer-text-sub { font-size: 0.875rem; color: #94a3b8; display: block; }
-        .social-link-sidebar { color: #94a3b8; font-size: 1.25rem; margin-right: 10px; transition: color 0.2s; }
-        .social-link-sidebar:hover { color: #e2e8f0; }
 
-        /* === ÁREA DE CONTENIDO === */
+        /* === ÁREA DE CONTENIDO (SOLUCIÓN DEL SCROLL) === */
         .content-scroll-area {
             flex-grow: 1;
-            overflow-y: auto; /* Aquí es donde ocurre el scroll */
-            scroll-behavior: smooth; /* CLAVE: El smooth scroll va AQUÍ, no en html */
+            overflow-y: auto;
+            height: 100%;
+            scroll-behavior: smooth;
             padding: 2.5rem;
             position: relative;
+            /* ESTO ES LA CLAVE DE LA CORRECCIÓN: */
+            overscroll-behavior: contain; /* Evita que el scroll afecte al padre */
+            -webkit-overflow-scrolling: touch; /* Suavidad nativa en iOS */
+            will-change: scroll-position; /* Optimización de rendimiento */
         }
 
         /* Secciones */
@@ -87,10 +98,9 @@
             padding-bottom: 4rem;
             margin-bottom: 4rem;
             border-bottom: 1px solid #334155;
-            /* Scroll-margin-top ayuda a que el título no quede tapado al hacer click en el link */
             scroll-margin-top: 2rem; 
         }
-        .view-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 5rem; }
+        .view-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 8rem; }
 
         /* Tipografía */
         .section-title { font-size: 2.25rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; }
@@ -103,7 +113,7 @@
             border-radius: 0.5rem;
             padding: 1.5rem;
             border: 1px solid #334155;
-            height: 100%; /* Para Grid */
+            height: 100%;
         }
         .info-card h3 { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.75rem; }
         .info-card p, .info-card ul, .info-card ol { color: #cbd5e1; }
@@ -111,16 +121,19 @@
         .alert-card h3 { color: #f87171; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 
         /* === ARREGLO CRÍTICO CHART.JS === */
-        .chart-wrapper {
-            position: relative;
-            width: 100%;
-            height: 300px; /* Altura fija para evitar el loop infinito de redimensionamiento */
-        }
         .chart-container {
             background-color: #1e293b;
             border-radius: 0.5rem;
             padding: 1.5rem;
             border: 1px solid #334155;
+            width: 100%;
+            box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+        }
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden; /* CLAVE: Evita que el canvas desborde y cause jitter */
         }
 
         /* Botones y Ejercicios */
@@ -154,7 +167,6 @@
 
         /* Quiz */
         .quiz-question-card { background-color: #1e293b; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #334155; margin-bottom: 1rem; }
-        .quiz-input { width: 100%; background-color: #0f172a; border: 1px solid #334155; color: #f1f5f9; padding: 0.75rem; border-radius: 0.375rem; margin-top: 0.5rem; }
         .quiz-options, .quiz-options-vertical { display: flex; gap: 1rem; margin-top: 0.5rem; }
         .quiz-options-vertical { flex-direction: column; }
         .quiz-options label, .quiz-options-vertical label {
@@ -166,8 +178,10 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            .sidebar-nav { width: 100%; height: auto; max-height: 200px; }
+            .sidebar-nav { width: 100%; height: auto; max-height: 200px; flex-shrink: 0; }
+            .content-scroll-area { height: calc(100% - 200px); padding: 1.5rem; }
             .roadmap-arrow { transform: rotate(90deg); padding: 1rem 0; }
+            .chart-wrapper { height: 250px; } /* Gráficos más pequeños en móvil */
         }
     </style>
 </head>
@@ -501,7 +515,7 @@
             try {
                 const commonOptions = {
                     responsive: true,
-                    maintainAspectRatio: false, // CRÍTICO: Permite ajustarse al div contenedor
+                    maintainAspectRatio: false, 
                     plugins: {
                         legend: { labels: { color: '#cbd5e1' } }
                     }
@@ -547,7 +561,7 @@
                 }
             } catch (e) { console.error("Error Charts", e); }
 
-            // 2. SCROLL SPY (Optimizado)
+            // 2. SCROLL SPY (Optimizado con requestAnimationFrame para rendimiento)
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('#mainNav a');
             const scrollArea = document.getElementById('content-scroll-area');
@@ -567,7 +581,7 @@
                     });
                 }, {
                     root: scrollArea,
-                    rootMargin: '-20% 0px -60% 0px', // Ajuste para detectar mejor el centro
+                    rootMargin: '-20% 0px -60% 0px',
                     threshold: 0
                 });
                 sections.forEach(section => observer.observe(section));
@@ -575,7 +589,6 @@
 
             // 3. BOTONES DE SOLUCIÓN
             document.querySelectorAll('.ejercicio-toggle-btn').forEach(btn => {
-                // Solo actuar si NO es botón de submit
                 if(btn.type !== 'submit') {
                     btn.addEventListener('click', () => {
                         const sol = btn.nextElementSibling;
@@ -609,7 +622,6 @@
                     scoreEl.textContent = `${Math.round((score/total)*100)}%`;
                     msgEl.textContent = score === total ? "¡Excelente!" : "¡Sigue practicando!";
                     
-                    // Scroll al resultado
                     resDiv.scrollIntoView({ behavior: 'smooth' });
                 });
             }
