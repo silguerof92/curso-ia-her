@@ -7,15 +7,299 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <!-- Enlaza tu CSS externo -->
     <!-- Iconos para redes sociales (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ===== CSS INTEGRADO ===== -->
+    <!-- Aquí se integran los estilos que antes estaban en 'style.css' -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0; /* text-slate-200 */
+            overscroll-behavior: none;
+        }
+
+        /* Contenedor principal que divide sidebar y contenido */
+        .main-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Barra Lateral de Navegación --- */
+        .sidebar-nav {
+            width: 280px;
+            background-color: #1e293b; /* bg-slate-800 */
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-right: 1px solid #334155; /* border-slate-700 */
+            padding: 1.5rem; /* p-6 */
+        }
+        
+        .nav-header h1 {
+            font-size: 1.875rem; /* text-3xl */
+        }
+        
+        /* Enlaces de navegación */
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem; /* py-2 px-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            color: #cbd5e1; /* text-slate-300 */
+            font-weight: 600; /* font-semibold */
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            background-color: #334155; /* hover:bg-slate-700 */
+            color: #ffffff; /* hover:text-white */
+        }
+        /* Enlace activo (controlado por JS) */
+        .nav-link.active {
+            background-color: #0ea5e9; /* bg-sky-500 */
+            color: #ffffff; /* text-white */
+        }
+
+        /* Footer de la Sidebar */
+        .sidebar-footer {
+            border-top: 1px solid #334155; /* border-slate-700 */
+            padding-top: 1.5rem; /* pt-6 */
+            margin-top: 1.5rem; /* mt-6 */
+        }
+        .footer-title {
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 600; /* font-semibold */
+            color: #64748b; /* text-slate-500 */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer-text-main {
+            color: #f1f5f9; /* text-slate-100 */
+            font-weight: 600; /* font-semibold */
+        }
+        .footer-text-sub {
+            display: block;
+            font-size: 0.875rem; /* text-sm */
+            color: #94a3b8; /* text-slate-400 */
+        }
+        .footer-link-main {
+            color: #f1f5f9; /* text-slate-100 */
+            font-weight: 600; /* font-semibold */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-link-main:hover {
+            color: #38bdf8; /* hover:text-sky-400 */
+        }
+        .social-link-sidebar {
+            color: #94a3b8; /* text-slate-400 */
+            font-size: 1.25rem; /* text-xl */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .social-link-sidebar:hover {
+            color: #e2e8f0; /* hover:text-slate-200 */
+        }
+
+        /* --- Área de Contenido Principal --- */
+        .content-scroll-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2.5rem; /* p-10 */
+        }
+        /* Cada sección individual */
+        .view-section {
+            padding-bottom: 4rem; /* pb-16 */
+            margin-bottom: 4rem; /* mb-16 */
+            border-bottom: 1px solid #334155; /* border-b border-slate-700 */
+        }
+        .view-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Estilos de Título y Párrafo */
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #ffffff; /* text-white */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .section-subtitle {
+            font-size: 1.125rem; /* text-lg */
+            color: #cbd5e1; /* text-slate-300 */
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        .section-subtitle-small {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #e2e8f0; /* text-slate-200 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        /* Tarjetas de Información */
+        .info-card {
+            background-color: #1e293b; /* bg-slate-800 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            border: 1px solid #334155; /* border-slate-700 */
+            height: 100%; /* Para que las tarjetas en grid tengan misma altura */
+        }
+        .info-card h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; /* text-slate-100 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .info-card p, .info-card ul, .info-card ol {
+            color: #cbd5e1; /* text-slate-300 */
+        }
+
+        /* Contenedor de Gráficos */
+        .chart-container {
+            background-color: #1e293b; /* bg-slate-800 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            border: 1px solid #334155; /* border-slate-700 */
+        }
+
+        /* Divisor */
+        .section-divider {
+            border-color: #334155; /* border-slate-700 */
+            margin-top: 2rem; /* my-8 */
+            margin-bottom: 2rem;
+        }
+
+        /* --- Botón de Ejercicio (LA CLAVE DE TU PROBLEMA) --- */
+        .ejercicio-toggle-btn {
+            background-color: #0ea5e9; /* bg-sky-500 */
+            color: #ffffff; /* text-white */
+            font-weight: 600; /* font-semibold */
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .ejercicio-toggle-btn:hover {
+            background-color: #0284c7; /* bg-sky-600 */
+        }
+
+        /* Solución de Ejercicio (inicialmente oculta con Tailwind) */
+        .ejercicio-solucion {
+            margin-top: 1rem; /* mt-4 */
+            padding-top: 1rem; /* pt-4 */
+            border-top: 1px solid #334155; /* border-t border-slate-700 */
+            background-color: #0f172a; /* bg-slate-900 */
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+
+        /* Tarjetas de Alerta */
+        .alert-card {
+            background-color: #3f1212; /* bg-red-900/50 */
+            border: 1px solid #ef4444; /* border-red-500 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+        }
+        .alert-card h3 {
+            color: #f87171; /* text-red-400 */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        /* Hoja de Ruta */
+        .roadmap-card-active, .roadmap-card-inactive {
+            padding: 1rem 1.5rem; /* px-6 py-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            text-align: center;
+            font-weight: 600; /* font-semibold */
+        }
+        .roadmap-card-active {
+            background-color: #0ea5e9; /* bg-sky-500 */
+            color: #ffffff; /* text-white */
+        }
+        .roadmap-card-inactive {
+            background-color: #1e293b; /* bg-slate-800 */
+            color: #94a3b8; /* text-slate-400 */
+            border: 1px solid #334155; /* border-slate-700 */
+        }
+        .roadmap-number {
+            display: block;
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+        }
+        .roadmap-arrow {
+            font-size: 1.5rem; /* text-2xl */
+            color: #64748b; /* text-slate-500 */
+        }
+
+        /* --- Formularios de Quiz --- */
+        .quiz-question-card {
+            background-color: #1e293b; /* bg-slate-800 */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            border: 1px solid #334155; /* border-slate-700 */
+        }
+        .quiz-question {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; /* text-slate-100 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .quiz-input {
+            width: 100%;
+            background-color: #0f172a; /* bg-slate-900 */
+            border: 1px solid #334155; /* border-slate-700 */
+            color: #f1f5f9; /* text-slate-100 */
+            padding: 0.75rem 1rem; /* py-3 px-4 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .quiz-input:focus {
+            outline: none;
+            border-color: #0ea5e9; /* border-sky-500 */
+            box-shadow: 0 0 0 2px #0ea5e9;
+        }
+        .quiz-options, .quiz-options-vertical {
+            display: flex;
+            gap: 1rem; /* space-x-4 */
+        }
+        .quiz-options-vertical {
+            flex-direction: column;
+        }
+        .quiz-options label, .quiz-options-vertical label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* space-x-2 */
+            padding: 0.75rem 1rem; /* p-3 px-4 */
+            background-color: #334155; /* bg-slate-700 */
+            border-radius: 0.375rem; /* rounded-md */
+            flex-grow: 1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .quiz-options label:hover, .quiz-options-vertical label:hover {
+            background-color: #475569; /* bg-slate-600 */
+        }
+        .quiz-options input[type="radio"], .quiz-options-vertical input[type="radio"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: #0ea5e9; /* text-sky-500 */
+        }
+    </style>
 </head>
 <body class="body-module">
 
     <div class="main-container">
 
-        <!-- ===== SIDEBAR DE NAVEGACIÓN (Orden Correcto) ===== -->
+        <!-- ===== SIDEBAR DE NAVEGACIÓN ===== -->
         <nav class="sidebar-nav">
             
             <div>
@@ -26,7 +310,8 @@
                 </div>
                 
                 <ul id="mainNav" class="space-y-2">
-                    <li><a href="#view-inicio" class="nav-link active">Inicio del Módulo</a></li>
+                    <!-- El JS marcará 'active' en el enlace correcto -->
+                    <li><a href="#view-inicio" class="nav-link">Inicio del Módulo</a></li>
                     <li><a href="#view-desafio" class="nav-link">El Desafío</a></li>
                     <li><a href="#view-solucion" class="nav-link">La Solución</a></li>
                     <li><a href="#view-ia-sistemas" class="nav-link">IA en Sistemas</a></li>
@@ -36,7 +321,6 @@
                     <li><a href="#view-automatizacion" class="nav-link">Automatización</a></li>
                     <li><a href="#view-otras-ias" class="nav-link">Otras IAs</a></li>
                     <li><a href="#view-hoja-ruta" class="nav-link">Hoja de Ruta</a></li>
-                    <!-- Secciones de Revisión al final -->
                     <li><a href="#view-anotaciones" class="nav-link">Anotaciones (Clase 1)</a></li>
                     <li><a href="#view-autoevaluacion-vf" class="nav-link">Autoevaluación (V/F)</a></li>
                     <li><a href="#view-autoevaluacion-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
@@ -49,7 +333,7 @@
                     <p class="footer-title">Facilitador</p>
                     <p class="footer-text-main">Fernando Silguero</p>
                 </div>
-                <div>
+                <div class="mt-4">
                     <p class="footer-title">Consultora</p>
                     <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer" class="footer-link-main">
                         RAMUX
@@ -69,7 +353,7 @@
             </div>
         </nav>
 
-        <!-- ===== ÁREA DE CONTENIDO CON SCROLL (ORDEN CORREGIDO) ===== -->
+        <!-- ===== ÁREA DE CONTENIDO CON SCROLL ===== -->
         <main id="content-scroll-area" class="content-scroll-area">
 
             <!-- SECCIÓN INICIO -->
@@ -254,7 +538,7 @@
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
-                    <!-- Ejercicio 1 (Estructura OK) -->
+                    <!-- Ejercicio 1 -->
                     <div class="info-card">
                         <h3>Ejercicio 1: Extraer Datos de Email</h3>
                         <p><strong>Problema:</strong> Le llega un email: "Buenas, adjunto la FC A-0001-12345 por $150.800,50 con vto el 10/12. Nuestro CUIT es 30-12345678-9."</p>
@@ -267,7 +551,7 @@
                         </div>
                     </div>
                     
-                    <!-- Ejercicio 2 (Estructura OK) -->
+                    <!-- Ejercicio 2 -->
                     <div class="info-card">
                         <h3>Ejercicio 2: Reformular un Email</h3>
                         <p><strong>Problema:</strong> Quiere escribir: "Cliente, no pagó la factura. Pague ya o cortamos el servicio." Suena muy agresivo. Necesita que la IA lo haga profesional.</p>
@@ -280,7 +564,7 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 3 (Estructura OK) -->
+                    <!-- Ejercicio 3 -->
                     <div class="info-card">
                         <h3>Ejercicio 3: Fórmula de Excel Compleja</h3>
                         <p><strong>Problema:</strong> Columna A (Categoría), Columna B (Monto). Quiere sumar SÓLO los montos de "Combustible" que sean mayores a $10.000.</p>
@@ -294,7 +578,7 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 4 (Estructura OK) -->
+                    <!-- Ejercicio 4 -->
                     <div class="info-card">
                         <h3>Ejercicio 4: Resumir Cadena de Emails</h3>
                         <p><strong>Problema:</strong> Tiene 15 emails sobre una entrega fallida. Su gerente le pide: "¿Qué pasó?". Necesita un resumen ya.</p>
@@ -307,7 +591,7 @@
                         </div>
                     </div>
 
-                    <!-- Ejercicio 5 (CORREGIDO) -->
+                    <!-- Ejercicio 5 -->
                     <div class="info-card">
                         <h3>Ejercicio 5: Generar Datos de Prueba</h3>
                         <p><strong>Problema:</strong> Probar una planilla de control de flota con datos falsos.</p>
@@ -318,7 +602,7 @@
                             <p class="italic text-sm">"Genera una tabla con 10 filas de datos de prueba para una flota. Columnas: 'Patente' (AA123BB), 'Chofer' (Nombre), 'Estado' (En viaje, En base), 'Km_Hoy' (aleatorio 50-600)."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 6 (CORREGIDO) -->
+                    <!-- Ejercicio 6 -->
                     <div class="info-card">
                         <h3>Ejercicio 6: Formatear Texto Desordenado</h3>
                         <p><strong>Problema:</strong> Le pasan gastos por WhatsApp: "nafta 12000, peaje 900, hotel 15000".</p>
@@ -329,7 +613,7 @@
                             <p class="italic text-sm">"Toma los siguientes datos: [pegar lista]. Conviértelos en una tabla de dos columnas con los encabezados 'Concepto' y 'Monto'."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 7 (CORREGIDO) -->
+                    <!-- Ejercicio 7 -->
                     <div class="info-card">
                         <h3>Ejercicio 7: Investigación Contable</h3>
                         <p><strong>Problema:</strong> "¿Tope de viáticos deducibles de ganancias para choferes de larga distancia sin comprobante?"</p>
@@ -340,7 +624,7 @@
                             <p class="italic text-sm">"(Usar Gemini/Perplexity) Actúa como experto contable en Argentina. ¿Cuál es el monto máximo de viáticos para choferes (CCT 40/89) exento de Ganancias para el período fiscal actual? Cita la fuente."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 8 (CORREGIDO) -->
+                    <!-- Ejercicio 8 -->
                     <div class="info-card">
                         <h3>Ejercicio 8: Comunicación Interna</h3>
                         <p><strong>Problema:</strong> Recordar a choferes la OBLIGACIÓN de entregar remitos firmados en 24hs.</p>
@@ -351,7 +635,7 @@
                             <p class="italic text-sm">"Actúa como Jefe de Tráfico. Redacta un comunicado interno breve (para WhatsApp) para choferes. Tono MUY firme pero profesional. Recordar la importancia crítica de entregar remitos conformados en 24hs."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 9 (CORREGIDO) -->
+                    <!-- Ejercicio 9 -->
                     <div class="info-card">
                         <h3>Ejercicio 9: Analizar Datos Simples</h3>
                         <p><strong>Problema:</strong> Pega una lista de facturas (Fecha Vto / Fecha Pago). Quiere saber el promedio de días de atraso.</p>
@@ -362,7 +646,7 @@
                             <p class="italic text-sm">"Toma los siguientes datos [pegar tabla]. Calcula los días de atraso para cada factura. Dime el promedio de días de atraso y cuál es la factura con mayor demora."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 10 (CORREGIDO) -->
+                    <!-- Ejercicio 10 -->
                     <div class="info-card">
                         <h3>Ejercicio 10: Escritura Creativa</h3>
                         <p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p>
@@ -453,7 +737,7 @@
                         <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Ideal para crear informes visuales para gerencia sin perder tiempo en el diseño.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class_of_model="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=P" alt="" class="rounded-lg mr-3">Perplexity.ai</h3>
+                        <h3 class="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=P" alt="" class="rounded-lg mr-3">Perplexity.ai</h3>
                         <p><strong>Para qué sirve:</strong> Un motor de búsqueda conversacional que cita sus fuentes.</p>
                         <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Perfecto para investigar normativas de AFIP o temas contables con fuentes reales.</p>
                     </div>
@@ -730,6 +1014,251 @@
         
     </div> <!-- Fin .main-container -->
 
-    <script src="script.js"></script> <!-- Enlaza tu JS externo -->
+    <!-- ===== JAVASCRIPT INTEGRADO ===== -->
+    <!-- Aquí se integra todo el código que antes estaba en 'script.js' -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Lógica de Gráficos (Chart.js) ---
+            try {
+                // Gráfico 1: Desafío
+                const ctxDesafio = document.getElementById('desafioChart');
+                if (ctxDesafio) {
+                    new Chart(ctxDesafio.getContext('2d'), {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Tareas Operativas/Repetitivas', 'Carga de Datos', 'Análisis Estratégico', 'Comunicación'],
+                            datasets: [{
+                                data: [45, 30, 10, 15],
+                                backgroundColor: ['#ef4444', '#f97316', '#0ea5e9', '#8b5cf6'],
+                                borderColor: '#1e293b',
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#cbd5e1', // text-slate-300
+                                        font: { size: 14 }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Gráfico 2: Prompts
+                const ctxPrompt = document.getElementById('promptChart');
+                if (ctxPrompt) {
+                    new Chart(ctxPrompt.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Prompt Básico ("Haz un resumen")', 'Prompt Efectivo ("Actúa como...")'],
+                            datasets: [{
+                                label: 'Tiempo Ahorrado (en %)',
+                                data: [20, 80],
+                                backgroundColor: ['#ef4444', '#22c55e'],
+                                borderRadius: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    ticks: { color: '#cbd5e1', font: { size: 14 } },
+                                    grid: { color: '#334155' }
+                                },
+                                x: {
+                                    ticks: { color: '#cbd5e1', font: { size: 14 } },
+                                    grid: { color: 'transparent' }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return `${context.dataset.label}: ${context.raw}%`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("Error al inicializar los gráficos:", e);
+            }
+
+            // --- 2. Lógica de Navegación Activa (IntersectionObserver) ---
+            try {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('#mainNav a');
+                const scrollArea = document.getElementById('content-scroll-area');
+
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                // Comparamos el href (ej: #view-inicio) con el id de la sección (ej: view-inicio)
+                                if (link.getAttribute('href') === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    root: scrollArea, // Observamos el scroll DENTRO del main
+                    rootMargin: '0px 0px -50% 0px', // Se activa cuando la sección está en la mitad superior
+                    threshold: 0
+                });
+
+                sections.forEach(section => observer.observe(section));
+                
+                // Activar el primer link por defecto
+                if (navLinks.length > 0) {
+                    navLinks[0].classList.add('active');
+                }
+
+            } catch (e) {
+                console.error("Error al inicializar el IntersectionObserver:", e);
+            }
+
+            // --- 3. Lógica para Ocultar/Mostrar Soluciones (TU PROBLEMA) ---
+            try {
+                document.querySelectorAll('.ejercicio-toggle-btn').forEach(button => {
+                    // Busca el div de solución DENTRO de la misma info-card
+                    const solucion = button.closest('.info-card').querySelector('.ejercicio-solucion');
+                    if (solucion) {
+                        const originalText = button.textContent; // Guarda el texto original (Ej: "Ver Solución")
+                        
+                        button.addEventListener('click', () => {
+                            // Alterna la clase 'hidden' de Tailwind
+                            solucion.classList.toggle('hidden');
+                            
+                            // Cambia el texto del botón
+                            if (solucion.classList.contains('hidden')) {
+                                button.textContent = originalText;
+                            } else {
+                                button.textContent = 'Ocultar Solución';
+                            }
+                        });
+                    }
+                });
+            } catch (e) {
+                console.error("Error en la lógica de los botones de ejercicio:", e);
+            }
+
+            // --- 4. Lógica de Autoevaluaciones ---
+            
+            // Función genérica para manejar los quizzes
+            function handleQuizSubmit(formId, resultsId, answers, feedbackMap) {
+                const form = document.getElementById(formId);
+                const resultsContainer = document.getElementById(resultsId);
+                
+                if (!form || !resultsContainer) return;
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    const totalQuestions = Object.keys(answers).length;
+                    let score = 0;
+                    let incorrectFeedback = [];
+
+                    for (const [key, correctAnswer] of Object.entries(answers)) {
+                        if (data[key] === correctAnswer) {
+                            score++;
+                        } else if (feedbackMap[key]) {
+                            // Si está mal Y hay un tema para repasar
+                            incorrectFeedback.push(feedbackMap[key]);
+                        }
+                    }
+
+                    const percentage = Math.round((score / totalQuestions) * 100);
+                    const studentName = data.nombre_alumno || "Estudiante";
+
+                    // Mostrar resultados
+                    resultsContainer.querySelector(`#${resultsId.replace('results', 'title')}`).textContent = `Resultado para ${studentName}`;
+                    resultsContainer.querySelector(`#${resultsId.replace('results', 'score')}`).textContent = `${percentage}%`;
+                    
+                    let message = "";
+                    if (percentage === 100) {
+                        message = "¡Excelente! Todos los conceptos están claros.";
+                        resultsContainer.querySelector(`#${resultsId.replace('results', 'score')}`).style.color = '#22c55e'; // green-500
+                    } else if (percentage >= 70) {
+                        message = "¡Muy bien! Solo algunos detalles para repasar.";
+                        resultsContainer.querySelector(`#${resultsId.replace('results', 'score')}`).style.color = '#eab308'; // yellow-500
+                    } else {
+                        message = "Buen intento. Te recomendamos repasar los siguientes temas.";
+                        resultsContainer.querySelector(`#${resultsId.replace('results', 'score')}`).style.color = '#ef4444'; // red-500
+                    }
+                    resultsContainer.querySelector(`#${resultsId.replace('results', 'message')}`).textContent = message;
+
+                    // Mostrar feedback (si hay)
+                    const feedbackContainer = resultsContainer.querySelector(`#${resultsId.replace('results', 'feedback')}`);
+                    const feedbackList = resultsContainer.querySelector(`#${resultsId.replace('results', 'feedback-list')}`);
+                    
+                    if (incorrectFeedback.length > 0) {
+                        feedbackList.innerHTML = ''; // Limpiar lista
+                        // Usar Set para evitar duplicados
+                        [...new Set(incorrectFeedback)].forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item;
+                            feedbackList.appendChild(li);
+                        });
+                        feedbackContainer.classList.remove('hidden');
+                    } else {
+                        feedbackContainer.classList.add('hidden');
+                    }
+
+                    // Ocultar formulario y mostrar resultados
+                    form.classList.add('hidden');
+                    resultsContainer.classList.remove('hidden');
+
+                    // Hacer scroll suave hacia los resultados
+                    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
+
+            // Quiz V/F
+            const answersVF = { q1: 'f', q2: 'v', q3: 'v', q4: 'f', q5: 'v', q6: 'v', q7: 'f', q8: 'v', q9: 'f', q10: 'v' };
+            const feedbackVF = {
+                q1: 'Seguridad de Datos y Confidencialidad',
+                q4: 'Capacidades de la IA (Fórmulas Excel)',
+                q7: 'Capacidades de la IA (Logística)',
+                q9: 'Responsabilidad Humana (El Piloto)',
+            };
+            handleQuizSubmit('quiz-form-vf', 'quiz-results-vf', answersVF, feedbackVF);
+
+            // Quiz M.C.
+            const answersMC = { mc1: 'b', mc2: 'b', mc3: 'b', mc4: 'b', mc5: 'b', mc6: 'a', mc7: 'b', mc8: 'a', mc9: 'a', mc10: 'a' };
+            const feedbackMC = {
+                mc1: 'Prompt Engineering (Contexto, Rol, Tono)',
+                mc2: 'Rol de la IA vs. Juicio Humano',
+                mc3: 'Herramientas Específicas (Tactiq)',
+                mc4: 'Seguridad de Datos (Riesgos)',
+                mc5: 'Alucinaciones de la IA',
+                mc6: 'Automatización (RPA)',
+                mc7: 'Herramientas Específicas (Gamma)',
+                mc8: 'Niveles de Automatización (Asistencia)',
+                mc9: 'Seguridad de Datos (Anonimización)',
+                mc10: 'Hábito Clave de IA'
+            };
+            handleQuizSubmit('quiz-form-mc', 'quiz-results-mc', answersMC, feedbackMC);
+
+        });
+    </script>
+
 </body>
 </html>
