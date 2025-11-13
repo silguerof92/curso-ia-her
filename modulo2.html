@@ -17,7 +17,7 @@
             overscroll-behavior: none;
         }
 
-        /* Contenedor principal que divide sidebar y contenido */
+        /* Contenedor principal */
         .main-container {
             display: flex;
             height: 100vh;
@@ -34,85 +34,85 @@
             justify-content: space-between;
             overflow-y: auto;
             border-right: 1px solid #334155; /* border-slate-700 */
-            padding: 1.5rem; /* p-6 */
+            padding: 1.5rem; 
         }
         
         .nav-header h1 {
-            font-size: 1.875rem; /* text-3xl */
+            font-size: 1.875rem; 
         }
         
-        /* Enlaces de navegación */
+        /* Enlaces de navegación - Acento Violeta */
         .nav-link {
             display: block;
-            padding: 0.5rem 0.75rem; /* py-2 px-3 */
-            border-radius: 0.375rem; /* rounded-md */
-            color: #cbd5e1; /* text-slate-300 */
-            font-weight: 600; /* font-semibold */
+            padding: 0.5rem 0.75rem; 
+            border-radius: 0.375rem; 
+            color: #cbd5e1; 
+            font-weight: 600; 
             transition: all 0.2s ease-in-out;
             text-decoration: none;
         }
         .nav-link:hover {
-            background-color: #334155; /* hover:bg-slate-700 */
-            color: #ffffff; /* hover:text-white */
+            background-color: #334155; 
+            color: #ffffff; 
         }
-        /* Enlace activo (controlado por JS) */
+        /* Enlace activo (Violeta) */
         .nav-link.active {
-            background-color: #0ea5e9; /* bg-sky-500 */
-            color: #ffffff; /* text-white */
+            background-color: #9333ea; /* bg-purple-600 */
+            color: #ffffff; 
         }
 
         /* Footer de la Sidebar */
         .sidebar-footer {
-            border-top: 1px solid #334155; /* border-slate-700 */
-            padding-top: 1.5rem; /* pt-6 */
-            margin-top: 1.5rem; /* mt-6 */
+            border-top: 1px solid #334155; 
+            padding-top: 1.5rem; 
+            margin-top: 1.5rem; 
         }
         .footer-title {
-            font-size: 0.75rem; /* text-xs */
-            font-weight: 600; /* font-semibold */
-            color: #64748b; /* text-slate-500 */
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: #64748b; 
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         .footer-text-main {
-            color: #f1f5f9; /* text-slate-100 */
-            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; 
+            font-weight: 600; 
         }
         .footer-text-sub {
             display: block;
-            font-size: 0.875rem; /* text-sm */
-            color: #94a3b8; /* text-slate-400 */
+            font-size: 0.875rem; 
+            color: #94a3b8; 
         }
         .footer-link-main {
-            color: #f1f5f9; /* text-slate-100 */
-            font-weight: 600; /* font-semibold */
+            color: #f1f5f9; 
+            font-weight: 600; 
             text-decoration: none;
             transition: color 0.2s;
         }
         .footer-link-main:hover {
-            color: #38bdf8; /* hover:text-sky-400 */
+            color: #c084fc; /* hover:text-purple-400 */
         }
         .social-link-sidebar {
-            color: #94a3b8; /* text-slate-400 */
-            font-size: 1.25rem; /* text-xl */
+            color: #94a3b8; 
+            font-size: 1.25rem; 
             text-decoration: none;
             transition: color 0.2s;
         }
         .social-link-sidebar:hover {
-            color: #e2e8f0; /* hover:text-slate-200 */
+            color: #e2e8f0; 
         }
 
         /* --- Área de Contenido Principal --- */
         .content-scroll-area {
             flex-grow: 1;
             overflow-y: auto;
-            padding: 2.5rem; /* p-10 */
+            padding: 2.5rem; 
         }
-        /* Cada sección individual */
+        
         .view-section {
-            padding-bottom: 4rem; /* pb-16 */
-            margin-bottom: 4rem; /* mb-16 */
-            border-bottom: 1px solid #334155; /* border-b border-slate-700 */
+            padding-bottom: 4rem; 
+            margin-bottom: 4rem; 
+            border-bottom: 1px solid #334155; 
         }
         .view-section:last-child {
             border-bottom: none;
@@ -120,105 +120,92 @@
             padding-bottom: 0;
         }
 
-        /* Estilos de Título y Párrafo */
+        /* Estilos de Texto */
         .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #ffffff; /* text-white */
-            margin-bottom: 0.5rem; /* mb-2 */
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: 0.5rem; 
         }
         .section-subtitle {
-            font-size: 1.125rem; /* text-lg */
-            color: #cbd5e1; /* text-slate-300 */
+            font-size: 1.125rem; 
+            color: #cbd5e1; 
             max-width: 800px;
             line-height: 1.6;
-        }
-        .section-subtitle-small {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: #e2e8f0; /* text-slate-200 */
-            margin-bottom: 1rem; /* mb-4 */
         }
 
         /* Tarjetas de Información */
         .info-card {
-            background-color: #1e293b; /* bg-slate-800 */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            border: 1px solid #334155; /* border-slate-700 */
-            height: 100%; /* Para que las tarjetas en grid tengan misma altura */
+            background-color: #1e293b; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
+            border: 1px solid #334155; 
+            height: 100%; 
         }
         .info-card h3 {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            color: #f1f5f9; /* text-slate-100 */
-            margin-bottom: 0.75rem; /* mb-3 */
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 0.75rem; 
         }
         .info-card p, .info-card ul, .info-card ol {
-            color: #cbd5e1; /* text-slate-300 */
+            color: #cbd5e1; 
         }
 
-        /* Divisor */
-        .section-divider {
-            border-color: #334155; /* border-slate-700 */
-            margin-top: 2rem; /* my-8 */
-            margin-bottom: 2rem;
-        }
-
-        /* --- Botón de Ejercicio (LA CLAVE PARA VER SOLUCIONES) --- */
+        /* --- Botón de Ejercicio (Violeta) --- */
         .ejercicio-toggle-btn {
-            background-color: #0ea5e9; /* bg-sky-500 */
-            color: #ffffff; /* text-white */
-            font-weight: 600; /* font-semibold */
-            padding: 0.5rem 1rem; /* py-2 px-4 */
-            border-radius: 0.375rem; /* rounded-md */
+            background-color: #9333ea; /* bg-purple-600 */
+            color: #ffffff; 
+            font-weight: 600; 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.375rem; 
             transition: background-color 0.2s;
             border: none;
             cursor: pointer;
         }
         .ejercicio-toggle-btn:hover {
-            background-color: #0284c7; /* bg-sky-600 */
+            background-color: #7e22ce; /* bg-purple-700 */
         }
 
-        /* Solución de Ejercicio (inicialmente oculta con Tailwind) */
+        /* Solución de Ejercicio */
         .ejercicio-solucion {
-            margin-top: 1rem; /* mt-4 */
-            padding-top: 1rem; /* pt-4 */
-            border-top: 1px solid #334155; /* border-t border-slate-700 */
-            background-color: #0f172a; /* bg-slate-900 */
-            padding: 0.75rem; /* p-3 */
-            border-radius: 0.375rem; /* rounded-md */
+            margin-top: 1rem; 
+            padding-top: 1rem; 
+            border-top: 1px solid #334155; 
+            background-color: #0f172a; 
+            padding: 0.75rem; 
+            border-radius: 0.375rem; 
         }
 
         /* --- Formularios de Quiz --- */
         .quiz-question-card {
-            background-color: #1e293b; /* bg-slate-800 */
-            padding: 1.5rem; /* p-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            border: 1px solid #334155; /* border-slate-700 */
+            background-color: #1e293b; 
+            padding: 1.5rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid #334155; 
         }
         .quiz-question {
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            color: #f1f5f9; /* text-slate-100 */
-            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1.125rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 1rem; 
         }
         .quiz-input {
             width: 100%;
-            background-color: #0f172a; /* bg-slate-900 */
-            border: 1px solid #334155; /* border-slate-700 */
-            color: #f1f5f9; /* text-slate-100 */
-            padding: 0.75rem 1rem; /* py-3 px-4 */
-            border-radius: 0.375rem; /* rounded-md */
+            background-color: #0f172a; 
+            border: 1px solid #334155; 
+            color: #f1f5f9; 
+            padding: 0.75rem 1rem; 
+            border-radius: 0.375rem; 
         }
         .quiz-input:focus {
             outline: none;
-            border-color: #0ea5e9; /* border-sky-500 */
-            box-shadow: 0 0 0 2px #0ea5e9;
+            border-color: #9333ea; /* border-purple-600 */
+            box-shadow: 0 0 0 2px #9333ea;
         }
         .quiz-options, .quiz-options-vertical {
             display: flex;
-            gap: 1rem; /* space-x-4 */
+            gap: 1rem; 
         }
         .quiz-options-vertical {
             flex-direction: column;
@@ -226,24 +213,23 @@
         .quiz-options label, .quiz-options-vertical label {
             display: flex;
             align-items: center;
-            gap: 0.5rem; /* space-x-2 */
-            padding: 0.75rem 1rem; /* p-3 px-4 */
-            background-color: #334155; /* bg-slate-700 */
-            border-radius: 0.375rem; /* rounded-md */
+            gap: 0.5rem; 
+            padding: 0.75rem 1rem; 
+            background-color: #334155; 
+            border-radius: 0.375rem; 
             flex-grow: 1;
             cursor: pointer;
             transition: background-color 0.2s;
         }
         .quiz-options label:hover, .quiz-options-vertical label:hover {
-            background-color: #475569; /* bg-slate-600 */
+            background-color: #475569; 
         }
         .quiz-options input[type="radio"], .quiz-options-vertical input[type="radio"] {
             width: 1rem;
             height: 1rem;
-            accent-color: #0ea5e9; /* text-sky-500 */
+            accent-color: #9333ea; /* text-purple-600 */
         }
         
-        /* Utilitario para ocultar elementos */
         .hidden {
             display: none;
         }
@@ -257,9 +243,9 @@
             
             <div>
                 <div class="nav-header mb-6">
-                    <a href="index.html" class="text-sm text-sky-400 hover:text-sky-200">&larr; Volver al Inicio</a>
+                    <a href="index.html" class="text-sm text-purple-400 hover:text-purple-200">&larr; Volver al Inicio</a>
                     <h1 class="text-white text-2xl font-bold mt-2">Módulo 2</h1>
-                    <p class="text-sky-400">Inteligencia de Negocios y Datos</p>
+                    <p class="text-purple-400">Inteligencia de Negocios y Datos</p>
                 </div>
                 
                 <ul id="mainNav" class="space-y-2">
@@ -337,13 +323,13 @@
                         <h3>Limpieza de "Crudos"</h3>
                         <p>Exportar un reporte de Tango o RDT a menudo genera un Excel "sucio", con columnas mal nombradas, filas combinadas o datos extra. La IA es experta en limpiarlos.</p>
                         <p class="mt-2">En lugar de pasar 20 minutos borrando filas y renombrando columnas, subimos el archivo y le damos una orden clara.</p>
-                        <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt Ejemplo:</strong> "Acabo de subir un Excel que es un reporte 'crudo' de Tango. Por favor, límpialo: elimina las primeras 3 filas (son títulos), renombra la columna 'FE_EMISION' a 'Fecha', y formatea la columna 'IMPORTE' como número sin decimales."</p>
+                        <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt Ejemplo:</strong> "Acabo de subir un Excel que es un reporte 'crudo' de Tango. Por favor, límpialo: elimina las primeras 3 filas (son títulos), renombra la columna 'FE_EMISION' a 'Fecha', y formatea la columna 'IMPORTE' como número sin decimales."</p>
                     </div>
                     <div class="info-card">
                         <h3>Generación de Fórmulas Complejas</h3>
                         <p>En lugar de una `BUSCARV` simple, podemos pedirle cruces más complejos que haríamos con `SUMAR.SI.CONJUNTO` o Tablas Dinámicas. La IA entiende el "lenguaje natural" de tu necesidad.</p>
                         <p class="mt-2">Esto nos ahorra el tiempo de depurar por qué una fórmula no funciona.</p>
-                         <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt Ejemplo:</strong> "Tengo dos hojas en este Excel: 'Ventas' (con CUIT y Monto) y 'Clientes' (con CUIT y Razón Social). Agrega una columna en 'Ventas' con la Razón Social correspondiente a cada CUIT."</p>
+                         <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt Ejemplo:</strong> "Tengo dos hojas en este Excel: 'Ventas' (con CUIT y Monto) y 'Clientes' (con CUIT y Razón Social). Agrega una columna en 'Ventas' con la Razón Social correspondiente a cada CUIT."</p>
                     </div>
                 </div>
             </section>
@@ -356,8 +342,8 @@
                 <div class="info-card">
                     <h3>Análisis de Patrones y Tendencias</h3>
                     <p>Una vez que los datos están limpios (o si subes un reporte ya limpio), puedes hacer preguntas abiertas. La IA buscará correlaciones y te dará "insights" (ideas clave) que de otra forma te tomaría horas encontrar en una tabla dinámica.</p>
-                    <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt Ejemplo (Análisis de Gastos):</strong> "Analiza el archivo de gastos de flota. Identifica los 3 choferes con mayor gasto en 'Combustible' este mes. Además, muéstrame si el gasto en 'Peajes' ha aumentado en comparación con el mes pasado y calcula el porcentaje de aumento."</p>
-                    <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt Ejemplo (Análisis de Ventas):</strong> "Analiza este reporte de ventas de turismo. ¿Qué destino (columna 'Destino') tuvo el mayor crecimiento en ventas comparando el Q1 con el Q2? Muéstrame un top 5 de clientes por volumen de facturación. ¿Hay algún cliente que haya dejado de comprar?"</p>
+                    <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt Ejemplo (Análisis de Gastos):</strong> "Analiza el archivo de gastos de flota. Identifica los 3 choferes con mayor gasto en 'Combustible' este mes. Además, muéstrame si el gasto en 'Peajes' ha aumentado en comparación con el mes pasado y calcula el porcentaje de aumento."</p>
+                    <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt Ejemplo (Análisis de Ventas):</strong> "Analiza este reporte de ventas de turismo. ¿Qué destino (columna 'Destino') tuvo el mayor crecimiento en ventas comparando el Q1 con el Q2? Muéstrame un top 5 de clientes por volumen de facturación. ¿Hay algún cliente que haya dejado de comprar?"</p>
                 </div>
             </section>
 
@@ -369,7 +355,7 @@
                 
                 <div class="space-y-6">
                     <div class="info-card">
-                        <h3 class="text-sky-300 text-xl font-bold">Paso 1: La Preparación (Seguridad Primero)</h3>
+                        <h3 class="text-purple-300 text-xl font-bold">Paso 1: La Preparación (Seguridad Primero)</h3>
                         <p>Como hablamos, no podemos subir datos sensibles a IAs gratuitas. Tenemos dos caminos:</p>
                         <ul class="list-disc list-inside mt-2 space-y-1">
                             <li><strong>Opción A (Recomendada/Paga):</strong> Usar la versión paga (ChatGPT-4o, Gemini Advanced) que garantiza la confidencialidad de los archivos que subes. Esta es la solución profesional.</li>
@@ -377,19 +363,19 @@
                         </ul>
                     </div>
                     <div class="info-card">
-                        <h3 class="text-sky-300 text-xl font-bold">Paso 2: La Extracción (El Prompt Mágico)</h3>
+                        <h3 class="text-purple-300 text-xl font-bold">Paso 2: La Extracción (El Prompt Mágico)</h3>
                         <p>Sube tu archivo PDF (idealmente el original si usas la versión paga) a la IA y usa un prompt específico para *forzarla* a leer la tabla completa. No le digas "convierte", dile "extrae".</p>
-                        <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt Mágico:</strong> "Acabo de subir un resumen bancario en PDF. Tu tarea es extraer *todas* las transacciones y convertirlas en una tabla. Las columnas deben ser: 'Fecha', 'Concepto', 'Debito', 'Credito' y 'Saldo'. Es crítico que no omitas ningún renglón, incluso si el concepto es largo."</p>
+                        <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt Mágico:</strong> "Acabo de subir un resumen bancario en PDF. Tu tarea es extraer *todas* las transacciones y convertirlas en una tabla. Las columnas deben ser: 'Fecha', 'Concepto', 'Debito', 'Credito' y 'Saldo'. Es crítico que no omitas ningún renglón, incluso si el concepto es largo."</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="text-sky-300 text-xl font-bold">Paso 3: La Verificación (El Control Humano)</h3>
+                        <h3 class="text-purple-300 text-xl font-bold">Paso 3: La Verificación (El Control Humano)</h3>
                         <p>¡Nunca confíes ciegamente! La IA puede "alucinar". Haz una verificación rápida pidiéndole los totales. Este paso de control humano no es opcional, es obligatorio.</p>
-                         <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt de Verificación:</strong> "Perfecto. Ahora, suma la columna 'Debito' y la columna 'Credito' y dime los totales. Voy a compararlos con el total del PDF."</p>
+                         <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt de Verificación:</strong> "Perfecto. Ahora, suma la columna 'Debito' y la columna 'Credito' y dime los totales. Voy a compararlos con el total del PDF."</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="text-sky-300 text-xl font-bold">Paso 4: La Exportación y Análisis</h3>
+                        <h3 class="text-purple-300 text-xl font-bold">Paso 4: La Exportación y Análisis</h3>
                         <p>Una vez verificado, pídele que te dé los datos en el formato que necesitas para Tango o tu Excel de conciliación, o sigue analizando dentro del chat.</p>
-                         <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt de Exportación:</strong> "Excelente. Ahora dame esa tabla completa en formato CSV."</p>
+                         <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt de Exportación:</strong> "Excelente. Ahora dame esa tabla completa en formato CSV."</p>
                          <p class="mt-2">O puedes seguir analizando: "De esa tabla, filtra y muéstrame solo los gastos (débitos) que contengan la palabra 'IMPUESTO' o 'COMISION'. Luego, súmalos."</p>
                     </div>
                 </div>
@@ -405,13 +391,13 @@
                         <h3>Generación de Flujogramas (Gamma)</h3>
                         <p>Como mencionaron Analia y Susana en la Clase 1, visualizar un proceso es fundamental. Herramientas como <strong>Gamma.ai</strong> o <strong>Beautiful.ai</strong> son perfectas para esto.</p>
                         <p class="mt-2">En lugar de dibujar cajas en PowerPoint, le das el texto y la IA diseña el flujograma.</p>
-                        <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt para Gamma.ai:</strong> "Crea una presentación de 5 diapositivas sobre nuestro nuevo proceso de rendición de gastos. Paso 1: Chofer escanea comprobante. Paso 2: IA lo recibe y extrae datos. Paso 3: Admin. aprueba en Tango..."</p>
+                        <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt para Gamma.ai:</strong> "Crea una presentación de 5 diapositivas sobre nuestro nuevo proceso de rendición de gastos. Paso 1: Chofer escanea comprobante. Paso 2: IA lo recibe y extrae datos. Paso 3: Admin. aprueba en Tango..."</p>
                     </div>
                     <div class="info-card">
                         <h3>Asistentes de Power BI / Google Sheets</h3>
                         <p>Tanto Excel (Copilot) como Google Sheets (Gemini) ahora tienen asistentes de IA integrados. Esto significa que la IA vive *dentro* de tu planilla.</p>
                         <p class="mt-2">Puedes seleccionar un rango de datos y simplemente pedirle en lenguaje natural que cree el gráfico por ti, sin necesidad de usar el asistente de gráficos tradicional.</p>
-                        <p class="mt-3 text-sm italic text-sky-300"><strong>Prompt en Google Sheets:</strong> "Toma los datos de la Hoja 'Ventas 2024' y crea un gráfico de barras que muestre las ventas totales por cada 'Razón Social'."</p>
+                        <p class="mt-3 text-sm italic text-purple-300"><strong>Prompt en Google Sheets:</strong> "Toma los datos de la Hoja 'Ventas 2024' y crea un gráfico de barras que muestre las ventas totales por cada 'Razón Social'."</p>
                     </div>
                 </div>
             </section>
@@ -453,54 +439,54 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-file-excel mr-3 text-sky-400"></i>Julius.ai</h3>
+                        <h3 class="flex items-center"><i class="fas fa-file-excel mr-3 text-purple-400"></i>Julius.ai</h3>
                         <p><strong>Para qué sirve:</strong> Un "Analista de Datos" en formato chat. Subes un Excel, CSV o conectas una base de datos y le pides análisis y gráficos complejos en lenguaje natural. Ideal para el cruce de datos.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-microphone-alt mr-3 text-sky-400"></i>Tactiq</h3>
+                        <h3 class="flex items-center"><i class="fas fa-microphone-alt mr-3 text-purple-400"></i>Tactiq</h3>
                         <p><strong>Para qué sirve:</strong> Grabar, transcribir y resumir reuniones virtuales (como esta). Identifica tareas y oradores. Fue la herramienta que usé para grabar nuestra Clase 1.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-network-wired mr-3 text-sky-400"></i>Zapier</h3>
+                        <h3 class="flex items-center"><i class="fas fa-network-wired mr-3 text-purple-400"></i>Zapier</h3>
                         <p><strong>Para qué sirve:</strong> El "pegamento" de internet. Te permite crear automatizaciones simples sin código, como "Cuando reciba un email en Gmail con la palabra 'Factura', guarda el adjunto en Google Drive".</p>
                     </div>
 
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-file-powerpoint mr-3 text-sky-400"></i>Beautiful.ai</h3>
+                        <h3 class="flex items-center"><i class="fas fa-file-powerpoint mr-3 text-purple-400"></i>Beautiful.ai</h3>
                         <p><strong>Para qué sirve:</strong> Alternativa a Gamma para presentaciones. Es menos "automática" pero te da más control de diseño, asegurando que cada diapositiva se vea profesional. "Diseña por ti".</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-file-pdf mr-3 text-sky-400"></i>ChatPDF</h3>
+                        <h3 class="flex items-center"><i class="fas fa-file-pdf mr-3 text-purple-400"></i>ChatPDF</h3>
                         <p><strong>Para qué sirve:</strong> La herramienta simple para "hablar" con tus PDFs. Perfecta para subir un pliego de licitación y preguntar: "¿Cuáles son los requisitos de seguro obligatorios?".</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fab fa-windows mr-3 text-sky-400"></i>Microsoft Copilot</h3>
+                        <h3 class="flex items-center"><i class="fab fa-windows mr-3 text-purple-400"></i>Microsoft Copilot</h3>
                         <p><strong>Para qué sirve:</strong> Es la integración de la IA *dentro* de tu Excel, Outlook y Teams. Es el futuro del trabajo de oficina, donde la IA vive en tus herramientas diarias. (Requiere licencia de Microsoft 365).</p>
                     </div>
 
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-flask mr-3 text-sky-400"></i>Consensus.app</h3>
+                        <h3 class="flex items-center"><i class="fas fa-flask mr-3 text-purple-400"></i>Consensus.app</h3>
                         <p><strong>Para qué sirve (Investigación):</strong> Le preguntas algo (ej. "efecto de la IA en la logística") y te responde con conclusiones basadas en *papers* académicos y estudios científicos, citando las fuentes.</p>
                     </div>
                      <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-search mr-3 text-sky-400"></i>Perplexity.ai</h3>
+                        <h3 class="flex items-center"><i class="fas fa-search mr-3 text-purple-400"></i>Perplexity.ai</h3>
                         <p><strong>Para qué sirve (Investigación):</strong> El mejor motor de búsqueda con IA. Te da una respuesta directa citando las 5-10 mejores fuentes web. Perfecto para investigar normativas de AFIP o temas contables.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-palette mr-3 text-sky-400"></i>Midjourney / DALL-E 3</h3>
+                        <h3 class="flex items-center"><i class="fas fa-palette mr-3 text-purple-400"></i>Midjourney / DALL-E 3</h3>
                         <p><strong>Para qué sirve (Creativo):</strong> Generación de imágenes a partir de texto. Útil para crear imágenes para presentaciones o para marketing, o simplemente para visualizar ideas.</p>
                     </div>
 
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-music mr-3 text-sky-400"></i>Suno.ai</h3>
+                        <h3 class="flex items-center"><i class="fas fa-music mr-3 text-purple-400"></i>Suno.ai</h3>
                         <p><strong>Para qué sirve (Recreativo):</strong> Creación de música. Le escribes una idea (ej. "una cumbia sobre un chofer de Grupo HER que llega a destino") y te crea la canción completa con letra y música.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-volume-up mr-3 text-sky-400"></i>ElevenLabs</h3>
+                        <h3 class="flex items-center"><i class="fas fa-volume-up mr-3 text-purple-400"></i>ElevenLabs</h3>
                         <p><strong>Para qué sirve (Creativo):</strong> Generación y clonación de voz. Puedes escribir un texto y hacer que lo lea una voz hiperrealista en cualquier idioma. Útil para narrar videos de capacitación.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><i class="fas fa-video mr-3 text-sky-400"></i>Pika / Runway</h3>
+                        <h3 class="flex items-center"><i class="fas fa-video mr-3 text-purple-400"></i>Pika / Runway</h3>
                         <p><strong>Para qué sirve (Creativo):</strong> Generación de video a partir de texto o imágenes. Escribes "un camión viajando por una ruta al atardecer" y te genera un clip de video de 4 segundos.</p>
                     </div>
                 </div>
@@ -641,32 +627,31 @@
                     <div class="info-card">
                         <h3>Punto Clave 1: "Extrae" vs. "Convierte"</h3>
                         <p><strong>Discusión:</strong> Javier preguntó la diferencia entre pedirle a la IA "convierte" vs. "extrae" un PDF.</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> "Extrae" es un comando más preciso. Le dice a la IA que *busque y saque* los datos tal cual son. "Convierte" es más vago y le da permiso a la IA para *interpretar* o *manipular* los datos en el proceso, lo que puede llevar a alucinaciones. **Siempre prefiera "Extrae"**.</p>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> "Extrae" es un comando más preciso. Le dice a la IA que *busque y saque* los datos tal cual son. "Convierte" es más vago y le da permiso a la IA para *interpretar* o *manipular* los datos en el proceso, lo que puede llevar a alucinaciones. **Siempre prefiera "Extrae"**.</p>
                     </div>
                     <div class="info-card">
                         <h3>Punto Clave 2: Usar "Modelos de Tabla"</h3>
                         <p><strong>Discusión:</strong> Mencionamos que si ya tenemos un modelo de tabla en Excel que usamos para cargar en Tango, podemos dárselo a la IA.</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> En lugar de describir las columnas, es más eficiente decirle: "Tengo este modelo de tabla [pegar el encabezado o un ejemplo]. Por favor, extrae los datos del PDF y llénalo."</p>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> En lugar de describir las columnas, es más eficiente decirle: "Tengo este modelo de tabla [pegar el encabezado o un ejemplo]. Por favor, extrae los datos del PDF y llénalo."</p>
                     </div>
                     <div class="info-card">
                         <h3>Punto Clave 3: ¿Qué es un "RPA"?</h3>
                         <p><strong>Discusión:</strong> Susana preguntó por el término "RPA" (Automatización Robótica de Procesos).</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Es un "programita" o "robot" de software que programamos para que haga tareas por nosotros. Es el "Paso 3" de la automatización: el robot revisa el email, la IA lee la factura, y el robot la carga en Tango.</p>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> Es un "programita" o "robot" de software que programamos para que haga tareas por nosotros. Es el "Paso 3" de la automatización: el robot revisa el email, la IA lee la factura, y el robot la carga en Tango.</p>
                     </div>
                     <div class="info-card">
                         <h3>Punto Clave 4: ¿Un Usuario por Área?</h3>
                         <p><strong>Discusión:</strong> Analia preguntó cómo organizar el uso de la IA en la empresa.</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Lo ideal es tener un usuario (pago) por área (ej. "Contabilidad", "Turismo"). Si Marketing y Contabilidad usan el mismo chat, la IA puede "contaminarse" y mezclar conceptos, llevando a alucinaciones. Separar los chats por "proyecto" o "área" es fundamental.</p>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> Lo ideal es tener un usuario (pago) por área (ej. "Contabilidad", "Turismo"). Si Marketing y Contabilidad usan el mismo chat, la IA puede "contaminarse" y mezclar conceptos, llevando a alucinaciones. Separar los chats por "proyecto" o "área" es fundamental.</p>
                     </div>
                     <div class="info-card">
                         <h3>Punto Clave 5: Vencimientos (Caso Práctico)</h3>
                         <p><strong>Discusión:</strong> Carina mencionó la carga manual de vencimientos de impuestos en Outlook.</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> Este es un caso perfecto para un "Agente" o "RPA". Se puede programar una IA (con Perplexity o Copilot) para que, a fin de mes, *busque en la web* (ej. AFIP) los vencimientos, los extraiga y te genere el archivo para importar al calendario, ahorrando la carga manual.</p>
-                    </div>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> Este es un caso perfecto para un "Agente" o "RPA". Se puede programar una IA (con Perplexity o Copilot) para que, a fin de mes, *busque en la web* (ej. AFIP) los vencimientos, los extraiga y te genere el archivo para importar al calendario, ahorrando la carga manual.</p>
                      <div class="info-card">
                         <h3>Punto Clave 6: El Control Humano no se negocia</h3>
                         <p><strong>Discusión:</strong> El análisis de competencia de Tony demostró que la IA puede acertar, pero también cometer errores que solo un experto con "conocimiento previo" puede detectar.</p>
-                        <p class="mt-2 text-sky-300"><strong>Conclusión:</strong> La IA nos quita el trabajo de *procesar*, pero nos exige ser mejores *analistas* y *controladores* del dato final. El pensamiento crítico es más importante que nunca.</p>
+                        <p class="mt-2 text-purple-300"><strong>Conclusión:</strong> La IA nos quita el trabajo de *procesar*, pero nos exige ser mejores *analistas* y *controladores* del dato final. El pensamiento crítico es más importante que nunca.</p>
                     </div>
                 </div>
             </section>
@@ -677,7 +662,7 @@
                     Repasemos los conceptos clave de este módulo sobre Datos e Inteligencia de Negocios.
                 </p>
                 
-                <form id="quiz-form-m2-vf" class="mt-8 space-y-6">
+                <form id="quiz-form-m2-vf" action="https://formspree.io/f/mvgdggey" method="POST" class="mt-8 space-y-6">
                     
                     <div class="quiz-question-card">
                         <label for="nombre-m2-vf" class="quiz-question">Ingresa tu nombre:</label>
@@ -685,6 +670,7 @@
                     </div>
 
                     <input type="hidden" name="quiz_id" value="Modulo 2 - V/F">
+                    <input type="hidden" id="score-input-vf" name="calificacion_final">
                     
                     <div class="quiz-question-card">
                         <p class="quiz-question">1. La IA puede ayudar a limpiar un reporte "crudo" de Tango, eliminando filas de título y renombrando columnas.</p>
@@ -759,7 +745,7 @@
                     <p id="quiz-message-m2-vf" class="text-center text-lg"></p>
                     
                     <div id="quiz-feedback-m2-vf" class="mt-6 border-t border-slate-600 pt-4 hidden">
-                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
+                        <h4 class="text-lg font-semibold text-purple-300">Temas para repasar:</h4>
                         <ul id="quiz-feedback-list-m2-vf" class="list-disc list-inside mt-2 space-y-1"></ul>
                     </div>
                 </div>
@@ -771,7 +757,7 @@
                     Profundicemos un poco más en los conceptos del Módulo 2.
                 </p>
                 
-                <form id="quiz-form-m2-mc" class="mt-8 space-y-6">
+                <form id="quiz-form-m2-mc" action="https://formspree.io/f/mrbrbbnw" method="POST" class="mt-8 space-y-6">
                     
                     <div class="quiz-question-card">
                         <label for="nombre-m2-mc" class="quiz-question">Ingresa tu nombre:</label>
@@ -779,6 +765,7 @@
                     </div>
 
                     <input type="hidden" name="quiz_id" value="Modulo 2 - M.C.">
+                    <input type="hidden" id="score-input-mc" name="calificacion_final">
                     
                     <div class="quiz-question-card">
                         <p class="quiz-question">1. Al pedirle a la IA que procese un PDF bancario, ¿cuál es el comando MÁS preciso?</p>
@@ -879,7 +866,7 @@
                     <p id="quiz-message-m2-mc" class="text-center text-lg"></p>
                     
                     <div id="quiz-feedback-m2-mc" class="mt-6 border-t border-slate-600 pt-4 hidden">
-                        <h4 class="text-lg font-semibold text-sky-300">Temas para repasar:</h4>
+                        <h4 class="text-lg font-semibold text-purple-300">Temas para repasar:</h4>
                         <ul id="quiz-feedback-list-m2-mc" class="list-disc list-inside mt-2 space-y-1"></ul>
                     </div>
                 </div>
@@ -953,9 +940,9 @@
                 console.error("Error en la lógica de los botones de ejercicio:", e);
             }
 
-            // --- 3. Lógica de Autoevaluaciones (Adaptada para M2) ---
+            // --- 3. Lógica de Autoevaluaciones (M2 - Con Formspree y Diseño Violeta) ---
             
-            function handleQuizSubmit(formId, resultsId, answers, feedbackMap) {
+            function handleQuizSubmit(formId, resultsId, answers, feedbackMap, scoreInputId) {
                 const form = document.getElementById(formId);
                 const resultsContainer = document.getElementById(resultsId);
                 
@@ -981,7 +968,7 @@
                     const percentage = Math.round((score / totalQuestions) * 100);
                     const studentName = data.nombre_alumno || "Estudiante";
 
-                    // Mostrar resultados
+                    // Actualizar UI Local
                     const titleEl = resultsContainer.querySelector('h3'); 
                     const scoreEl = resultsContainer.querySelector('p:nth-of-type(1)'); // Primer p es score
                     const msgEl = resultsContainer.querySelector('p:nth-of-type(2)');   // Segundo p es mensaje
@@ -1024,6 +1011,29 @@
                     form.classList.add('hidden');
                     resultsContainer.classList.remove('hidden');
                     resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // --- Enviar a Formspree (AJAX) ---
+                    if(scoreInputId) {
+                        document.getElementById(scoreInputId).value = `${percentage}%`;
+                        formData.append('calificacion_final', `${percentage}%`);
+                    }
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            console.log("Formulario enviado con éxito a Formspree");
+                        } else {
+                            console.error("Error al enviar a Formspree");
+                        }
+                    }).catch(error => {
+                        console.error("Error de red:", error);
+                    });
+
                 });
             }
 
@@ -1044,7 +1054,7 @@
                 'm2-q6': 'Prompting: Es mejor explicar la lógica que pedir nombres de fórmulas.',
                 'm2-q7': 'Conceptos: Análisis Predictivo mira hacia el futuro, no el pasado.'
             };
-            handleQuizSubmit('quiz-form-m2-vf', 'quiz-results-m2-vf', answersM2VF, feedbackM2VF);
+            handleQuizSubmit('quiz-form-m2-vf', 'quiz-results-m2-vf', answersM2VF, feedbackM2VF, 'score-input-vf');
 
             // Respuestas Correctas Módulo 2 MC
             const answersM2MC = { 
@@ -1066,7 +1076,7 @@
                 'mc7': 'Investigación: Perplexity es clave por sus citas de fuentes.',
                 'mc8': 'Metodología: Iterar el prompt es parte normal del proceso.'
             };
-            handleQuizSubmit('quiz-form-m2-mc', 'quiz-results-m2-mc', answersM2MC, feedbackM2MC);
+            handleQuizSubmit('quiz-form-m2-mc', 'quiz-results-m2-mc', answersM2MC, feedbackM2MC, 'score-input-mc');
 
         });
     </script>
