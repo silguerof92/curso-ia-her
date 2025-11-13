@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPromptChart();
 
     
-    // --- Lógica de Ejercicios (Botón Ver Solución) ---
+    // --- LÓGICA DE EJERCICIOS (Botón Ver Solución) ---
     // Esta lógica es robusta y funciona para todos los módulos
     const contentScrollArea = document.getElementById('content-scroll-area');
     if (contentScrollArea) {
