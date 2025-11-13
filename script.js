@@ -56,17 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     // --- Lógica de Ejercicios (Botón Ver Solución) ---
+    // Esta lógica es robusta y funciona para todos los módulos
     const contentScrollArea = document.getElementById('content-scroll-area');
     if (contentScrollArea) {
         contentScrollArea.addEventListener('click', (e) => {
             // Asegurarse de no capturar los botones del quiz (que tienen type="submit")
             if (e.target.classList.contains('ejercicio-toggle-btn') && e.target.type !== 'submit') { 
                 e.preventDefault();
-                // Buscar el div de solución
+                // Esta lógica robusta busca el .info-card más cercano y luego el .ejercicio-solucion dentro de él
                 const solucionDiv = e.target.closest('.info-card').querySelector('.ejercicio-solucion');
                 if (solucionDiv) {
                     solucionDiv.classList.toggle('hidden');
-                    e.target.textContent = solucionDiv.classList.contains('hidden') ? 'Ver Solución Propuesta' : 'Ocultar Solución';
+                    // Cambia el texto del botón entre "Ver Solución..." y "Ocultar Solución"
+                    if (solucionDiv.classList.contains('hidden')) {
+                        e.target.textContent = e.target.textContent.replace('Ocultar', 'Ver');
+                    } else {
+                        e.target.textContent = e.target.textContent.replace('Ver', 'Ocultar');
+                    }
                 }
             }
         });
@@ -117,7 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const feedbackDiv = document.getElementById(feedbackDivId);
         const feedbackListEl = document.getElementById(feedbackListElId);
 
-        if (!resultsDiv) return; // Salir si no estamos en la página correcta
+        if (!resultsDiv) {
+            console.error("Error: No se encontró el div de resultados: ", resultsDivId);
+            return; 
+        }
 
         const percentage = (score / totalQuestions) * 100;
         scoreEl.textContent = `${Math.round(percentage)}%`;
@@ -148,11 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Llenar la lista de feedback
         feedbackListEl.innerHTML = '';
-        incorrectFeedback.forEach(topic => {
-            const li = document.createElement('li');
-            li.textContent = topic;
-            feedbackListEl.appendChild(li);
-        });
+        if (incorrectFeedback.length > 0) {
+            incorrectFeedback.forEach(topic => {
+                const li = document.createElement('li');
+                li.textContent = topic;
+                feedbackListEl.appendChild(li);
+            });
+        } else {
+            feedbackDiv.classList.add('hidden');
+        }
 
         // Mostrar y desplazarse a los resultados
         resultsDiv.classList.remove('hidden');
@@ -176,9 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LÓGICA DE AUTOEVALUACIÓN (V/F - MÓDULO 1) ---
-    const quizFormVF = document.getElementById('quiz-form-vf');
-    if (quizFormVF) {
-        quizFormVF.addEventListener('submit', async (e) => {
+    const quizFormVF1 = document.getElementById('quiz-form-vf');
+    if (quizFormVF1) {
+        quizFormVF1.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const correctAnswers = {
@@ -200,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let score = 0;
             const incorrectFeedback = [];
-            const formData = new FormData(quizFormVF);
+            const formData = new FormData(quizFormVF1);
             const totalQuestions = Object.keys(correctAnswers).length;
 
             for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
@@ -211,16 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Preparar datos para Formspree ANTES de mostrar resultados
-            const dataToSubmit = new FormData(quizFormVF);
+            const dataToSubmit = new FormData(quizFormVF1);
             dataToSubmit.set('puntaje_final_vf', `${(score / totalQuestions) * 100}%`);
             dataToSubmit.set('feedback_vf', incorrectFeedback.join(', '));
-            dataToSubmit.set('quiz_id', 'Modulo 1 - V/F');
             
-            // 1. Enviar datos en segundo plano
             sendQuizData(FORM_ENDPOINT_M1_VF, dataToSubmit);
             
-            // 2. Mostrar resultados al usuario inmediatamente
             displayQuizResults({
                 resultsDivId: 'quiz-results-vf', titleElId: 'quiz-title-vf', scoreElId: 'quiz-score-vf',
                 messageElId: 'quiz-message-vf', feedbackDivId: 'quiz-feedback-vf', feedbackListElId: 'quiz-feedback-list-vf',
@@ -230,9 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LÓGICA DE AUTOEVALUACIÓN (M.C. - MÓDULO 1) ---
-    const quizFormMC = document.getElementById('quiz-form-mc');
-    if (quizFormMC) {
-        quizFormMC.addEventListener('submit', async (e) => {
+    const quizFormMC1 = document.getElementById('quiz-form-mc');
+    if (quizFormMC1) {
+        quizFormMC1.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const correctAnswers = {
@@ -254,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let score = 0;
             const incorrectFeedback = [];
-            const formData = new FormData(quizFormMC);
+            const formData = new FormData(quizFormMC1);
             const totalQuestions = Object.keys(correctAnswers).length;
 
             for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
@@ -265,16 +274,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // Preparar datos para Formspree ANTES de mostrar resultados
-            const dataToSubmit = new FormData(quizFormMC);
+            const dataToSubmit = new FormData(quizFormMC1);
             dataToSubmit.set('puntaje_final_mc', `${(score / totalQuestions) * 100}%`);
             dataToSubmit.set('feedback_mc', incorrectFeedback.join(', '));
-            dataToSubmit.set('quiz_id', 'Modulo 1 - M.C.');
 
-            // 1. Enviar datos en segundo plano
             sendQuizData(FORM_ENDPOINT_M1_MC, dataToSubmit);
 
-            // 2. Mostrar resultados al usuario inmediatamente
             displayQuizResults({
                 resultsDivId: 'quiz-results-mc', titleElId: 'quiz-title-mc', scoreElId: 'quiz-score-mc',
                 messageElId: 'quiz-message-mc', feedbackDivId: 'quiz-feedback-mc', feedbackListElId: 'quiz-feedback-list-mc',
@@ -291,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const correctAnswers = {
                 'm2-q1': 'v', 'm2-q2': 'f', 'm2-q3': 'v', 'm2-q4': 'f',
-                'm2-q5': 'v', 'm2-q6': 'f', 'm2-q7': 'f', 'm2-q8': 'v' // Corregido: q8 es 'v'
+                'm2-q5': 'v', 'm2-q6': 'f', 'm2-q7': 'f', 'm2-q8': 'v'
             };
             const feedbackTopics = {
                 'm2-q1': 'M2: Repasar "Extracción (Tango/Excel)"',
@@ -317,16 +322,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Preparar datos para Formspree ANTES de mostrar resultados
             const dataToSubmit = new FormData(quizFormM2VF);
-            dataToSubmit.set('puntaje_final_m2_vf', `${(score / totalQuestions) * 100}%`);
-            dataToSubmit.set('feedback_m2_vf', incorrectFeedback.join(', '));
-            dataToSubmit.set('quiz_id', 'Modulo 2 - V/F');
+            dataToSubmit.set('puntaje_final_vf', `${(score / totalQuestions) * 100}%`);
+            dataToSubmit.set('feedback_vf', incorrectFeedback.join(', '));
             
-            // 1. Enviar datos en segundo plano
             sendQuizData(FORM_ENDPOINT_M2_VF, dataToSubmit);
-            
-            // 2. Mostrar resultados al usuario inmediatamente
+
             displayQuizResults({
                 resultsDivId: 'quiz-results-m2-vf', titleElId: 'quiz-title-m2-vf', scoreElId: 'quiz-score-m2-vf',
                 messageElId: 'quiz-message-m2-vf', feedbackDivId: 'quiz-feedback-m2-vf', feedbackListElId: 'quiz-feedback-list-m2-vf',
@@ -342,20 +343,20 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const correctAnswers = {
-                mc1: 'b', mc2: 'a', mc3: 'c', mc4: 'b', mc5: 'a',
-                mc6: 'b', mc7: 'a', mc8: 'b', mc9: 'b', mc10: 'b'
+                'mc1': 'b', 'mc2': 'a', 'mc3': 'c', 'mc4': 'b', 'mc5': 'a',
+                'mc6': 'b', 'mc7': 'a', 'mc8': 'b', 'mc9': 'b', 'mc10': 'b'
             };
             const feedbackTopics = {
-                mc1: 'M2: Repasar "Anotaciones (Clase 2)" (Extrae vs. Convierte)',
-                mc2: 'M2: Repasar "Anotaciones (Clase 2)" (Un Usuario por Área)',
-                mc3: 'M2: Repasar "Universo de Herramientas" (Julius.ai)',
-                mc4: 'M2: Repasar "Tips Prácticos (BI)" (Tip 3: Habla en Español)',
-                mc5: 'M2: Repasar "Flujo: PDF a Excel" (Paso 1: Seguridad)',
-                mc6: 'M2: Repasar "Anotaciones (Clase 2)" (Qué es RPA)',
-                mc7: 'M2: Repasar "Universo de Herramientas" (Perplexity.ai)',
-                mc8: 'M2: Repasar "Tips Prácticos (BI)" (Tip 4: Itera tu Prompt)',
-                mc9: 'M2: Repasar "Flujo: PDF a Excel" (Paso 3: Verificación)',
-                mc10: 'M2: Repasar "Anotaciones (Clase 2)" (Vencimientos de Impuestos)'
+                'mc1': 'M2: Repasar "Flujo: PDF a Excel" (Paso 2: "Extrae" vs "Convierte")',
+                'mc2': 'M2: Repasar "Anotaciones (Clase 2)" (Un Usuario por Área)',
+                'mc3': 'M2: Repasar "Universo de Herramientas" (Julius.ai)',
+                'mc4': 'M2: Repasar "Tips Prácticos (BI)" (Tip 3: Habla en Español)',
+                'mc5': 'M2: Repasar "Flujo: PDF a Excel" (Paso 1: "Anonimizar")',
+                'mc6': 'M2: Repasar "Anotaciones (Clase 2)" (Qué es RPA)',
+                'mc7': 'M2: Repasar "Universo de Herramientas" (Perplexity.ai)',
+                'mc8': 'M2: Repasar "Tips Prácticos (BI)" (Tip 4: Itera tu Prompt)',
+                'mc9': 'M2: Repasar "Flujo: PDF a Excel" (Paso 3: Verificación)',
+                'mc10': 'M2: Repasar "Anotaciones (Clase 2)" (Caso Vencimientos)'
             };
 
             let score = 0;
@@ -371,16 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Preparar datos para Formspree ANTES de mostrar resultados
             const dataToSubmit = new FormData(quizFormM2MC);
-            dataToSubmit.set('puntaje_final_m2_mc', `${(score / totalQuestions) * 100}%`);
-            dataToSubmit.set('feedback_m2_mc', incorrectFeedback.join(', '));
-            dataToSubmit.set('quiz_id', 'Modulo 2 - M.C.');
+            dataToSubmit.set('puntaje_final_mc', `${(score / totalQuestions) * 100}%`);
+            dataToSubmit.set('feedback_mc', incorrectFeedback.join(', '));
             
-            // 1. Enviar datos en segundo plano
             sendQuizData(FORM_ENDPOINT_M2_MC, dataToSubmit);
-            
-            // 2. Mostrar resultados al usuario inmediatamente
+
             displayQuizResults({
                 resultsDivId: 'quiz-results-m2-mc', titleElId: 'quiz-title-m2-mc', scoreElId: 'quiz-score-m2-mc',
                 messageElId: 'quiz-message-m2-mc', feedbackDivId: 'quiz-feedback-m2-mc', feedbackListElId: 'quiz-feedback-list-m2-mc',
