@@ -246,14 +246,15 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN EJERCICIOS -->
+            <!-- SECCIÓN EJERCICIOS (HTML CORREGIDO) -->
             <section id="view-ejercicios" class="view-section">
                 <h2 class="section-title">Laboratorio Práctico: 10 Desafíos Reales</h2>
                 <p class="section-subtitle">
                     Ponga a prueba su habilidad de "Prompt Engineering". Lea el problema, piense en la instrucción perfecta y luego haga clic en "Ver Solución" para comparar.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Ejercicio 1 -->
+                    
+                    <!-- Ejercicio 1 (Estructura OK) -->
                     <div class="info-card">
                         <h3>Ejercicio 1: Extraer Datos de Email</h3>
                         <p><strong>Problema:</strong> Le llega un email: "Buenas, adjunto la FC A-0001-12345 por $150.800,50 con vto el 10/12. Nuestro CUIT es 30-12345678-9."</p>
@@ -265,7 +266,8 @@
                             <p class="italic text-sm">"Del siguiente texto: [pegar texto del email], extrae el Número de Factura, CUIT, Monto Total y Fecha de Vencimiento. Formatea la salida como una tabla CSV."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 2 -->
+                    
+                    <!-- Ejercicio 2 (Estructura OK) -->
                     <div class="info-card">
                         <h3>Ejercicio 2: Reformular un Email</h3>
                         <p><strong>Problema:</strong> Quiere escribir: "Cliente, no pagó la factura. Pague ya o cortamos el servicio." Suena muy agresivo. Necesita que la IA lo haga profesional.</p>
@@ -277,7 +279,8 @@
                             <p class="italic text-sm">"Actúa como Gerente de Cuentas Corrientes. Reformula el siguiente texto [pegar texto] para que sea profesional, amable pero firme. Menciona que es un segundo recordatorio..."</p>
                         </div>
                     </div>
-                    <!-- Ejercicio 3 -->
+
+                    <!-- Ejercicio 3 (Estructura OK) -->
                     <div class="info-card">
                         <h3>Ejercicio 3: Fórmula de Excel Compleja</h3>
                         <p><strong>Problema:</strong> Columna A (Categoría), Columna B (Monto). Quiere sumar SÓLO los montos de "Combustible" que sean mayores a $10.000.</p>
@@ -290,7 +293,8 @@
                             <p class="mt-2"><strong>Respuesta:</strong> <code>=SUMAR.SI.CONJUNTO(B2:B100, A2:A100, "Combustible", B2:B100, ">10000")</code></p>
                         </div>
                     </div>
-                    <!-- Ejercicio 4 -->
+
+                    <!-- Ejercicio 4 (Estructura OK) -->
                     <div class="info-card">
                         <h3>Ejercicio 4: Resumir Cadena de Emails</h3>
                         <p><strong>Problema:</strong> Tiene 15 emails sobre una entrega fallida. Su gerente le pide: "¿Qué pasó?". Necesita un resumen ya.</p>
@@ -302,13 +306,73 @@
                             <p class="italic text-sm">"Toma la siguiente cadena de emails [pegar cadena]. Resume la situación en 3 puntos clave para mi gerente: 1. Cuál fue el problema, 2. Qué acciones se tomaron, 3. Cuál es el estado actual."</p>
                         </div>
                     </div>
-                    <!-- Ejercicios 5 al 10 (condensados) -->
-                    <div class="info-card"><h3>Ejercicio 5: Generar Datos de Prueba</h3><p><strong>Problema:</strong> Probar una planilla de control de flota con datos falsos.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Genera una tabla con 10 filas de datos de prueba para una flota. Columnas: 'Patente' (AA123BB), 'Chofer' (Nombre), 'Estado' (En viaje, En base), 'Km_Hoy' (aleatorio 50-600)."</p></div></div>
-                    <div class="info-card"><h3>Ejercicio 6: Formatear Texto Desordenado</h3><p><strong>Problema:</strong> Le pasan gastos por WhatsApp: "nafta 12000, peaje 900, hotel 15000".</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Toma los siguientes datos: [pegar lista]. Conviértelos en una tabla de dos columnas con los encabezados 'Concepto' y 'Monto'."</p></div></div>
-                    <div class="info-card"><h3>Ejercicio 7: Investigación Contable</h3><p><strong>Problema:</strong> "¿Tope de viáticos deducibles de ganancias para choferes de larga distancia sin comprobante?"</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"(Usar Gemini/Perplexity) Actúa como experto contable en Argentina. ¿Cuál es el monto máximo de viáticos para choferes (CCT 40/89) exento de Ganancias para el período fiscal actual? Cita la fuente."</p></div></div>
-                    <div class="info-card"><h3>Ejercicio 8: Comunicación Interna</h3><p><strong>Problema:</strong> Recordar a choferes la OBLIGACIÓN de entregar remitos firmados en 24hs.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Actúa como Jefe de Tráfico. Redacta un comunicado interno breve (para WhatsApp) para choferes. Tono MUY firme pero profesional. Recordar la importancia crítica de entregar remitos conformados en 24hs."</p></div></div>
-                    <div class="info-card"><h3>Ejercicio 9: Analizar Datos Simples</h3><p><strong>Problema:</strong> Pega una lista de facturas (Fecha Vto / Fecha Pago). Quiere saber el promedio de días de atraso.</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Toma los siguientes datos [pegar tabla]. Calcula los días de atraso para cada factura. Dime el promedio de días de atraso y cuál es la factura con mayor demora."</p></div></div>
-                    <div class="info-card"><h3>Ejercicio 10: Escritura Creativa</h3><p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p><button class="ejercicio-toggle-btn mt-4">Ver Solución</button><div class="ejercicio-solucion hidden"><p class="italic text-sm">"Escribe un borrador de post para LinkedIn (máx 150 palabras) para Grupo HER por el Día del Camionero. Tono inspirador y de agradecimiento. Conectar el trabajo del chofer con la economía. Incluye 3 hashtags relevantes."</p></div></div>
+
+                    <!-- Ejercicio 5 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 5: Generar Datos de Prueba</h3>
+                        <p><strong>Problema:</strong> Probar una planilla de control de flota con datos falsos.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Genera una tabla con 10 filas de datos de prueba para una flota. Columnas: 'Patente' (AA123BB), 'Chofer' (Nombre), 'Estado' (En viaje, En base), 'Km_Hoy' (aleatorio 50-600)."</p>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 6 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 6: Formatear Texto Desordenado</h3>
+                        <p><strong>Problema:</strong> Le pasan gastos por WhatsApp: "nafta 12000, peaje 900, hotel 15000".</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Toma los siguientes datos: [pegar lista]. Conviértelos en una tabla de dos columnas con los encabezados 'Concepto' y 'Monto'."</p>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 7 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 7: Investigación Contable</h3>
+                        <p><strong>Problema:</strong> "¿Tope de viáticos deducibles de ganancias para choferes de larga distancia sin comprobante?"</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"(Usar Gemini/Perplexity) Actúa como experto contable en Argentina. ¿Cuál es el monto máximo de viáticos para choferes (CCT 40/89) exento de Ganancias para el período fiscal actual? Cita la fuente."</p>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 8 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 8: Comunicación Interna</h3>
+                        <p><strong>Problema:</strong> Recordar a choferes la OBLIGACIÓN de entregar remitos firmados en 24hs.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Actúa como Jefe de Tráfico. Redacta un comunicado interno breve (para WhatsApp) para choferes. Tono MUY firme pero profesional. Recordar la importancia crítica de entregar remitos conformados en 24hs."</p>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 9 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 9: Analizar Datos Simples</h3>
+                        <p><strong>Problema:</strong> Pega una lista de facturas (Fecha Vto / Fecha Pago). Quiere saber el promedio de días de atraso.</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Toma los siguientes datos [pegar tabla]. Calcula los días de atraso para cada factura. Dime el promedio de días de atraso y cuál es la factura con mayor demora."</p>
+                        </div>
+                    </div>
+                    <!-- Ejercicio 10 (CORREGIDO) -->
+                    <div class="info-card">
+                        <h3>Ejercicio 10: Escritura Creativa</h3>
+                        <p><strong>Problema:</strong> Ideas para un posteo en LinkedIn celebrando el "Día del Camionero".</p>
+                        <div class="mt-4">
+                            <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        </div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Escribe un borrador de post para LinkedIn (máx 150 palabras) para Grupo HER por el Día del Camionero. Tono inspirador y de agradecimiento. Conectar el trabajo del chofer con la economía. Incluye 3 hashtags relevantes."</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -389,7 +453,7 @@
                         <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Ideal para crear informes visuales para gerencia sin perder tiempo en el diseño.</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=P" alt="" class="rounded-lg mr-3">Perplexity.ai</h3>
+                        <h3 class_of_model="flex items-center"><img src="https://placehold.co/40x40/334155/38bdf8?text=P" alt="" class="rounded-lg mr-3">Perplexity.ai</h3>
                         <p><strong>Para qué sirve:</strong> Un motor de búsqueda conversacional que cita sus fuentes.</p>
                         <p class="text-sm text-gray-400 mt-2 italic">Relevancia: Perfecto para investigar normativas de AFIP o temas contables con fuentes reales.</p>
                     </div>
