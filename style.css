@@ -1,488 +1,623 @@
-/* ===== ESTILOS GENERALES Y DE LA LANDING PAGE ===== */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Fundamentos de IA - Grupo HER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-/*
-* NUEVO: Animación de fondo "Aurora".
-* Más compleja y fluida que el gradiente anterior.
-*/
-@keyframes auroraGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+    <style>
+        /* === RESET Y BASE === */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0; /* text-slate-200 */
+            overflow: hidden; /* CLAVE: Bloquea el scroll del navegador base */
+        }
 
-body.body-general, body.body-module {
-    font-family: 'Inter', sans-serif;
-    /* NUEVO: Fondo Aurora más complejo */
-    background: linear-gradient(-45deg, #0f172a, #132244, #000000, #1e3a8a);
-    background-size: 400% 400%; /* Gradiente más grande para la animación */
-    color: #e2e8f0; 
-    padding: 2rem 1rem; 
-    min-height: 100vh;
-    animation: auroraGradient 25s ease infinite; /* Aplicar animación */
-}
+        /* === LAYOUT PRINCIPAL === */
+        .main-container {
+            display: flex;
+            height: 100vh; /* Ocupa toda la pantalla */
+            height: 100dvh; /* Mejor soporte para móviles */
+            overflow: hidden;
+        }
 
-@keyframes pulseGlow {
-    0% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.2); }
-    50% { box-shadow: 0 10px 45px rgba(56, 189, 248, 0.3); border-color: rgba(56, 189, 248, 0.4); }
-    100% { box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.2); }
-}
+        /* === SIDEBAR === */
+        .sidebar-nav {
+            width: 280px;
+            background-color: #1e293b;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-right: 1px solid #334155;
+            padding: 1.5rem;
+        }
+        
+        /* Enlaces de navegación */
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            color: #cbd5e1;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            background-color: #334155;
+            color: #ffffff;
+        }
+        .nav-link.active {
+            background-color: #0ea5e9;
+            color: #ffffff;
+        }
 
-.landing-container {
-    /* NUEVO: Efecto Glassmorphism */
-    background-color: rgba(30, 41, 59, 0.6); /* Fondo semitransparente */
-    backdrop-filter: blur(12px); /* El efecto "vidrio esmerilado" */
-    -webkit-backdrop-filter: blur(12px); /* Para Safari */
-    border-radius: 15px;
-    border: 1px solid rgba(56, 189, 248, 0.2); /* Borde neón sutil */
-    width: 100%;
-    max-width: 1200px; /* max-w-6xl */
-    margin: 0 auto;
-    animation: pulseGlow 6s ease-in-out infinite;
-}
+        /* Footer Sidebar */
+        .sidebar-footer {
+            border-top: 1px solid #334155;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .footer-title { font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+        .footer-text-main { color: #f1f5f9; font-weight: 600; }
+        .footer-text-sub { font-size: 0.875rem; color: #94a3b8; display: block; }
+        .social-link-sidebar { color: #94a3b8; font-size: 1.25rem; margin-right: 10px; transition: color 0.2s; }
+        .social-link-sidebar:hover { color: #e2e8f0; }
 
-.social-link {
-    font-size: 1.75rem; /* text-2xl */
-    color: #94a3b8; /* slate-400 */
-    transition: all 0.3s ease; /* Transición suave */
-}
-.social-link:hover {
-    color: #38bdf8; /* sky-400 */
-    transform: scale(1.1) translateY(-2px); /* Efecto hover mejorado */
-}
+        /* === ÁREA DE CONTENIDO === */
+        .content-scroll-area {
+            flex-grow: 1;
+            overflow-y: auto; /* Aquí es donde ocurre el scroll */
+            scroll-behavior: smooth; /* CLAVE: El smooth scroll va AQUÍ, no en html */
+            padding: 2.5rem;
+            position: relative;
+        }
 
-/* NUEVO: Efecto Glassmorphism para tarjetas de módulo */
-.module-card, .module-card-disabled {
-    background-color: rgba(51, 65, 85, 0.6); /* Fondo de vidrio más claro */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid #475569; /* slate-600 */
-    border-radius: 0.75rem; /* rounded-xl */
-    padding: 1.5rem; /* p-6 */
-    transition: all 0.3s ease; /* Transición suave */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
+        /* Secciones */
+        .view-section {
+            padding-bottom: 4rem;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #334155;
+            /* Scroll-margin-top ayuda a que el título no quede tapado al hacer click en el link */
+            scroll-margin-top: 2rem; 
+        }
+        .view-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 5rem; }
 
-.module-card {
-    cursor: pointer;
-}
-.module-card:hover {
-    border-color: #38bdf8;
-    transform: translateY(-5px); /* Efecto de "levantar" */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    background-color: rgba(51, 65, 85, 0.8); /* Más opaco al pasar el mouse */
-}
+        /* Tipografía */
+        .section-title { font-size: 2.25rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 1.125rem; color: #cbd5e1; max-width: 800px; line-height: 1.6; }
+        .section-subtitle-small { font-size: 1.5rem; font-weight: 600; color: #e2e8f0; margin-bottom: 1rem; margin-top: 2rem; }
 
-.module-number {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #38bdf8;
-    margin-bottom: 0.5rem;
-}
-.module-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.75rem;
-}
-.module-description {
-    font-size: 0.95rem;
-    color: #cbd5e1; /* slate-300 */
-    flex-grow: 1; /* Empuja el link hacia abajo */
-}
-.module-link {
-    display: block;
-    font-weight: 600;
-    color: #7dd3fc; /* sky-300 */
-    margin-top: 1rem;
-    transition: color 0.3s ease;
-}
-.module-card:hover .module-link {
-    color: #ffffff;
-}
-.module-card-disabled {
-    opacity: 0.6;
-    box-shadow: none;
-    backdrop-filter: blur(2px); /* Menos blur para deshabilitados */
-}
-.module-link-disabled {
-    display: block;
-    font-weight: 600;
-    color: #94a3b8; /* slate-400 */
-    margin-top: 1rem;
-}
+        /* Tarjetas */
+        .info-card {
+            background-color: #1e293b;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            height: 100%; /* Para Grid */
+        }
+        .info-card h3 { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.75rem; }
+        .info-card p, .info-card ul, .info-card ol { color: #cbd5e1; }
+        .alert-card { background-color: #3f1212; border: 1px solid #ef4444; border-radius: 0.5rem; padding: 1.5rem; }
+        .alert-card h3 { color: #f87171; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 
+        /* === ARREGLO CRÍTICO CHART.JS === */
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Altura fija para evitar el loop infinito de redimensionamiento */
+        }
+        .chart-container {
+            background-color: #1e293b;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+        }
 
-/* ===== ESTILOS DE LOS MÓDULOS (PÁGINAS INTERNAS) ===== */
-@media (min-width: 768px) {
-    body.body-module {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-    }
-}
+        /* Botones y Ejercicios */
+        .ejercicio-toggle-btn {
+            background-color: #0ea5e9;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: auto;
+            display: inline-block;
+        }
+        .ejercicio-toggle-btn:hover { background-color: #0284c7; }
+        .ejercicio-solucion {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+            background-color: #0f172a;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+        }
 
-.main-container {
-    /* NUEVO: Fondo de vidrio principal (ligeramente transparente) */
-    background-color: rgba(30, 41, 59, 0.6); /* slate-800 con 60% opacidad */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra estática más fuerte */
-    border: 1px solid #334155; 
-    width: 100%;
-    max-width: 1200px;
-    height: auto; 
-    margin: 0 auto; 
-}
+        /* Hoja de Ruta */
+        .roadmap-card-active, .roadmap-card-inactive { padding: 1rem 1.5rem; border-radius: 0.5rem; text-align: center; font-weight: 600; flex: 1; }
+        .roadmap-card-active { background-color: #0ea5e9; color: #ffffff; }
+        .roadmap-card-inactive { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+        .roadmap-arrow { font-size: 1.5rem; color: #64748b; padding: 0 1rem; }
 
-@media (min-width: 768px) {
-    .main-container {
-        height: 90vh; 
-        display: flex; 
-        overflow: hidden; 
-    }
-}
+        /* Quiz */
+        .quiz-question-card { background-color: #1e293b; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #334155; margin-bottom: 1rem; }
+        .quiz-input { width: 100%; background-color: #0f172a; border: 1px solid #334155; color: #f1f5f9; padding: 0.75rem; border-radius: 0.375rem; margin-top: 0.5rem; }
+        .quiz-options, .quiz-options-vertical { display: flex; gap: 1rem; margin-top: 0.5rem; }
+        .quiz-options-vertical { flex-direction: column; }
+        .quiz-options label, .quiz-options-vertical label {
+            display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background-color: #334155; border-radius: 0.375rem; flex-grow: 1; cursor: pointer;
+        }
+        .quiz-options label:hover, .quiz-options-vertical label:hover { background-color: #475569; }
+        input[type="radio"] { accent-color: #0ea5e9; width: 1rem; height: 1rem; }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; }
+            .sidebar-nav { width: 100%; height: auto; max-height: 200px; }
+            .roadmap-arrow { transform: rotate(90deg); padding: 1rem 0; }
+        }
+    </style>
+</head>
+<body>
 
-/* --- MENU SIDEBAR --- */
-.sidebar-nav {
-    flex-shrink: 0; 
-    width: 100%; 
-    padding: 1.5rem;
-    border-bottom: 1px solid #334155;
-    /* NUEVO: Efecto de vidrio en la barra lateral */
-    background-color: rgba(15, 23, 42, 0.7); /* slate-900 más transparente */
-    backdrop-filter: blur(16px); /* Blur más intenso para legibilidad */
-    -webkit-backdrop-filter: blur(16px);
-}
+    <div class="main-container">
 
-@media (min-width: 768px) {
-    .sidebar-nav {
-        width: 30%; 
-        border-bottom: 0;
-        border-right: 1px solid #334155;
-        height: 100%; 
-        overflow-y: auto; 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; 
-        background-color: rgba(30, 41, 59, 0.5); /* Más transparente en escritorio */
-    }
-}
+        <nav class="sidebar-nav">
+            <div>
+                <div class="mb-6">
+                    <a href="#" class="text-sm text-sky-400 hover:text-sky-200">&larr; Volver al Inicio</a>
+                    <h1 class="text-white text-2xl font-bold mt-2">Módulo 1</h1>
+                    <p class="text-sky-400">Fundamentos de IA</p>
+                </div>
+                
+                <ul id="mainNav" class="space-y-1">
+                    <li><a href="#view-inicio" class="nav-link">Inicio del Módulo</a></li>
+                    <li><a href="#view-desafio" class="nav-link">El Desafío</a></li>
+                    <li><a href="#view-solucion" class="nav-link">La Solución</a></li>
+                    <li><a href="#view-ia-sistemas" class="nav-link">IA en Sistemas</a></li>
+                    <li><a href="#view-aplicaciones" class="nav-link">10 Aplicaciones</a></li>
+                    <li><a href="#view-ejercicios" class="nav-link">Ejercicios Prácticos</a></li>
+                    <li><a href="#view-datos-seguros" class="nav-link">Datos Seguros</a></li>
+                    <li><a href="#view-automatizacion" class="nav-link">Automatización</a></li>
+                    <li><a href="#view-otras-ias" class="nav-link">Otras IAs</a></li>
+                    <li><a href="#view-hoja-ruta" class="nav-link">Hoja de Ruta</a></li>
+                    <li><a href="#view-anotaciones" class="nav-link">Anotaciones</a></li>
+                    <li><a href="#view-autoevaluacion-vf" class="nav-link">Autoevaluación (V/F)</a></li>
+                    <li><a href="#view-autoevaluacion-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
+                </ul>
+            </div>
 
-@media (min-width: 1024px) {
-    .sidebar-nav {
-        width: 25%; 
-    }
-}
+            <div class="sidebar-footer">
+                <div>
+                    <p class="footer-title">Facilitador</p>
+                    <p class="footer-text-main">Fernando Silguero</p>
+                </div>
+                <div class="mt-4">
+                    <p class="footer-title">Consultora</p>
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="footer-link-main text-slate-100 hover:text-sky-400 transition font-semibold">
+                        RAMUX <span class="footer-text-sub">Comunicación y Proyectos</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
 
-.nav-header h1 { color: #ffffff; }
-.nav-header p { color: #38bdf8; }
+        <main id="content-scroll-area" class="content-scroll-area">
 
-.nav-link {
-    display: block;
-    padding: 0.6rem 1rem;
-    font-weight: 600;
-    color: #94a3b8; 
-    border-radius: 8px;
-    transition: all 0.3s ease; /* Transición suave */
-    font-size: 0.95rem;
-    border: 1px solid transparent;
-}
-.nav-link:hover {
-    background-color: rgba(51, 65, 85, 0.7); /* Vidrio sutil al pasar */
-    color: #e2e8f0; 
-}
-.nav-link.active {
-    background-color: #0f172a;
-    color: #38bdf8; 
-    border-color: #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-    transform: scale(1.03); /* Efecto "pop" */
-}
+            <section id="view-inicio" class="view-section">
+                <h2 class="section-title">Bienvenidos al Módulo 1</h2>
+                <p class="section-subtitle">Programa práctico diseñado para los equipos de Administración y Contabilidad de Grupo HER.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3>Propósito</h3>
+                        <p>Integración inteligente de herramientas de IA para liberar tiempo operativo.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Agenda</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>Introducción a la IA Generativa.</li>
+                            <li>Laboratorio: Redacción y Resumen.</li>
+                            <li>Gestión de Archivos (Drive).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-.sidebar-footer {
-    padding-top: 1.5rem; /* pt-6 */
-    border-top: 1px solid #475569; /* border-slate-700 */
-    space-y: 1rem; /* space-y-4 */
-    /* Efecto de vidrio también en el pie de página */
-    background-color: rgba(30, 41, 59, 0.5);
-    margin: 0 -1.5rem -1.5rem; /* Expandir para cubrir el padding */
-    padding: 1.5rem 1.5rem 1rem;
-    border-top-right-radius: 15px; /* Redondear esquina */
-}
-.footer-title {
-    font-size: 0.75rem; /* text-xs */
-    font-weight: 600; /* font-semibold */
-    text-transform: uppercase;
-    color: #64748b; /* slate-500 */
-    letter-spacing: 0.05em; /* tracking-wider */
-    margin-bottom: 0.25rem; /* mb-1 */
-}
-.footer-text-main {
-    font-size: 1rem; /* text-base */
-    font-weight: 500; /* font-medium */
-    color: #cbd5e1; /* slate-200 */
-}
-.footer-link-main {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #cbd5e1;
-    transition: color 0.3s ease;
-}
-.footer-link-main:hover {
-    color: #38bdf8;
-}
-.footer-text-sub {
-    display: block;
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 400; /* font-normal */
-    color: #94a3b8; /* slate-400 */
-}
-.social-link-sidebar {
-    font-size: 1.25rem; /* text-xl */
-    color: #94a3b8; /* slate-400 */
-    transition: all 0.3s ease;
-}
-.social-link-sidebar:hover {
-    color: #38bdf8; /* sky-400 */
-    transform: scale(1.1);
-}
+            <section id="view-desafio" class="view-section">
+                <h2 class="section-title">El Desafío Actual</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
+                    <div>
+                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-300">
+                            <li>Grandes Volúmenes de Datos dispersos.</li>
+                            <li>Conversión recurrente de reportes (PDF a Excel).</li>
+                            <li>Carga operativa repetitiva en Tango.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <div class="chart-wrapper">
+                                <canvas id="desafioChart"></canvas>
+                            </div>
+                        </div>
+                        <p class="text-center text-gray-400 font-medium mt-4 text-sm">Distribución Estimada del Tiempo</p>
+                    </div>
+                </div>
+            </section>
 
+            <section id="view-solucion" class="view-section">
+                <h2 class="section-title">La Solución: Potenciando Eficiencia</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="info-card">
+                        <h3>IA Generativa</h3>
+                        <p>Motores como ChatGPT o Gemini que crean contenido y analizan patrones.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Herramientas</h3>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>ChatGPT (OpenAI)</li>
+                            <li>Gemini (Google)</li>
+                            <li>Copilot (Microsoft)</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Roles</h3>
+                        <p>Lectura de documentos, creación de presentaciones y asistentes de Excel.</p>
+                    </div>
+                </div>
+            </section>
 
-/* --- CONTENIDO SCROLLABLE --- */
-.content-scroll-area {
-    width: 100%;
-    padding: 1.5rem;
-}
+            <section id="view-ia-sistemas" class="view-section">
+                <h2 class="section-title">Integración en Sistemas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="info-card">
+                        <h3>IA y Excel</h3>
+                        <p class="text-sm">"Dame una fórmula para sumar los montos de la columna B si la A dice 'Octubre'."</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>IA y Tango</h3>
+                        <p class="text-sm">Usa la IA para formatear CSVs perfectos que Tango pueda importar en segundos.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>IA y Documentos</h3>
+                        <p class="text-sm">Sube extractos bancarios en PDF y haz preguntas directas sobre los movimientos.</p>
+                    </div>
+                </div>
+            </section>
 
-@media (min-width: 768px) {
-    .content-scroll-area {
-        height: 100%; 
-        overflow-y: auto; 
-        padding: 2.5rem;
-    }
-}
+            <section id="view-aplicaciones" class="view-section">
+                <h2 class="section-title">10 Aplicaciones Prácticas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8 mt-6">
+                    <div>
+                        <h3 class="section-subtitle-small">Prompt Engineering</h3>
+                        <p class="text-gray-300">Un prompt efectivo tiene: <strong>Contexto, Rol, Tono y Formato</strong>.</p>
+                    </div>
+                    <div class="chart-container">
+                         <div class="chart-wrapper">
+                            <canvas id="promptChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="info-card"><h3>1. Redacción Cobranza</h3><p class="text-xs text-gray-400">"Actúa como Jefe Admin. Redacta correo amable por factura vencida..."</p></div>
+                    <div class="info-card"><h3>2. Resumen Siniestros</h3><p class="text-xs text-gray-400">"Resume este parte de accidente en 3 puntos clave para el seguro..."</p></div>
+                    <div class="info-card"><h3>3. Datos de Remitos</h3><p class="text-xs text-gray-400">"Extrae Nro, Fecha y Bultos de este texto a formato tabla..."</p></div>
+                    <div class="info-card"><h3>4. Clasificación Gastos</h3><p class="text-xs text-gray-400">"Clasifica esta lista (nafta, peaje) en cuentas contables..."</p></div>
+                    <div class="info-card"><h3>5. Fórmulas Excel</h3><p class="text-xs text-gray-400">"Genera un BUSCARV para cruzar patente con chofer..."</p></div>
+                    <div class="info-card"><h3>6. Procedimientos SOP</h3><p class="text-xs text-gray-400">"Escribe paso a paso el control de recepción de mercadería..."</p></div>
+                    <div class="info-card"><h3>7. Rutas Lógicas</h3><p class="text-xs text-gray-400">"Ordena estas 4 ciudades para optimizar el recorrido..."</p></div>
+                    <div class="info-card"><h3>8. Respuestas Clientes</h3><p class="text-xs text-gray-400">"Responde a este reclamo de forma profesional explicando la demora..."</p></div>
+                    <div class="info-card"><h3>9. Análisis Encuestas</h3><p class="text-xs text-gray-400">"¿Cuál es la queja principal en estos 20 comentarios?"</p></div>
+                    <div class="info-card"><h3>10. Script Reclamos</h3><p class="text-xs text-gray-400">"Guion telefónico para reclamar una nota de crédito a un proveedor..."</p></div>
+                </div>
+            </section>
 
-/* Scrollbar personalizado */
-.content-scroll-area::-webkit-scrollbar {
-    width: 10px;
-}
-.content-scroll-area::-webkit-scrollbar-track {
-    background: transparent; /* Hacer la pista transparente */
-}
-.content-scroll-area::-webkit-scrollbar-thumb {
-    background-color: #38bdf8; /* Color del "pulgar" */
-    border-radius: 10px;
-    border: 3px solid rgba(0,0,0,0); /* Sin borde, para que sea más sutil */
-}
-.content-scroll-area::-webkit-scrollbar-thumb:hover {
-    background-color: #7dd3fc; /* Color al pasar el mouse */
-}
+            <section id="view-ejercicios" class="view-section">
+                <h2 class="section-title">Laboratorio Práctico</h2>
+                <p class="section-subtitle mb-6">Intenta resolver el prompt antes de ver la solución.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>1. Extraer Datos Email</h3>
+                        <p class="text-sm mb-4">Email desordenado con datos de factura.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="text-sky-300 text-sm italic">"Del siguiente texto, extrae Nro Factura, CUIT y Monto. Dámelo en formato tabla CSV."</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>2. Reformular Texto</h3>
+                        <p class="text-sm mb-4">Convertir un mensaje agresivo en profesional.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="text-sky-300 text-sm italic">"Actúa como Gerente. Reformula esto para que sea firme pero muy amable y profesional."</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>3. Fórmula Compleja</h3>
+                        <p class="text-sm mb-4">Sumar si es "Combustible" Y mayor a $10.000.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden">
+                            <code class="text-xs bg-black p-1 rounded block mt-2">=SUMAR.SI.CONJUNTO(B:B, A:A, "Combustible", B:B, ">10000")</code>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>4. Resumir Hilos</h3>
+                        <p class="text-sm mb-4">Cadena de 15 emails sobre una entrega fallida.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="text-sky-300 text-sm italic">"Resume la situación en 3 puntos: Problema, Acciones tomadas, Estado actual."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <section id="view-datos-seguros" class="view-section">
+                <h2 class="section-title">Datos Seguros</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="alert-card">
+                        <h3>1. Confidencialidad</h3>
+                        <p>NUNCA pegues datos sensibles (CBU, Claves, Nombres Reales) en chats públicos gratuitos.</p>
+                    </div>
+                    <div class="alert-card">
+                        <h3>2. Alucinaciones</h3>
+                        <p>La IA inventa. Verifica siempre números, cálculos y leyes.</p>
+                    </div>
+                    <div class="alert-card">
+                        <h3>3. Responsabilidad</h3>
+                        <p>Tú eres el piloto. Si envías un error generado por IA, el error es tuyo.</p>
+                    </div>
+                </div>
+            </section>
 
-/* Animación de entrada de sección */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
+            <section id="view-automatizacion" class="view-section">
+                <h2 class="section-title">Futuro: Automatización (RPA)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="info-card">
+                        <h3>Hoy: Asistencia</h3>
+                        <p>Tú copias, pegas y chateas con la IA.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Mañana: RPA</h3>
+                        <p>Un "robot" recibe el email, la IA lee el PDF y el robot carga el dato en el sistema solo.</p>
+                    </div>
+                </div>
+            </section>
 
-.view-section {
-    margin-bottom: 4rem; 
-    animation: fadeIn 0.6s ease-out; /* Animación de entrada */
-    padding-top: 2rem; 
-    margin-top: -2rem;
-}
+            <section id="view-otras-ias" class="view-section">
+                <h2 class="section-title">Herramientas Especializadas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="info-card">
+                        <h3 class="text-sky-400">Gamma.ai</h3>
+                        <p>Genera presentaciones visuales completas en segundos.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-sky-400">Perplexity.ai</h3>
+                        <p>Buscador que cita fuentes reales (ideal leyes/AFIP).</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-sky-400">ChatPDF</h3>
+                        <p>Conversa con tus documentos PDF para extraer datos.</p>
+                    </div>
+                </div>
+            </section>
 
-/* --- ESTILOS DE COMPONENTES (TARJETAS, GRÁFICOS, ETC) --- */
-.section-title {
-    font-size: 1.875rem; /* text-3xl */
-    font-weight: 700; /* font-bold */
-    color: #7dd3fc; /* sky-300 */
-    margin-bottom: 0.5rem; /* mb-2 */
-}
-.section-subtitle {
-    font-size: 1.125rem; /* text-lg */
-    color: #cbd5e1; /* slate-300 */
-    margin-bottom: 1.5rem; /* mb-6 */
-}
-.section-subtitle-small {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 600; /* font-semibold */
-    color: #7dd3fc; /* sky-300 */
-    margin-bottom: 1rem; /* mb-4 */
-}
-.section-divider {
-    border-color: #334155; /* border-slate-700 */
-    margin-top: 2rem; /* my-8 */
-    margin-bottom: 2rem;
-}
+            <section id="view-hoja-ruta" class="view-section">
+                <h2 class="section-title">Hoja de Ruta</h2>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4 mt-8">
+                    <div class="roadmap-card-active">1. Fundamentos</div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-active">2. Datos y Tango</div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-inactive">3. Automatización</div>
+                    <div class="roadmap-arrow">&rarr;</div>
+                    <div class="roadmap-card-inactive">4. Avanzado</div>
+                </div>
+            </section>
 
-.chart-container { position: relative; width: 100%; max-width: 450px; margin: 2rem auto; height: 300px; }
+            <section id="view-anotaciones" class="view-section">
+                <h2 class="section-title">Anotaciones Clase 1</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="info-card">
+                        <h3>Conciliaciones</h3>
+                        <p>Veremos en Módulo 2 cómo usar IAs para extraer tablas de PDFs bancarios sin errores.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Seguridad</h3>
+                        <p>Regla de oro: Anonimizar datos antes de usar herramientas gratuitas.</p>
+                    </div>
+                </div>
+            </section>
 
-/* NUEVO: Glassmorphism para todas las tarjetas internas */
-.info-card, .alert-card, .quiz-question-card {
-    background-color: rgba(51, 65, 85, 0.6); /* slate-700 con 60% opacidad */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-left: 4px solid #38bdf8;
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    height: 100%;
-    transition: all 0.3s ease; /* Transición suave */
-}
+            <section id="view-autoevaluacion-vf" class="view-section">
+                <h2 class="section-title">Autoevaluación (V/F)</h2>
+                <form id="quiz-form-vf" class="mt-8 space-y-4">
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. Es seguro pegar datos confidenciales en ChatGPT Gratis.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q1" value="f"> Falso</label><label><input type="radio" name="q1" value="v"> Verdadero</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. Un buen prompt necesita Contexto, Rol y Tono.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q2" value="f"> Falso</label><label><input type="radio" name="q2" value="v"> Verdadero</label></div>
+                    </div>
+                     <div class="quiz-question-card">
+                        <p class="quiz-question">3. La "Alucinación" es cuando la IA inventa datos falsos.</p>
+                        <div class="quiz-options"><label><input type="radio" name="q3" value="f"> Falso</label><label><input type="radio" name="q3" value="v"> Verdadero</label></div>
+                    </div>
+                    <button type="submit" class="ejercicio-toggle-btn w-full mt-4">Ver Resultados V/F</button>
+                </form>
+                <div id="quiz-results-vf" class="info-card mt-8 hidden text-center">
+                    <h3 class="text-2xl">Resultados</h3>
+                    <p id="quiz-score-vf" class="text-4xl font-bold my-4 text-sky-400"></p>
+                    <p id="quiz-message-vf"></p>
+                </div>
+            </section>
 
-.info-card:hover, .quiz-question-card:hover {
-    transform: translateY(-5px); /* Efecto "levantar" */
-    border-color: #7dd3fc; /* Borde más brillante */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    background-color: rgba(51, 65, 85, 0.8);
-}
+            <section id="view-autoevaluacion-mc" class="view-section">
+                <h2 class="section-title">Autoevaluación (Multiple Choice)</h2>
+                <form id="quiz-form-mc" class="mt-8 space-y-4">
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. ¿Cuál es el paso siguiente a la asistencia simple?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc1" value="a"> RPA (Automatización).</label>
+                            <label><input type="radio" name="mc1" value="b"> Contratar más gente.</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. ¿Qué herramienta sirve para diapositivas?</p>
+                        <div class="quiz-options-vertical">
+                            <label><input type="radio" name="mc2" value="a"> Excel.</label>
+                            <label><input type="radio" name="mc2" value="b"> Gamma.ai.</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="ejercicio-toggle-btn w-full mt-4">Ver Resultados M.C.</button>
+                </form>
+                <div id="quiz-results-mc" class="info-card mt-8 hidden text-center">
+                    <h3 class="text-2xl">Resultados</h3>
+                    <p id="quiz-score-mc" class="text-4xl font-bold my-4 text-sky-400"></p>
+                    <p id="quiz-message-mc"></p>
+                </div>
+            </section>
 
-.info-card h3 { color: #7dd3fc; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-.info-card h3 i { transition: transform 0.3s ease; } /* Animación para iconos */
-.info-card:hover h3 i { transform: scale(1.1); }
+        </main>
+    </div>
 
-.info-card p, .info-card li { color: #cbd5e1; }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-.alert-card { 
-    background-color: rgba(71, 10, 10, 0.6); /* red-900/60 */
-    border-left: 4px solid #f87171; 
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-.alert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    border-color: #fca5a5;
-    background-color: rgba(71, 10, 10, 0.8);
-}
-.alert-card h3 { color: #fca5a5; font-size: 1.25rem; font-weight: 600; }
-.alert-card p { color: #fecaca; }
+            // 1. GRÁFICOS (Chart.js) - Configurados para no romper el layout
+            try {
+                const commonOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false, // CRÍTICO: Permite ajustarse al div contenedor
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1' } }
+                    }
+                };
 
-/* Tarjetas Hoja de Ruta */
-.roadmap-card-active, .roadmap-card-inactive {
-    text-align: center;
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    width: 100%;
-    transition: all 0.3s ease;
-    /* Efecto de vidrio */
-    background-color: rgba(51, 65, 85, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-.roadmap-card-active {
-    border: 1px solid #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-}
-.roadmap-card-inactive {
-    border: 1px solid #475569;
-    opacity: 0.6;
-}
-.roadmap-number {
-    display: block;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-.roadmap-arrow {
-    font-size: 2.25rem;
-    font-weight: 200;
-    color: #38bdf8;
-    transform: rotate(90deg);
-}
-@media (min-width: 768px) {
-    .roadmap-arrow { transform: rotate(0deg); }
-}
+                const ctxDesafio = document.getElementById('desafioChart');
+                if (ctxDesafio) {
+                    new Chart(ctxDesafio, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Operativo', 'Carga Datos', 'Análisis', 'Comunicación'],
+                            datasets: [{
+                                data: [45, 30, 10, 15],
+                                backgroundColor: ['#ef4444', '#f97316', '#0ea5e9', '#8b5cf6'],
+                                borderWidth: 0
+                            }]
+                        },
+                        options: commonOptions
+                    });
+                }
 
-/* Ejercicios y Botones de Quiz */
-.ejercicio-toggle-btn {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: #0284c7; /* sky-600 */
-    color: white;
-    font-weight: 600;
-    border-radius: 0.375rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0); /* Sin brillo por defecto */
-    border: 1px solid #0369a1;
-}
-.ejercicio-toggle-btn:hover {
-    background-color: #0369a1; /* sky-700 */
-    transform: scale(1.02); /* Efecto pop */
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); /* Efecto de brillo */
-    border-color: #38bdf8;
-}
-.ejercicio-solucion { 
-    background-color: #0f172a; 
-    border: 1px solid #38bdf8; 
-    border-radius: 0.5rem; 
-    padding: 1rem; 
-    margin-top: 1rem;
-    animation: fadeIn 0.4s ease; /* Animación de fade-in para la solución */
-}
-.ejercicio-solucion code { color: #f0f9ff; font-family: monospace; background-color: #1e293b; padding: 2px 6px; border-radius: 4px; }
+                const ctxPrompt = document.getElementById('promptChart');
+                if (ctxPrompt) {
+                    new Chart(ctxPrompt, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Prompt Básico', 'Prompt Efectivo'],
+                            datasets: [{
+                                label: '% Tiempo Ahorrado',
+                                data: [20, 80],
+                                backgroundColor: ['#ef4444', '#22c55e'],
+                                borderRadius: 4
+                            }]
+                        },
+                        options: {
+                            ...commonOptions,
+                            scales: {
+                                y: { grid: { color: '#334155' }, ticks: { color: '#cbd5e1' } },
+                                x: { grid: { display: false }, ticks: { color: '#cbd5e1' } }
+                            }
+                        }
+                    });
+                }
+            } catch (e) { console.error("Error Charts", e); }
 
-/* Quiz (Autoevaluación) */
-.quiz-question-card {
-    border: 1px solid #475569;
-}
-.quiz-question-card:hover {
-    border-color: #38bdf8;
-}
+            // 2. SCROLL SPY (Optimizado)
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#mainNav a');
+            const scrollArea = document.getElementById('content-scroll-area');
 
-.quiz-question {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #e2e8f0;
-    margin-bottom: 1rem;
-}
-.quiz-options, .quiz-options-vertical {
-    display: flex;
-    gap: 1.5rem;
-}
-.quiz-options-vertical {
-    flex-direction: column; /* Para opción múltiple */
-}
+            if(sections.length > 0 && navLinks.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    root: scrollArea,
+                    rootMargin: '-20% 0px -60% 0px', // Ajuste para detectar mejor el centro
+                    threshold: 0
+                });
+                sections.forEach(section => observer.observe(section));
+            }
 
-.quiz-options label, .quiz-options-vertical label {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1rem;
-    color: #cbd5e1;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-.quiz-options label:hover, .quiz-options-vertical label:hover {
-    color: #ffffff; /* Resaltar al pasar el mouse */
-}
-.quiz-options input[type="radio"], .quiz-options-vertical input[type="radio"] {
-    width: 1.25rem;
-    height: 1.25rem;
-    accent-color: #38bdf8;
-    flex-shrink: 0;
-}
-.quiz-input {
-    width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.375rem;
-    background-color: #1e293b; /* slate-800 */
-    border: 1px solid #475569; /* slate-600 */
-    color: white;
-    transition: all 0.3s ease;
-}
-.quiz-input:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-    outline: none;
-}
+            // 3. BOTONES DE SOLUCIÓN
+            document.querySelectorAll('.ejercicio-toggle-btn').forEach(btn => {
+                // Solo actuar si NO es botón de submit
+                if(btn.type !== 'submit') {
+                    btn.addEventListener('click', () => {
+                        const sol = btn.nextElementSibling;
+                        if(sol) {
+                            sol.classList.toggle('hidden');
+                            btn.textContent = sol.classList.contains('hidden') ? 'Ver Solución' : 'Ocultar';
+                        }
+                    });
+                }
+            });
+
+            // 4. LOGICA QUIZ SIMPLE
+            function runQuiz(formId, resultId, correctAnswers) {
+                const form = document.getElementById(formId);
+                if(!form) return;
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const data = new FormData(form);
+                    let score = 0;
+                    let total = Object.keys(correctAnswers).length;
+                    
+                    for(let [key, val] of Object.entries(correctAnswers)) {
+                        if(data.get(key) === val) score++;
+                    }
+                    
+                    const resDiv = document.getElementById(resultId);
+                    const scoreEl = resDiv.querySelector('p:first-of-type');
+                    const msgEl = resDiv.querySelector('p:last-of-type');
+                    
+                    resDiv.classList.remove('hidden');
+                    scoreEl.textContent = `${Math.round((score/total)*100)}%`;
+                    msgEl.textContent = score === total ? "¡Excelente!" : "¡Sigue practicando!";
+                    
+                    // Scroll al resultado
+                    resDiv.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            runQuiz('quiz-form-vf', 'quiz-results-vf', { q1: 'f', q2: 'v', q3: 'v' });
+            runQuiz('quiz-form-mc', 'quiz-results-mc', { mc1: 'a', mc2: 'b' });
+
+        });
+    </script>
+</body>
+</html>
