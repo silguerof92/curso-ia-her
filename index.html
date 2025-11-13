@@ -2,86 +2,151 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Curso IA Aplicada - Grupo HER</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body class="body-general">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <div class="landing-container">
-        <header class="text-center p-10 border-b border-slate-700">
-            <h1 class="text-4xl font-bold text-white mb-3">Inteligencia Artificial Aplicada</h1>
-            <p class="text-2xl text-sky-400">Optimización de Procesos para Grupo HER</p>
+    <style>
+        /* === 1. EL SECRETO DEL FONDO (SOLUCIÓN DEFINITIVA) === */
+        /* Creamos un elemento fijo que vive DETRÁS de todo. 
+           Esto evita que desaparezca al hacer scroll. */
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Se queda atrás */
+            background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 40%, #020617 100%);
+            background-size: cover;
+        }
+
+        /* === 2. RESET BÁSICO === */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+            overflow-x: hidden; /* Evita movimiento lateral */
+        }
+
+        /* === 3. EFECTOS VISUALES (Glassmorphism) === */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6); /* Semitransparente */
+            backdrop-filter: blur(12px); /* Efecto vidrio */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px); /* Se levanta al pasar el mouse */
+            box-shadow: 0 12px 40px 0 rgba(14, 165, 233, 0.2); /* Brillo azul */
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        /* Botones Brillantes */
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+        .btn-disabled {
+            background: #334155;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* Tipografía Hero */
+        .hero-title {
+            background: linear-gradient(to right, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-background"></div>
+
+    <div class="min-h-screen flex flex-col justify-between">
+        
+        <header class="w-full p-6 flex justify-between items-center max-w-7xl mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-sky-500 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-robot text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl text-white tracking-tight">Grupo HER</h1>
+                    <p class="text-xs text-sky-400 font-semibold tracking-widest uppercase">Escuela de Negocios</p>
+                </div>
+            </div>
         </header>
 
-        <section class="p-10">
-            <h3 class="text-2xl font-semibold text-white text-center mb-8">Programa del Curso</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <a href="modulo1.html" class="module-card">
-                    <span class="module-number">Módulo 1</span>
-                    <h4 class="module-title">Fundamentos de IA para la Eficiencia Administrativa</h4>
-                    <p class="module-description">Introducción a IA Generativa, laboratorio práctico en redacción y resúmenes, e identificación de oportunidades.</p>
-                    <span class="module-link">Acceder al Módulo &rarr;</span>
-                </a>
-
-                <a href="modulo2.html" class="module-card">
-                    <span class="module-number">Módulo 2</span>
-                    <h4 class="module-title">Inteligencia de Negocios y Análisis de Datos</h4>
-                    <p class="module-description">Extracción de datos de Tango/Excel, cruce de información, conversión de PDF a CSV y creación de reportes dinámicos.</p>
-                    <span class="module-link">Acceder al Módulo &rarr;</span>
-                </a>
-
-                <div class="module-card-disabled">
-                    <span class="module-number">Módulo 3</span>
-                    <h4 class="module-title">Automatización de Tareas y Comunicaciones</h4>
-                    <p class="module-description">Programación de correos, generación automática de documentos y mejora de la productividad del equipo.</p>
-                    <span class="module-link-disabled">Próximamente</span>
-                </div>
-
-                <div class="module-card-disabled">
-                    <span class="module-number">Módulo 4</span>
-                    <h4 class="module-title">Prompt Engineering y Herramientas Específicas</h4>
-                    <p class="module-description">Técnicas avanzadas para "afinar el prompt", gestión segura de datos sensibles y resolución de casos reales.</p>
-                    <span class="module-link-disabled">Próximamente</span>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="text-center p-10 border-t border-slate-700 mt-10">
-            <p class="text-lg text-slate-300 mb-2">Presentado por:</p>
-            <h2 class="text-3xl font-bold text-white mb-4">Fernando Silguero</h2>
+        <main class="flex-grow flex flex-col items-center justify-center px-4 py-12 text-center max-w-5xl mx-auto w-full">
             
-            <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer"
-               class="text-2xl font-semibold text-sky-400 hover:text-sky-300 transition-colors duration-200">
-                RAMUX
-            </a>
-            <p class="text-slate-400 mt-1">Comunicación, Gestión y Desarrollo de Proyectos</p>
+            <span class="px-3 py-1 rounded-full bg-sky-900/30 border border-sky-700/50 text-sky-300 text-sm font-medium mb-6 animate-pulse">
+                Programa de Capacitación Interna 2024
+            </span>
 
-            <div class="flex justify-center space-x-6 mt-6">
-                <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
+            <h2 class="hero-title text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
+                Inteligencia Artificial <br> Aplicada a la Gestión
+            </h2>
+            
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed">
+                Domina las herramientas que transformarán tu productividad diaria. 
+                Desde automatización de correos hasta análisis de datos complejos.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full text-left">
+                
+                <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block text-decoration-none">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-brain text-8xl text-sky-400"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-sky-400 font-bold text-sm uppercase tracking-wider">Disponible</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-3 group-hover:text-sky-300 transition-colors">Módulo 1: Fundamentos</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Introducción a IA Generativa, Prompt Engineering y redacción automática de documentos.
+                        </p>
+                        <div class="flex items-center gap-2 text-white font-semibold group-hover:gap-4 transition-all">
+                            Comenzar ahora <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
                 </a>
-                <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer" class="social-link" title="Sitio Web">
-                    <i class="fas fa-globe"></i>
-                </a>
+
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden opacity-75 border-slate-700">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <i class="fa-solid fa-chart-line text-8xl text-slate-400"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-slate-500 font-bold text-sm uppercase tracking-wider">Próximamente</span>
+                        <h3 class="text-2xl font-bold text-slate-300 mt-2 mb-3">Módulo 2: Datos y Excel</h3>
+                        <p class="text-slate-500 text-sm mb-6">
+                            Análisis de datos avanzado, limpieza de CSVs para Tango y cruce de información.
+                        </p>
+                        <button class="btn-disabled px-4 py-2 rounded-lg text-sm font-medium w-full md:w-auto">
+                            Disponible pronto
+                        </button>
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </main>
 
-        <footer class="text-center p-10 border-t border-slate-700 mt-10">
-            <p class="text-sm font-medium text-slate-300">Un programa de la</p>
-            <p class="text-lg font-semibold text-slate-200">Escuela de Gestión y Negocios</p>
-            <p class="text-sm text-slate-400">Facultad de Cs. Económicas - UNER</p>
+        <footer class="w-full p-8 text-center text-slate-500 text-sm border-t border-slate-800/50 mt-8">
+            <p>© 2024 Grupo HER - Desarrollado con <span class="text-sky-500">❤</span> por RAMUX</p>
         </footer>
+
     </div>
 
 </body>
