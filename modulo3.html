@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Automatización - Grupo HER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0; /* text-slate-200 */
+            overscroll-behavior: none;
+        }
+
+        /* Contenedor principal */
+        .main-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Barra Lateral de Navegación --- */
+        .sidebar-nav {
+            width: 280px;
+            background-color: #1e293b; /* bg-slate-800 */
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-right: 1px solid #334155; /* border-slate-700 */
+            padding: 1.5rem; 
+        }
+        
+        .nav-header h1 {
+            font-size: 1.875rem; 
+        }
+        
+        /* Enlaces de navegación */
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem; 
+            border-radius: 0.375rem; 
+            color: #cbd5e1; /* text-slate-300 */
+            font-weight: 600; 
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            background-color: #334155; 
+            color: #ffffff; 
+        }
+        /* Enlace activo (Esmeralda) */
+        .nav-link.active {
+            background-color: #10b981; /* bg-emerald-500 */
+            color: #ffffff; 
+        }
+
+        /* Footer de la Sidebar */
+        .sidebar-footer {
+            border-top: 1px solid #334155; 
+            padding-top: 1.5rem; 
+            margin-top: 1.5rem; 
+        }
+        .footer-title {
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: #64748b; 
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer-text-main {
+            color: #f1f5f9; 
+            font-weight: 600; 
+        }
+        .footer-text-sub {
+            display: block;
+            font-size: 0.875rem; 
+            color: #94a3b8; 
+        }
+        .footer-link-main {
+            color: #f1f5f9; 
+            font-weight: 600; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-link-main:hover {
+            color: #34d399; /* hover:text-emerald-400 */
+        }
+        .social-link-sidebar {
+            color: #94a3b8; 
+            font-size: 1.25rem; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .social-link-sidebar:hover {
+            color: #e2e8f0; 
+        }
+
+        /* --- Área de Contenido Principal --- */
+        .content-scroll-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2.5rem; 
+        }
+        
+        .view-section {
+            padding-bottom: 4rem; 
+            margin-bottom: 4rem; 
+            border-bottom: 1px solid #334155; 
+        }
+        .view-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Estilos de Texto */
+        .section-title {
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: 0.5rem; 
+        }
+        .section-subtitle {
+            font-size: 1.125rem; 
+            color: #cbd5e1; 
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* Tarjetas de Información */
+        .info-card {
+            background-color: #1e293b; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
+            border: 1px solid #334155; 
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card h3 {
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 0.75rem; 
+        }
+        .info-card p, .info-card ul, .info-card ol {
+            color: #cbd5e1; 
+        }
+        
+        /* News Links Card Styles */
+        .news-link {
+            display: block;
+            margin-top: auto;
+            padding-top: 1rem;
+            color: #34d399;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Botón de Ejercicio (Esmeralda) --- */
+        .ejercicio-toggle-btn {
+            background-color: #10b981; /* bg-emerald-500 */
+            color: #ffffff; 
+            font-weight: 600; 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.375rem; 
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .ejercicio-toggle-btn:hover {
+            background-color: #059669; /* bg-emerald-600 */
+        }
+
+        /* Solución de Ejercicio */
+        .ejercicio-solucion {
+            margin-top: 1rem; 
+            padding-top: 1rem; 
+            border-top: 1px solid #334155; 
+            background-color: #0f172a; 
+            padding: 0.75rem; 
+            border-radius: 0.375rem; 
+        }
+
+        /* --- Formularios de Quiz --- */
+        .quiz-question-card {
+            background-color: #1e293b; 
+            padding: 1.5rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid #334155; 
+        }
+        .quiz-question {
+            font-size: 1.125rem; 
+            font-weight: 600; 
+            color: #f1f5f9; 
+            margin-bottom: 1rem; 
+        }
+        .quiz-input {
+            width: 100%;
+            background-color: #0f172a; 
+            border: 1px solid #334155; 
+            color: #f1f5f9; 
+            padding: 0.75rem 1rem; 
+            border-radius: 0.375rem; 
+        }
+        .quiz-input:focus {
+            outline: none;
+            border-color: #10b981; /* border-emerald-500 */
+            box-shadow: 0 0 0 2px #10b981;
+        }
+        .quiz-options, .quiz-options-vertical {
+            display: flex;
+            gap: 1rem; 
+        }
+        .quiz-options-vertical {
+            flex-direction: column;
+        }
+        .quiz-options label, .quiz-options-vertical label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; 
+            padding: 0.75rem 1rem; 
+            background-color: #334155; 
+            border-radius: 0.375rem; 
+            flex-grow: 1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .quiz-options label:hover, .quiz-options-vertical label:hover {
+            background-color: #475569; 
+        }
+        .quiz-options input[type="radio"], .quiz-options-vertical input[type="radio"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: #10b981; /* emerald-500 */
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="body-module">
+
+    <div class="main-container">
+
+        <nav class="sidebar-nav">
+            
+            <div>
+                <div class="nav-header mb-6">
+                    <a href="index.html" class="text-sm text-emerald-400 hover:text-emerald-200">&larr; Volver al Inicio</a>
+                    <h1 class="text-white text-2xl font-bold mt-2">Módulo 3</h1>
+                    <p class="text-emerald-400">Automatización de Tareas</p>
+                </div>
+                
+                <ul id="mainNav" class="space-y-2">
+                    <li><a href="#view-intro-m3" class="nav-link">Intro Módulo 3</a></li>
+                    <li><a href="#view-rpa-basics" class="nav-link">Conceptos RPA y Agentes</a></li>
+                    <li><a href="#view-news" class="nav-link">Novedades y Tendencias</a></li>
+                    <li><a href="#view-human-loop" class="nav-link">Human-in-the-Loop</a></li>
+                    <li><a href="#view-emails" class="nav-link">Automatización de Correos</a></li>
+                    <li><a href="#view-proactivo" class="nav-link">Agentes Proactivos</a></li>
+                    <li><a href="#view-integracion" class="nav-link">Estrategia de Integración</a></li>
+                    <li><a href="#view-scraping" class="nav-link">Búsqueda Web Automática</a></li>
+                    <li><a href="#view-ejercicios-m3" class="nav-link">Ejercicios Prácticos (10)</a></li>
+                    <li><a href="#view-autoevaluacion-m3-vf" class="nav-link">Autoevaluación (V/F)</a></li>
+                    <li><a href="#view-autoevaluacion-m3-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div>
+                    <p class="footer-title">Facilitador</p>
+                    <p class="footer-text-main">Fernando Silguero</p>
+                </div>
+                <div>
+                    <p class="footer-title">Consultora</p>
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer" class="footer-link-main">
+                        RAMUX
+                        <span class="footer-text-sub">Comunicación, Gestión y Desarrollo de Proyectos</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-700">
+                    <p class="footer-title">Organiza</p>
+                    <p class="footer-text-main text-sm">Escuela de Gestión y Negocios</p>
+                    <p class="footer-text-sub text-xs">Facultad de Cs. Económicas - UNER</p>
+                </div>
+            </div>
+        </nav>
+
+        <main id="content-scroll-area" class="content-scroll-area">
+
+            <section id="view-intro-m3" class="view-section">
+                <h2 class="section-title">Módulo 3: De Analizar a Automatizar</h2>
+                <p class="section-subtitle">
+                    En el Módulo 2 aprendimos a limpiar y analizar datos. Ahora daremos el paso más productivo: la <strong>acción</strong>. Aprenderemos a configurar "Agentes" y robots de software para que realicen tareas repetitivas por nosotros, como enviar correos, buscar vencimientos o avisar a clientes.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3>¿Qué vamos a lograr?</h3>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Entender qué es RPA (y qué no es).</li>
+                            <li>Programar envíos masivos de correos personalizados.</li>
+                            <li>Crear alertas proactivas (Ej. Vencimiento de Matafuegos).</li>
+                            <li>Configurar búsquedas web automáticas (Ej. Vencimientos AFIP).</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>El Cambio de Mentalidad</h3>
+                        <p>Pasaremos de "Hacer el trabajo" a "Diseñar el flujo de trabajo". En lugar de escribir 30 correos uno por uno, pasaremos 20 minutos diseñando un prompt y una automatización que los escriba y (potencialmente) los envíe por nosotros.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-rpa-basics" class="view-section">
+                <h2 class="section-title">Conceptos Básicos: RPA y Agentes</h2>
+                <p class="section-subtitle">
+                    Como aclaramos en clase, cuando hablamos de "Robótica" en administración, no hablamos de brazos mecánicos. Hablamos de software.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3 class="text-emerald-400">RPA (Robotic Process Automation)</h3>
+                        <p>Es el "músculo". Es un software programado para hacer clics, copiar, pegar y escribir tal como lo haría un humano, pero a gran velocidad.</p>
+                        <p class="mt-2 text-sm"><strong>Ejemplo:</strong> Entrar a la web del banco, descargar el extracto y guardarlo en una carpeta llamada "Extractos 2025".</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-emerald-400">Agentes de IA (El Cerebro)</h3>
+                        <p>Es la "inteligencia". A diferencia del RPA tradicional que solo sigue reglas fijas, el Agente puede "leer", "entender" y "decidir".</p>
+                        <p class="mt-2 text-sm"><strong>Ejemplo:</strong> Leer el extracto descargado, identificar que hay un gasto duplicado y redactar un correo al banco reclamando.</p>
+                    </div>
+                </div>
+                <div class="info-card mt-6">
+                    <h3>La Fórmula Mágica: Trigger + Acción</h3>
+                    <p>Toda automatización se basa en esta lógica simple:</p>
+                    <ul class="list-disc list-inside mt-2 text-emerald-200">
+                        <li><strong>Trigger (Disparador):</strong> "Cuando pase X..." (ej. Es día 15 del mes, llega un correo con asunto "Factura").</li>
+                        <li><strong>Action (Acción):</strong> "...entonces haz Y" (ej. Manda un WhatsApp, guarda el archivo en Drive).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="view-news" class="view-section">
+                <h2 class="section-title">Novedades y Tendencias en Automatización</h2>
+                <p class="section-subtitle">
+                    Investigación seleccionada sobre el impacto de la IA y la automatización en el entorno empresarial para 2025.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                    
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-chart-line mr-3 text-emerald-400"></i>McKinsey: El Futuro del Trabajo</h3>
+                        <p class="text-sm">Informe sobre cómo la IA generativa puede automatizar hasta el 70% de las actividades repetitivas para 2030, liberando tiempo para tareas estratégicas.</p>
+                        <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier" target="_blank" class="news-link">Leer Informe &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-building mr-3 text-emerald-400"></i>HBR: IA en la Gestión</h3>
+                        <p class="text-sm">Artículo de Harvard Business Review sobre cómo los gerentes deben adaptar sus roles para supervisar "fuerzas de trabajo digitales".</p>
+                        <a href="https://hbr.org/2023/08/how-ai-will-transform-project-management" target="_blank" class="news-link">Leer Artículo &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-bullseye mr-3 text-emerald-400"></i>Forbes: Tendencias 2025</h3>
+                        <p class="text-sm">Las 5 tendencias clave en automatización para PYMES, destacando la adopción de "Agentes Autónomos" accesibles.</p>
+                        <a href="https://www.forbes.com/sites/bernardmarr/2023/10/16/the-5-biggest-artificial-intelligence-trends-for-2024/" target="_blank" class="news-link">Ver Tendencias &rarr;</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fab fa-microsoft mr-3 text-emerald-400"></i>Microsoft Copilot Blog</h3>
+                        <p class="text-sm">Novedades oficiales sobre la integración de Python en Excel y la automatización de flujos en Outlook.</p>
+                        <a href="https://blogs.microsoft.com/blog/tag/copilot/" target="_blank" class="news-link">Ir al Blog &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-bolt mr-3 text-emerald-400"></i>Zapier: Reporte de Automatización</h3>
+                        <p class="text-sm">Estudio sobre cómo las empresas ahorran un promedio de 10 horas semanales por empleado mediante flujos "No-Code".</p>
+                        <a href="https://zapier.com/blog/automation-statistics/" target="_blank" class="news-link">Ver Estadísticas &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fab fa-google mr-3 text-emerald-400"></i>Google Cloud AI</h3>
+                        <p class="text-sm">Casos de éxito de Gemini en la optimización de logística y atención al cliente.</p>
+                        <a href="https://cloud.google.com/blog/products/ai-machine-learning" target="_blank" class="news-link">Explorar Casos &rarr;</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-shield-alt mr-3 text-emerald-400"></i>Ética en la IA</h3>
+                        <p class="text-sm">Guía de la UNESCO sobre el uso responsable de la IA, relevante para el manejo de datos sensibles en automatizaciones.</p>
+                        <a href="https://www.unesco.org/es/artificial-intelligence/recommendation-ethics" target="_blank" class="news-link">Leer Guía &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-users mr-3 text-emerald-400"></i>El Humano en el Bucle</h3>
+                        <p class="text-sm">Por qué la supervisión humana ("Human-in-the-loop") sigue siendo crítica en procesos automatizados de alto riesgo.</p>
+                        <a href="https://www.sap.com/insights/human-in-the-loop.html" target="_blank" class="news-link">Entender Concepto &rarr;</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="flex items-center"><i class="fas fa-bus mr-3 text-emerald-400"></i>IA en Turismo</h3>
+                        <p class="text-sm">Artículo específico sobre la hiper-personalización de ofertas turísticas mediante automatización de datos de viajeros.</p>
+                        <a href="https://www.phocuswire.com/Generative-AI-travel-industry" target="_blank" class="news-link">Leer sobre Turismo &rarr;</a>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="view-human-loop" class="view-section">
+                <h2 class="section-title">El Concepto "Human-in-the-Loop"</h2>
+                <p class="section-subtitle">
+                    En la clase discutimos la importancia de no dejar al robot "suelto" desde el primer día. Este concepto es la red de seguridad de cualquier automatización.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3 class="text-emerald-400">¿Qué significa?</h3>
+                        <p>Significa mantener a una persona en el ciclo de decisión. El robot hace el trabajo pesado (buscar datos, escribir el borrador), pero el humano tiene la última palabra antes de la acción final (enviar el correo, pagar la factura).</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-emerald-400">Niveles de Autonomía</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2">
+                            <li><strong>Nivel 1 (Asistente):</strong> La IA te da la información, tú haces la acción. (Ej. Te avisa que vence el seguro).</li>
+                            <li><strong>Nivel 2 (Copiloto):</strong> La IA prepara la acción, tú apruebas. (Ej. Escribe el mail y lo guarda en Borradores).</li>
+                            <li><strong>Nivel 3 (Piloto Automático):</strong> La IA ejecuta sola y te avisa después. (Ej. Manda el mail y te pone en copia).</li>
+                        </ul>
+                        <p class="mt-3 text-sm italic border-t border-slate-700 pt-2">Siempre empieza en Nivel 1 o 2 hasta validar que el sistema no cometa errores.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-emails" class="view-section">
+                <h2 class="section-title">Automatización de Correos</h2>
+                <p class="section-subtitle">
+                    Uno de los mayores ladrones de tiempo es la redacción repetitiva. Veamos cómo usar la IA para automatizar esto, manteniendo la personalización.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="info-card">
+                        <h3 class="text-xl font-bold">El Caso: Cobranzas o Promociones</h3>
+                        <p>Imagina que tienes un Excel con 30 clientes que deben renovar su servicio o pagar una factura. Escribir 30 correos toma horas.</p>
+                        <p class="mt-2"><strong>La Solución con IA:</strong> Le das el Excel a la IA y le dices: "Actúa como el área de Administración. Para cada fila de este Excel, redacta un correo personalizado reclamando el pago de la Factura (Columna B) por el monto (Columna C). Sé amable pero firme."</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-xl font-bold">Nivel Avanzado: Envío Automático</h3>
+                        <p>Herramientas como <strong>Zapier</strong> o las integraciones de <strong>Microsoft Copilot</strong> permiten que, una vez redactado, el correo se envíe solo o quede en la bandeja de "Borradores" listo para que le des el visto bueno.</p>
+                        <p class="mt-2 italic text-emerald-400 text-sm"><strong>Nota de Seguridad:</strong> Al principio, siempre automatiza hacia "Borradores". Revisa antes de enviar hasta que confíes en el "robot".</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-proactivo" class="view-section">
+                <h2 class="section-title">Agentes Proactivos: El Caso "Matafuegos"</h2>
+                <p class="section-subtitle">
+                    Fernando mencionó en clase el ejemplo de anticiparse a los problemas. Esto es pasar de reactivo a proactivo.
+                </p>
+                <div class="info-card">
+                    <h3>La Lógica del "Robot Previsor"</h3>
+                    <p>Imagina un Excel donde tienes las fechas de vencimiento de los matafuegos de tus clientes (o las licencias de conducir de los choferes de Grupo HER).</p>
+                    <div class="mt-4 border-l-4 border-emerald-500 pl-4">
+                        <p class="font-bold text-white">El Flujo Automatizado:</p>
+                        <ol class="list-decimal list-inside mt-2 space-y-2">
+                            <li><strong>Disparador Temporal:</strong> El robot revisa el Excel todos los días.</li>
+                            <li><strong>Condición:</strong> "Si la fecha de vencimiento es en 15 días..."</li>
+                            <li><strong>Acción:</strong> "...manda un WhatsApp automático al chofer/cliente: 'Hola [Nombre], recuerda que tu matafuegos vence el [Fecha]. Avísanos para coordinar la recarga'."</li>
+                        </ol>
+                    </div>
+                    <p class="mt-4">Esto se puede aplicar a: Vencimientos de Seguros, Carnets de Conducir, Revisiones Técnicas, Contratos de Alquiler.</p>
+                </div>
+            </section>
+
+            <section id="view-integracion" class="view-section">
+                <h2 class="section-title">Estrategia de Integración</h2>
+                <p class="section-subtitle">
+                    ¿Cómo empezamos sin romper nada? Aquí hay una hoja de ruta para integrar estas herramientas en el día a día de Grupo HER.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="info-card border-emerald-500 border-t-4">
+                        <h3 class="text-center">Paso 1: Identificar</h3>
+                        <p class="text-center text-sm">Busca tareas que cumplan la regla de las 3 R: <strong>Repetitivas, Reglas fijas, Rígidas</strong>. Ej: Cargar facturas, enviar recordatorios.</p>
+                    </div>
+                    <div class="info-card border-emerald-500 border-t-4">
+                        <h3 class="text-center">Paso 2: Estandarizar</h3>
+                        <p class="text-center text-sm">Antes de automatizar, ordena. Si el Excel es un caos, el robot fallará. Define nombres de columnas y formatos de fecha.</p>
+                    </div>
+                    <div class="info-card border-emerald-500 border-t-4">
+                        <h3 class="text-center">Paso 3: Automatizar</h3>
+                        <p class="text-center text-sm">Empieza con herramientas "No-Code" (Zapier) o asistentes de IA (Copilot). Automatiza primero la redacción, luego el envío.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-scraping" class="view-section">
+                <h2 class="section-title">Búsqueda Web y Alertas (El Caso de Carina)</h2>
+                <p class="section-subtitle">
+                    Carina consultó sobre automatizar la agenda de vencimientos impositivos (AFIP/ATER), que hoy se cargan manualmente.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>El Problema</h3>
+                        <p>Entrar todos los meses a la página de Errepar o AFIP, buscar el calendario, anotar las fechas en Outlook manualmente. Es propenso a error humano.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>La Solución (Agente de Búsqueda)</h3>
+                        <p>Podemos usar herramientas como <strong>Perplexity</strong> o agentes de <strong>GPT</strong> conectados a la web.</p>
+                        <p class="mt-3 text-sm italic text-emerald-300"><strong>Prompt Ejemplo:</strong> "Busca el calendario de vencimientos impositivos de AFIP para Diciembre 2025. Identifica las fechas para IVA, Ganancias y 931. Genera un archivo .csv que pueda importar directamente a mi Calendario de Google/Outlook."</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-ejercicios-m3" class="view-section">
+                <h2 class="section-title">Ejercicios Prácticos (Módulo 3)</h2>
+                <p class="section-subtitle">
+                    10 Desafíos para poner a prueba tu lógica de automatización y diseño de prompts.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="info-card">
+                        <h3>1. Redacción Masiva (Turismo)</h3>
+                        <p><strong>Escenario:</strong> Tienes que promocionar "Carlos Paz". Necesitas dos correos: uno para "Jóvenes" (fiesta/precio) y otro para "Adultos" (confort/seguridad).</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">"Actúa como experto en marketing. Redacta dos correos para 'Carlos Paz Fin de Semana':<br>1. Target Jóvenes: Informal, emojis, foco en boliches y precio barato.<br>2. Target Adultos: Formal, foco en seguridad, bus cama y gastronomía."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>2. Lógica del "Robot Matafuegos"</h3>
+                        <p><strong>Escenario:</strong> Diseña el flujo para avisar vencimientos de seguros. Define: Disparador, Condición y Acción.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <ul class="list-disc list-inside text-sm">
+                                <li><strong>Disparador:</strong> Cada lunes 09:00 AM.</li>
+                                <li><strong>Condición:</strong> Si "Fecha Vencimiento" < HOY + 30 días.</li>
+                                <li><strong>Acción:</strong> Enviar mail al Responsable de Seguros con la lista.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>3. Calendario Impositivo (Web)</h3>
+                        <p><strong>Escenario:</strong> Obtener feriados 2025 para logística en formato CSV para importar a Outlook.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">Prompt: "Busca el calendario oficial de feriados Argentina 2025. Crea una tabla CSV con columnas: 'Asunto' (Nombre feriado), 'Fecha', 'Todo el día' (TRUE). Formato compatible con Outlook Calendar."</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>4. Atención al Cliente (WhatsApp)</h3>
+                        <p><strong>Escenario:</strong> Quieres que una IA responda "¿A qué hora sale el bus?" basándose SOLO en tu PDF de horarios.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">Sube el PDF y configura: "Eres el asistente de Grupo HER. Responde consultas EXCLUSIVAMENTE usando el PDF adjunto. Si no está la info, deriva a boletería."</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>5. Onboarding de Empleados (RRHH)</h3>
+                        <p><strong>Escenario:</strong> Entra un nuevo chofer. Hay que mandarle: Bienvenida, Manual de Seguridad y Formulario de Alta.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm"><strong>Flujo Automatizado:</strong><br>1. Trigger: Nuevo registro en Excel "Empleados".<br>2. Acción: Enviar correo con plantilla "Bienvenida" + Adjuntar "Manual.pdf" + Link a "Formulario Alta".</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>6. Alerta de Stock (Repuestos)</h3>
+                        <p><strong>Escenario:</strong> Tienes un Excel de repuestos. Si el stock de "Filtros de Aceite" baja de 5 unidades, quieres una alerta.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm"><strong>Lógica:</strong><br>1. Trigger: Modificación en celda "Cantidad".<br>2. Condición: Si "Cantidad" < 5.<br>3. Acción: Enviar notificación a Compras "Reponer Filtros Urgente".</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>7. Resumen de Reuniones (Tactiq)</h3>
+                        <p><strong>Escenario:</strong> Tienes la transcripción de una reunión larga. Quieres automatizar el envío de la minuta a los gerentes.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">Prompt: "Analiza esta transcripción. Extrae: 1. Decisiones tomadas. 2. Tareas pendientes (quién y cuándo). Redacta un correo formal para la Gerencia con este resumen."</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>8. Análisis de Sentimiento (Quejas)</h3>
+                        <p><strong>Escenario:</strong> Recibes encuestas de satisfacción. Quieres enterarte al instante si alguien está muy enojado.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm"><strong>Flujo IA:</strong><br>1. Trigger: Nueva respuesta en Formulario.<br>2. Análisis: IA analiza sentimiento del texto.<br>3. Condición: Si Sentimiento = "Muy Negativo".<br>4. Acción: Alerta inmediata SMS al Gerente de Calidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>9. Extracción de Datos (Facturas)</h3>
+                        <p><strong>Escenario:</strong> Recibes 50 facturas en PDF por mail. Quieres pasarlas a un Excel automáticamente.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm">Usa una herramienta de RPA o IA (como 'Julius' o 'Extract'): "Lee cada PDF adjunto. Extrae: CUIT Emisor, Fecha, Número de Comprobante e Importe Total. Agrégalos como una nueva fila en mi Google Sheet."</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>10. Felicitaciones Automáticas</h3>
+                        <p><strong>Escenario:</strong> Quieres saludar a los empleados en su cumpleaños sin tener que revisar la agenda a diario.</p>
+                        <div class="mt-4"><button class="ejercicio-toggle-btn">Ver Solución Propuesta</button></div>
+                        <div class="ejercicio-solucion hidden">
+                            <p class="italic text-sm"><strong>Flujo:</strong><br>1. Base de Datos: Excel con "Nombre" y "Fecha Nacimiento".<br>2. Trigger: Cada día a las 10 AM.<br>3. Condición: Si Hoy = Fecha Nacimiento.<br>4. Acción: Enviar correo/WhatsApp "¡Feliz Cumpleaños [Nombre]!"</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="view-autoevaluacion-m3-vf" class="view-section">
+                <h2 class="section-title">Autoevaluación Completa (V/F)</h2>
+                <p class="section-subtitle">
+                    10 preguntas para validar tus conocimientos sobre automatización.
+                </p>
+                
+                <form id="quiz-form-m3-vf" action="https://formspree.io/f/myzlzlen" method="POST" class="mt-8 space-y-6">
+                    
+                    <div class="quiz-question-card">
+                        <label for="nombre-m3-vf" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre-m3-vf" name="nombre_alumno" class="quiz-input" required>
+                    </div>
+                    <input type="hidden" name="quiz_id" value="Modulo 3 - V/F">
+                    <input type="hidden" id="score-input-vf" name="calificacion_final">
+                    
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. RPA significa "Robotic Process Automation" y se refiere al uso de robots físicos en la oficina.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q1" value="v"> V</label><label><input type="radio" name="m3-q1" value="f" required> F</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. Un "Trigger" es el evento que dispara una automatización.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q2" value="f"> F</label><label><input type="radio" name="m3-q2" value="v" required> V</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. Es seguro enviar correos automatizados directamente a clientes sin revisión previa en la primera prueba.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q3" value="v"> V</label><label><input type="radio" name="m3-q3" value="f" required> F</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. Zapier permite conectar aplicaciones sin saber programar código complejo.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q4" value="f"> F</label><label><input type="radio" name="m3-q4" value="v" required> V</label></div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. "Human-in-the-loop" significa que un humano debe supervisar las decisiones críticas del robot.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q5" value="f"> F</label><label><input type="radio" name="m3-q5" value="v" required> V</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. Un Agente de IA solo puede seguir reglas fijas y no puede "leer" o "entender" un texto.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q6" value="v"> V</label><label><input type="radio" name="m3-q6" value="f" required> F</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. Automatizar la "búsqueda de vencimientos en la web" es un ejemplo de automatización proactiva.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q7" value="f"> F</label><label><input type="radio" name="m3-q7" value="v" required> V</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. Si los datos de origen (Excel) están desordenados, la automatización funcionará perfectamente igual.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q8" value="v"> V</label><label><input type="radio" name="m3-q8" value="f" required> F</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. Tactiq es una herramienta para automatizar el resumen de reuniones virtuales.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q9" value="f"> F</label><label><input type="radio" name="m3-q9" value="v" required> V</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. El "Nivel 3" de autonomía requiere aprobación manual para cada acción.</p>
+                        <div class="quiz-options"><label><input type="radio" name="m3-q10" value="v"> V</label><label><input type="radio" name="m3-q10" value="f" required> F</label></div>
+                    </div>
+
+                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (V/F)</button>
+                </form>
+
+                <div id="quiz-results-m3-vf" class="info-card mt-8 hidden">
+                    <h3 class="text-2xl font-bold text-center"></h3>
+                    <p class="text-6xl font-bold text-center my-4"></p>
+                    <p class="text-center text-lg"></p>
+                    <div class="mt-6 border-t border-slate-600 pt-4 hidden"><h4 class="text-lg font-semibold text-emerald-300">Repasar:</h4><ul class="list-disc list-inside mt-2 space-y-1"></ul></div>
+                </div>
+            </section>
+
+            <section id="view-autoevaluacion-m3-mc" class="view-section">
+                <h2 class="section-title">Autoevaluación Completa (M.C.)</h2>
+                <p class="section-subtitle">
+                    10 preguntas de selección múltiple para expertos en automatización.
+                </p>
+                
+                <form id="quiz-form-m3-mc" action="https://formspree.io/f/meovovav" method="POST" class="mt-8 space-y-6">
+                    
+                    <div class="quiz-question-card">
+                        <label for="nombre-m3-mc" class="quiz-question">Ingresa tu nombre:</label>
+                        <input type="text" id="nombre-m3-mc" name="nombre_alumno" class="quiz-input" required>
+                    </div>
+                    <input type="hidden" name="quiz_id" value="Modulo 3 - M.C.">
+                    <input type="hidden" id="score-input-mc" name="calificacion_final">
+                    
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">1. Diferencia entre RPA tradicional y Agente IA:</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc1" value="a"> RPA es más caro.</label><label><input type="radio" name="mc1" value="b" required> RPA sigue reglas fijas; Agente entiende y decide.</label><label><input type="radio" name="mc1" value="c"> No hay diferencia.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">2. Función del sistema en el caso "Matafuegos":</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc2" value="a"> Comprar matafuegos.</label><label><input type="radio" name="mc2" value="c" required> Alerta proactiva antes del vencimiento.</label><label><input type="radio" name="mc2" value="b"> Cargar factura.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">3. Para generar correos distintos (Jóvenes vs Adultos), el prompt debe:</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc3" value="a"> Ser genérico.</label><label><input type="radio" name="mc3" value="b" required> Especificar Target y tono para cada uno.</label><label><input type="radio" name="mc3" value="c"> Usar mayúsculas.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">4. ¿Para qué sirve exportar vencimientos a CSV?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc4" value="a" required> Importar masivamente al calendario.</label><label><input type="radio" name="mc4" value="b"> Imprimir en papel.</label><label><input type="radio" name="mc4" value="c"> No sirve.</label></div>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">5. ¿Cuál es el primer paso recomendado antes de automatizar un proceso?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc5" value="a"> Comprar el software más caro.</label><label><input type="radio" name="mc5" value="b" required> Estandarizar y ordenar el proceso manual.</label><label><input type="radio" name="mc5" value="c"> Contratar un programador.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">6. ¿Qué herramienta usarías para conectar Gmail con Slack sin saber programar?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc6" value="a"> Python.</label><label><input type="radio" name="mc6" value="b" required> Zapier.</label><label><input type="radio" name="mc6" value="c"> Excel.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">7. Si automatizas una respuesta de atención al cliente, ¿qué recurso es vital para evitar alucinaciones?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc7" value="a" required> Una base de conocimiento (PDF/Web) fiable.</label><label><input type="radio" name="mc7" value="b"> Dejar que la IA invente.</label><label><input type="radio" name="mc7" value="c"> Usar muchos emojis.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">8. ¿Qué es una automatización "Nivel 2" (Copiloto)?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc8" value="a"> El robot hace todo solo.</label><label><input type="radio" name="mc8" value="b" required> El robot prepara el trabajo, el humano aprueba.</label><label><input type="radio" name="mc8" value="c"> El humano hace todo.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">9. En el análisis de sentimiento, un "Trigger" negativo debería disparar:</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc9" value="a"> Un like automático.</label><label><input type="radio" name="mc9" value="b" required> Una alerta inmediata a un gerente.</label><label><input type="radio" name="mc9" value="c"> Borrar el comentario.</label></div>
+                    </div>
+                    <div class="quiz-question-card">
+                        <p class="quiz-question">10. ¿Qué principio se aplica si la automatización falla porque el Excel de origen tenía errores?</p>
+                        <div class="quiz-options-vertical"><label><input type="radio" name="mc10" value="a"> Ley de Murphy.</label><label><input type="radio" name="mc10" value="b" required> GIGO (Basura entra, Basura sale).</label><label><input type="radio" name="mc10" value="c"> Error de Capa 8.</label></div>
+                    </div>
+
+                    <button type="submit" class="ejercicio-toggle-btn w-full">Finalizar Autoevaluación (M.C.)</button>
+                </form>
+
+                <div id="quiz-results-m3-mc" class="info-card mt-8 hidden">
+                    <h3 class="text-2xl font-bold text-center"></h3>
+                    <p class="text-6xl font-bold text-center my-4"></p>
+                    <p class="text-center text-lg"></p>
+                    <div class="mt-6 border-t border-slate-600 pt-4 hidden"><h4 class="text-lg font-semibold text-emerald-300">Repasar:</h4><ul class="list-disc list-inside mt-2 space-y-1"></ul></div>
+                </div>
+            </section>
+
+        </main>
+        
+    </div> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Lógica de Navegación Activa ---
+            try {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('#mainNav a');
+                const scrollArea = document.getElementById('content-scroll-area');
+
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }, {
+                    root: scrollArea, 
+                    rootMargin: '0px 0px -50% 0px', 
+                    threshold: 0
+                });
+
+                sections.forEach(section => observer.observe(section));
+                if (navLinks.length > 0) navLinks[0].classList.add('active');
+
+            } catch (e) { console.error("Error observer:", e); }
+
+            // --- 2. Botones de Solución ---
+            try {
+                document.querySelectorAll('.ejercicio-toggle-btn').forEach(button => {
+                    if(button.getAttribute('type') === 'submit') return;
+                    const card = button.closest('.info-card');
+                    if (!card) return;
+                    const solucion = card.querySelector('.ejercicio-solucion');
+                    if (solucion) {
+                        const originalText = button.textContent;
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            solucion.classList.toggle('hidden');
+                            button.textContent = solucion.classList.contains('hidden') ? originalText : 'Ocultar Solución';
+                        });
+                    }
+                });
+            } catch (e) { console.error("Error botones:", e); }
+
+            // --- 3. Lógica de Quizzes (AJAX + Formspree) ---
+            
+            function handleQuizSubmit(formId, resultsId, answers, feedbackMap, scoreInputId) {
+                const form = document.getElementById(formId);
+                const resultsContainer = document.getElementById(resultsId);
+                
+                if (!form || !resultsContainer) return;
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Prevenir redirección estándar
+                    
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    const totalQuestions = Object.keys(answers).length;
+                    let score = 0;
+                    let incorrectFeedback = [];
+
+                    for (const [key, correctAnswer] of Object.entries(answers)) {
+                        if (data[key] === correctAnswer) {
+                            score++;
+                        } else if (feedbackMap[key]) {
+                            incorrectFeedback.push(feedbackMap[key]);
+                        }
+                    }
+
+                    const percentage = Math.round((score / totalQuestions) * 100);
+                    const studentName = data.nombre_alumno || "Estudiante";
+
+                    // --- Actualizar UI Local ---
+                    const titleEl = resultsContainer.querySelector('h3'); 
+                    const scoreEl = resultsContainer.querySelector('p:nth-of-type(1)'); 
+                    const msgEl = resultsContainer.querySelector('p:nth-of-type(2)');   
+
+                    if(titleEl) titleEl.textContent = `Resultado para ${studentName}`;
+                    if(scoreEl) {
+                        scoreEl.textContent = `${percentage}%`;
+                        scoreEl.style.color = percentage === 100 ? '#10b981' : (percentage >= 70 ? '#eab308' : '#ef4444');
+                    }
+                    
+                    let message = percentage >= 90 ? "¡Excelente! Experto en automatización." : 
+                                  (percentage >= 70 ? "¡Muy bien! Conceptos sólidos." : 
+                                  "Buen intento. Revisa los conceptos clave.");
+                    
+                    if(msgEl) msgEl.textContent = message;
+
+                    const feedbackContainer = resultsContainer.querySelector('div');
+                    const feedbackList = resultsContainer.querySelector('ul');
+                    
+                    if (incorrectFeedback.length > 0 && feedbackList && feedbackContainer) {
+                        feedbackList.innerHTML = '';
+                        [...new Set(incorrectFeedback)].forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item;
+                            feedbackList.appendChild(li);
+                        });
+                        feedbackContainer.classList.remove('hidden');
+                    } else if (feedbackContainer) {
+                        feedbackContainer.classList.add('hidden');
+                    }
+
+                    form.classList.add('hidden');
+                    resultsContainer.classList.remove('hidden');
+                    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // --- Enviar a Formspree (AJAX) ---
+                    // Agregamos el score al FormData antes de enviar
+                    formData.append('score_calculado', `${percentage}%`);
+                    
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            console.log("Formulario enviado con éxito a Formspree");
+                        } else {
+                            console.error("Error al enviar a Formspree");
+                        }
+                    }).catch(error => {
+                        console.error("Error de red:", error);
+                    });
+                });
+            }
+
+            // Respuestas V/F (10 Preguntas)
+            const answersM3VF = { 
+                'm3-q1': 'f', 'm3-q2': 'v', 'm3-q3': 'f', 'm3-q4': 'v',
+                'm3-q5': 'v', 'm3-q6': 'f', 'm3-q7': 'v', 'm3-q8': 'f',
+                'm3-q9': 'v', 'm3-q10': 'f'
+            };
+            const feedbackM3VF = {
+                'm3-q1': 'RPA es software, no hardware.',
+                'm3-q5': 'Human-in-the-loop es clave para seguridad.',
+                'm3-q6': 'Los Agentes pueden interpretar contexto.',
+                'm3-q8': 'Si los datos están sucios, la automatización falla (GIGO).',
+                'm3-q10': 'Nivel 3 es Piloto Automático (ejecuta solo).'
+            };
+            handleQuizSubmit('quiz-form-m3-vf', 'quiz-results-m3-vf', answersM3VF, feedbackM3VF, 'score-input-vf');
+
+            // Respuestas MC (10 Preguntas)
+            const answersM3MC = { 
+                'mc1': 'b', 'mc2': 'c', 'mc3': 'b', 'mc4': 'a',
+                'mc5': 'b', 'mc6': 'b', 'mc7': 'a', 'mc8': 'b',
+                'mc9': 'b', 'mc10': 'b'
+            };
+            const feedbackM3MC = {
+                'mc1': 'Agentes tienen capacidad cognitiva.',
+                'mc5': 'Primero ordena (estandariza), luego automatiza.',
+                'mc7': 'La base de conocimiento evita invenciones de la IA.',
+                'mc10': 'Garbage In, Garbage Out.'
+            };
+            handleQuizSubmit('quiz-form-m3-mc', 'quiz-results-m3-mc', answersM3MC, feedbackM3MC, 'score-input-mc');
+
+        });
+    </script>
+
+</body>
+</html>
