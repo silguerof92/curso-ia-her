@@ -2,11 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso IA Aplicada - RAMUX</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ramux: '#F76B1C',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         /* === FONDO FIJO === */
@@ -17,6 +34,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            background-color: #0f172a; 
             background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 40%, #020617 100%);
             background-size: cover;
         }
@@ -26,18 +44,18 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
             color: #e2e8f0;
-            overflow-x: hidden;
+            overflow-x: hidden; 
         }
 
         /* === EFECTOS GLASSMORPHISM === */
         .glass-card {
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(30, 41, 59, 0.7); 
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .glass-card:hover {
@@ -46,18 +64,18 @@
             border-color: rgba(14, 165, 233, 0.4);
         }
 
-        /* Navbar específica con glassmorphism más suave */
+        /* Navbar Glass */
         .glass-nav {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9); 
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Tarjeta Deshabilitada (Módulos futuros) */
+        /* Tarjeta Deshabilitada */
         .glass-card-disabled {
             background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             opacity: 0.75;
         }
@@ -67,7 +85,7 @@
             background: linear-gradient(to right, #f8fafc, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            color: #f8fafc; 
         }
 
         /* Iconos Sociales */
@@ -76,51 +94,33 @@
             color: #94a3b8;
         }
         .social-icon:hover {
-            color: #38bdf8; /* Sky-400 */
+            color: #38bdf8;
             transform: scale(1.1);
-        }
-
-        /* Logo Ramux en el Header */
-        .ramux-header-logo {
-            font-family: 'Inter', sans-serif; /* Usamos Inter como base, pero con los colores específicos */
-            font-weight: 800; /* Extra bold */
-            color: #E2E8F0; /* Color principal del texto, casi blanco */
-            letter-spacing: 0.05em; /* Ajuste de espacio entre letras */
-        }
-        .ramux-header-logo-dot {
-            color: #F76B1C; /* Naranja específico del logo */
-        }
-        .ramux-slogan {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400; /* Regular */
-            color: #94A3B8; /* Gris claro para el slogan */
-            font-size: 0.75rem; /* Pequeño */
-            letter-spacing: 0.1em; /* Más espacio para el slogan */
-            text-transform: uppercase;
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-sky-500/30">
 
     <div class="fixed-background"></div>
 
-    <div class="min-h-screen flex flex-col justify-between pt-24">
-        <header class="fixed top-0 left-0 w-full z-50 glass-nav">
-            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+    <div class="min-h-screen flex flex-col justify-between pt-[13rem] md:pt-28 pb-10">
+        
+        <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
                 
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/3 justify-center md:justify-start">
+                <div class="flex flex-col items-center md:items-start w-full md:w-1/3 justify-center md:justify-start order-1 md:order-1">
                     <span class="font-semibold text-slate-200 tracking-wide text-sm">Fernando Silguero</span>
                     <span class="text-[10px] text-slate-400 uppercase tracking-widest font-medium mt-0.5">CEO & Founder</span>
                 </div>
 
-                <div class="flex flex-col items-center justify-center w-full md:w-1/3 text-center group">
-                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="flex items-center gap-1.5 mb-1">
-                        <span class="ramux-header-logo text-2xl">RAMUX<span class="ramux-header-logo-dot">.</span></span>
+                <div class="flex flex-col items-center justify-center w-full md:w-1/3 text-center group order-2 md:order-2 my-2 md:my-0">
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="flex items-center gap-1.5 mb-1 hover:opacity-80 transition-opacity">
+                        <span class="font-extrabold text-2xl text-slate-100 tracking-wide">RAMUX<span class="text-ramux">.</span></span>
                     </a>
-                    <p class="ramux-slogan">Comunicación – Gestión – Desarrollo</p>
+                    <p class="text-xs text-slate-400 tracking-widest uppercase">Comunicación – Gestión – Desarrollo</p>
                 </div>
 
-                <div class="flex items-center justify-center md:justify-end gap-5 w-full md:w-1/3">
+                <div class="flex items-center justify-center md:justify-end gap-6 w-full md:w-1/3 order-3 md:order-3">
                     <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" title="WhatsApp" class="social-icon text-xl">
                         <i class="fab fa-whatsapp"></i>
                     </a>
@@ -138,95 +138,105 @@
             </div>
         </header>
 
-        <main class="flex-grow flex flex-col items-center px-4 py-6 text-center max-w-6xl mx-auto w-full">
+        <main class="flex-grow flex flex-col items-center px-4 text-center max-w-6xl mx-auto w-full z-10">
             
-            <span class="px-3 py-1 rounded-full bg-sky-900/30 border border-sky-700/50 text-sky-300 text-sm font-medium mb-6 animate-pulse">
-                Programa de Capacitación Interna 2025
-            </span>
+            <div class="inline-block animate-pulse mb-6">
+                <span class="px-4 py-1.5 rounded-full bg-sky-900/40 border border-sky-500/30 text-sky-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                    Programa de Capacitación Interna 2025
+                </span>
+            </div>
 
-            <h2 class="hero-title text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
-                Inteligencia Artificial <br> Aplicada a la Gestión
+            <h2 class="hero-title text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-lg">
+                Inteligencia Artificial <br class="hidden md:block"> Aplicada a la Gestión
             </h2>
             
-            <p class="text-lg text-slate-400 max-w-2xl mb-12 leading-relaxed">
-                Optimización de procesos, análisis de datos y automatización para transformar la productividad diaria.
+            <p class="text-lg text-slate-300 max-w-2xl mb-12 leading-relaxed font-light">
+                Optimización de procesos, análisis de datos y automatización para transformar la productividad diaria de <span class="font-semibold text-white">RAMUX</span>.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left mb-8">
                 
-                <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-brain text-8xl text-sky-400"></i>
                     </div>
-                    <div class="relative z-10">
-                        <span class="text-sky-400 font-bold text-xs uppercase tracking-wider border border-sky-400/30 px-2 py-1 rounded bg-sky-400/10">Módulo 1</span>
-                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-sky-300 transition-colors">Fundamentos de IA</h3>
-                        <p class="text-slate-400 text-sm mb-6 h-12">
-                            Introducción a IA Generativa, Prompt Engineering y redacción automática de documentos.
-                        </p>
-                        <div class="flex items-center gap-2 text-sky-300 font-semibold text-sm group-hover:gap-4 transition-all">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div>
+                            <span class="text-sky-400 font-bold text-[10px] uppercase tracking-wider border border-sky-400/30 px-2 py-1 rounded bg-sky-400/10">Módulo 1</span>
+                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-sky-300 transition-colors">Fundamentos de IA</h3>
+                            <p class="text-slate-400 text-sm mb-6">
+                                Introducción a IA Generativa, Prompt Engineering y redacción automática de documentos.
+                            </p>
+                        </div>
+                        <div class="mt-auto flex items-center gap-2 text-sky-300 font-semibold text-sm group-hover:gap-4 transition-all">
                             Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
                 </a>
 
-                <a href="modulo2.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <a href="modulo2.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-chart-pie text-8xl text-purple-400"></i>
                     </div>
-                    <div class="relative z-10">
-                        <span class="text-purple-400 font-bold text-xs uppercase tracking-wider border border-purple-400/30 px-2 py-1 rounded bg-purple-400/10">Módulo 2</span>
-                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-purple-300 transition-colors">Inteligencia de Negocios</h3>
-                        <p class="text-slate-400 text-sm mb-6 h-12">
-                            Extracción de datos de Tango/Excel, limpieza de CSVs y creación de reportes dinámicos.
-                        </p>
-                        <div class="flex items-center gap-2 text-purple-300 font-semibold text-sm group-hover:gap-4 transition-all">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div>
+                            <span class="text-purple-400 font-bold text-[10px] uppercase tracking-wider border border-purple-400/30 px-2 py-1 rounded bg-purple-400/10">Módulo 2</span>
+                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-purple-300 transition-colors">Inteligencia de Negocios</h3>
+                            <p class="text-slate-400 text-sm mb-6">
+                                Extracción de datos de Tango/Excel, limpieza de CSVs y creación de reportes dinámicos.
+                            </p>
+                        </div>
+                        <div class="mt-auto flex items-center gap-2 text-purple-300 font-semibold text-sm group-hover:gap-4 transition-all">
                             Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
                 </a>
 
-                <a href="modulo3.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <a href="modulo3.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-robot text-8xl text-emerald-400"></i>
                     </div>
-                    <div class="relative z-10">
-                        <span class="text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-400/30 px-2 py-1 rounded bg-emerald-400/10">Módulo 3</span>
-                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-emerald-300 transition-colors">Automatización de Tareas</h3>
-                        <p class="text-slate-400 text-sm mb-6 h-12">
-                            Programación de correos, generación automática de documentos y productividad.
-                        </p>
-                        <div class="flex items-center gap-2 text-emerald-300 font-semibold text-sm group-hover:gap-4 transition-all">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div>
+                            <span class="text-emerald-400 font-bold text-[10px] uppercase tracking-wider border border-emerald-400/30 px-2 py-1 rounded bg-emerald-400/10">Módulo 3</span>
+                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-emerald-300 transition-colors">Automatización de Tareas</h3>
+                            <p class="text-slate-400 text-sm mb-6">
+                                Programación de correos, generación automática de documentos y productividad.
+                            </p>
+                        </div>
+                        <div class="mt-auto flex items-center gap-2 text-emerald-300 font-semibold text-sm group-hover:gap-4 transition-all">
                             Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
                 </a>
 
-                <div class="glass-card-disabled p-8 rounded-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-5">
-                        <i class="fa-solid fa-wand-magic-sparkles text-8xl text-slate-400"></i>
+                <a href="modulo4.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
+                        <i class="fa-solid fa-wand-magic-sparkles text-8xl text-orange-400"></i>
                     </div>
-                    <div class="relative z-10">
-                        <span class="text-slate-500 font-bold text-xs uppercase tracking-wider border border-slate-600 px-2 py-1 rounded">Módulo 4</span>
-                        <h3 class="text-xl font-bold text-slate-300 mt-4 mb-2">Prompt Engineering</h3>
-                        <p class="text-slate-500 text-sm mb-6 h-10">
-                            Técnicas avanzadas de afinamiento, seguridad de datos y resolución de casos reales.
-                        </p>
-                        <span class="text-slate-500 text-xs font-medium flex items-center gap-2">
-                            <i class="fa-solid fa-lock"></i> Próximamente
-                        </span>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div>
+                            <span class="text-orange-400 font-bold text-[10px] uppercase tracking-wider border border-orange-400/30 px-2 py-1 rounded bg-orange-400/10">Módulo 4</span>
+                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-orange-300 transition-colors">Prompt Engineering</h3>
+                            <p class="text-slate-400 text-sm mb-6">
+                                Técnicas avanzadas, seguridad de datos y resolución de conflictos complejos con IA.
+                            </p>
+                        </div>
+                        <div class="mt-auto flex items-center gap-2 text-orange-400 font-semibold text-sm group-hover:gap-4 transition-all">
+                            Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
             </div>
 
-            </main>
+        </main>
 
-        <footer class="w-full p-8 text-center border-t border-slate-800/50 bg-slate-900/50 mt-8">
+        <footer class="w-full p-6 text-center border-t border-slate-800/50 bg-slate-900/50 relative z-10">
             <p class="text-sm font-medium text-slate-300 mb-1">Escuela de Gestión y Negocios</p>
             <p class="text-xs text-slate-500">Facultad de Cs. Económicas - UNER</p>
             <div class="mt-4 text-xs text-slate-600">
-                Desarrollado con <span class="text-sky-500">❤</span> por Ramux. © Ramux todos los derechos reservados.
+                Desarrollado con <span class="text-sky-500 animate-pulse">❤</span> por Ramux.
             </div>
         </footer>
 
@@ -234,4 +244,3 @@
 
 </body>
 </html>
-```http://googleusercontent.com/image_generation_content/0
