@@ -39,7 +39,7 @@
             font-weight: 600; 
             transition: all 0.2s;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem; 
         }
         .nav-link:hover { background-color: #334155; color: #ffffff; }
         .nav-link.active { background-color: #f97316; color: #ffffff; } /* Naranja RAMUX */
@@ -75,6 +75,20 @@
         .info-card h3 { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.75rem; }
         .info-card p, .info-card li { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
         
+        /* Diagramas / Visuales */
+        .diagram-box {
+            background-color: #0f172a;
+            border: 1px dashed #475569;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .flow-arrow { color: #f97316; margin: 0 0.5rem; }
+
         /* Código */
         .code-block {
             background-color: #0f172a;
@@ -143,9 +157,20 @@
                     <li><a href="#view-automation-dev" class="nav-link text-blue-300 font-bold">9. Estrategias de Automatización</a></li>
                     <li><a href="#view-auto-new" class="nav-link text-blue-300">10. Nuevos Ejemplos</a></li>
 
+                    <li><a href="#view-tone" class="nav-link text-purple-300">11. Tono y Voz de Marca</a></li>
+                    <li><a href="#view-crisis" class="nav-link text-purple-300">12. Manejo de Crisis</a></li>
+                    <li><a href="#view-docs" class="nav-link text-purple-300">13. Documentación Prompts</a></li>
+                    
+                    <li><a href="#view-multimodal" class="nav-link text-pink-300">14. Prompting Multimodal</a></li>
+                    <li><a href="#view-eval" class="nav-link text-pink-300">15. Evaluación y Métricas</a></li>
+
                     <li class="border-t border-slate-700 my-2"></li>
                     
-                    <li><a href="#view-news" class="nav-link">Novedades del Sector</a></li>
+                    <li><a href="#view-repaso" class="nav-link text-green-300"><i class="fas fa-sync-alt mr-2"></i>Repaso Integral (M1-M4)</a></li>
+
+                    <li class="border-t border-slate-700 my-2"></li>
+                    
+                    <li><a href="#view-resources" class="nav-link">Dónde Buscar y Qué Usar</a></li>
                     <li><a href="#view-ejercicios" class="nav-link">Ejercicios (10)</a></li>
                     <li><a href="#view-quiz-vf" class="nav-link">Autoevaluación (V/F)</a></li>
                     <li><a href="#view-quiz-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
@@ -190,24 +215,23 @@
                     <div class="info-card">
                         <h3 class="text-orange-400">Zero-Shot (Sin ejemplos)</h3>
                         <p class="mb-4">
-                            Es la técnica más básica: simplemente le das la instrucción al modelo sin contexto previo. Funciona bien para tareas donde el modelo ya tiene un entrenamiento masivo, como resumir textos conocidos, traducciones simples o preguntas de cultura general.
+                            Útil para consultas rápidas de conocimiento general o redacción creativa simple. No le damos contexto previo, confiamos en su entrenamiento base.
                         </p>
                         <p class="italic text-slate-400 border-l-2 border-slate-500 pl-2">
-                            Prompt: "Escribe una lista de los 5 destinos turísticos más populares de Argentina."
+                            Prompt: "Escribe un mensaje de bienvenida para el estado de WhatsApp de la empresa informando que abrimos la venta de temporada verano."
                         </p>
                     </div>
                     <div class="info-card">
                         <h3 class="text-orange-400">Few-Shot (Aprendizaje con Ejemplos)</h3>
                         <p class="mb-4">
-                            Aquí es donde comienza la verdadera "ingeniería". Los modelos son excelentes detectores de patrones. Si le das 3 ejemplos de cómo quieres que responda, el modelo copiará ese estilo, formato y lógica para la nueva pregunta. Es vital para clasificar correos o estructurar datos de manera específica.
+                            Clave para estandarizar la atención al cliente en ventanilla digital. Le enseñamos a la IA cómo respondemos en Grupo HER dándole ejemplos claros.
                         </p>
                         <div class="bg-slate-800 p-4 rounded">
                             <p class="text-sm font-mono text-slate-300">
-                                Prompt:<br>
-                                "Analiza el tono del cliente."<br>
-                                Mensaje: 'Gracias, todo perfecto' -> Tono: Feliz<br>
-                                Mensaje: 'El bus llegó tarde' -> Tono: Queja<br>
-                                Mensaje: 'El aire acondicionado goteaba' -> Tono: [COMPLETAR]
+                                Prompt: "Clasifica el mensaje del pasajero."<br>
+                                Mensaje: '¿A qué hora sale el de las 10?' -> Tipo: Consulta Horario<br>
+                                Mensaje: 'El asiento estaba roto' -> Tipo: Reclamo Mantenimiento<br>
+                                Mensaje: 'Me cobraron dos veces' -> Tipo: [COMPLETAR]
                             </p>
                         </div>
                     </div>
@@ -217,25 +241,35 @@
             <section id="view-structure" class="view-section">
                 <h2 class="section-title">2. Estructura: System, Role & Context</h2>
                 <p class="section-subtitle">
-                    Para obtener resultados de nivel empresarial, un prompt debe tener una arquitectura definida.
+                    Configurando el "Rol" perfecto para cada área de la empresa. La arquitectura de un prompt define la calidad de la respuesta.
                 </p>
+                
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 mb-6 flex flex-col md:flex-row justify-center items-center gap-4 text-sm font-mono">
+                    <div class="bg-blue-900/40 p-3 rounded border border-blue-500 text-blue-200">System (Rol)</div>
+                    <i class="fas fa-arrow-right text-slate-500 rotate-90 md:rotate-0"></i>
+                    <div class="bg-green-900/40 p-3 rounded border border-green-500 text-green-200">Context (Datos)</div>
+                    <i class="fas fa-arrow-right text-slate-500 rotate-90 md:rotate-0"></i>
+                    <div class="bg-orange-900/40 p-3 rounded border border-orange-500 text-orange-200">User (Tarea)</div>
+                </div>
+
                 <div class="grid grid-cols-1 gap-4">
                     <div class="info-card border-l-4 border-blue-500">
                         <h3>System Prompting (El Marco)</h3>
                         <p>
-                            Define el propósito general y las restricciones inquebrantables. Es la "constitución" del chat. En herramientas avanzadas, se configura en un campo separado del chat. Le dice a la IA quién es y qué límites tiene. Por ejemplo: "Eres un asistente útil que SOLO responde en formato JSON".
+                            Para el equipo de Administración: "Eres un asistente contable preciso. Tus respuestas deben ser breves, formales y siempre citar la normativa vigente si corresponde."
                         </p>
                     </div>
                     <div class="info-card border-l-4 border-purple-500">
                         <h3>Role Prompting (La Persona)</h3>
                         <p>
-                            Asignar un "Rol" cambia todo el sesgo cognitivo de la respuesta. Si le pides a la IA que actúe como un "Experto en Marketing", usará palabras persuasivas. Si le pides que sea un "Auditor Contable", será analítico y frío. Para Grupo HER, usar roles como "Agente de Viajes Senior" o "Experto en Logística" mejora la calidad.
+                            <strong>Caso Turismo:</strong> "Actúa como un Agente de Viajes experto. Tu tono es cálido, invitador y enfocado en la experiencia familiar."<br>
+                            <strong>Caso Taller:</strong> "Actúa como un Jefe de Mantenimiento. Tus informes deben ser técnicos, directos y priorizar la seguridad vehicular."
                         </p>
                     </div>
                     <div class="info-card border-l-4 border-green-500">
                         <h3>Contextual Prompting (La Situación)</h3>
                         <p>
-                            La IA no sabe qué día es ni dónde estás, a menos que se lo digas. El contexto incluye: fecha actual, ubicación, restricciones vigentes (ej. "Hay paro de transporte"), y el historial del cliente. Sin contexto, la respuesta es genérica e inútil.
+                            "El cliente está viajando desde Paraná a Córdoba en fin de semana largo. Hay demora en el túnel subfluvial. Redacta una respuesta considerando este contexto de estrés."
                         </p>
                     </div>
                 </div>
@@ -244,21 +278,29 @@
             <section id="view-reasoning" class="view-section">
                 <h2 class="section-title">3. Técnicas de Razonamiento (CoT)</h2>
                 <p class="section-subtitle">
-                    Cómo evitar que la IA "alucine" respuestas rápidas e incorrectas en tareas lógicas.
+                    Evitando errores en cálculos de presupuestos y logística mediante el pensamiento paso a paso.
                 </p>
                 <div class="info-card">
                     <h3>Chain of Thought (Cadena de Pensamiento)</h3>
                     <p class="mb-4">
-                        Los modelos de lenguaje predicen la siguiente palabra, no "piensan". Por eso fallan en matemáticas simples (ej. "2+2"). La técnica <strong>Chain of Thought</strong> consiste en obligar al modelo a escribir los pasos intermedios. Al escribir el paso a paso, el modelo se "auto-corrige".
+                        Ideal para cuando hay que pasar un presupuesto complejo a un contingente.
                     </p>
+                    
+                    <div class="diagram-box mb-4">
+                        INPUT <i class="fas fa-long-arrow-alt-right flow-arrow"></i> 
+                        <span class="text-orange-400">[Paso 1: Cálculo Km]</span> <i class="fas fa-long-arrow-alt-right flow-arrow"></i> 
+                        <span class="text-orange-400">[Paso 2: Viáticos]</span> <i class="fas fa-long-arrow-alt-right flow-arrow"></i> 
+                        OUTPUT FINAL
+                    </div>
+
                     <div class="bg-slate-800 p-3 rounded border border-slate-700 mb-4">
                         <p class="text-sm italic text-slate-300">
-                            <strong>Instrucción Clave:</strong> "Piensa paso a paso. Antes de darme el total del presupuesto, desglosa el costo de combustible, choferes y peajes por separado."
+                            <strong>Prompt CoT:</strong> "Calcula el presupuesto para un viaje escolar a Carlos Paz. Piensa paso a paso: 1. Costo de combustible por km. 2. Viáticos de 2 choferes (según convenio). 3. Peajes estimados. 4. Margen de ganancia. Dame el desglose antes del total."
                         </p>
                     </div>
                     <h4 class="text-orange-300 font-bold">Step-Back Prompting</h4>
                     <p>
-                        Esta técnica pide a la IA que "dé un paso atrás" y primero recuerde los principios teóricos generales antes de resolver el problema específico. Ejemplo: "Primero explica las leyes de tránsito sobre horas de descanso de choferes. Luego, analiza si este diagrama de viaje es legal".
+                        Antes de responder un reclamo legal, pedimos: "Primero resume las obligaciones de la empresa según la ley de transporte de pasajeros ante la pérdida de equipaje. Luego, redacta la respuesta al cliente basada en esos principios."
                     </p>
                 </div>
             </section>
@@ -266,46 +308,54 @@
             <section id="view-complex" class="view-section">
                 <h2 class="section-title">4. Resolución Compleja: ToT y ReAct</h2>
                 <p class="section-subtitle">
-                    Estrategias para cuando no hay una única respuesta correcta.
+                    Toma de decisiones estratégicas para Gerencia y Logística.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
                         <h3 class="text-orange-400">Tree of Thoughts (ToT)</h3>
-                        <p class="mb-3">
-                            Imagina que la IA crea un "árbol" de decisiones. Genera 3 posibles soluciones (ramas), evalúa los pros y contras de cada una, descarta las malas y sigue desarrollando la mejor.
+                        <div class="text-center my-3 text-xs font-mono text-slate-500">
+                            <i class="fas fa-sitemap text-2xl text-orange-500 mb-1"></i><br>
+                            Opción A | Opción B | Opción C
+                        </div>
+                        <p class="text-sm text-slate-400 mb-2">
+                            <strong>Escenario:</strong> Un piquete corta la ruta principal.
                         </p>
-                        <p class="text-sm text-slate-400">
-                            <strong>Uso:</strong> Planificación de rutas nuevas. "Genera 3 itinerarios posibles. Evalúa costo, seguridad y tiempo. Elige el mejor".
+                        <p class="text-sm">
+                            <strong>Prompt:</strong> "Genera 3 alternativas de desvío para el servicio de las 18hs. Evalúa para cada una: Tiempo extra, estado del camino (tierra/asfalto) y seguridad nocturna. Recomienda la mejor opción."
                         </p>
                     </div>
                     <div class="info-card">
                         <h3 class="text-orange-400">ReAct (Reason & Act)</h3>
-                        <p class="mb-3">
-                            Combina el razonamiento verbal con la capacidad de ejecutar acciones en herramientas externas (buscar en Google, leer una base de datos). Es el principio básico de los "Agentes Autónomos".
+                        <div class="text-center my-3 text-xs font-mono text-slate-500">
+                            <i class="fas fa-sync text-2xl text-blue-500 mb-1"></i><br>
+                            Pensar -> Actuar -> Observar
+                        </div>
+                        <p class="text-sm text-slate-400 mb-2">
+                            <strong>Escenario:</strong> Planificación de viaje a Brasil.
                         </p>
-                        <p class="text-sm text-slate-400">
-                            <strong>Uso:</strong> "Necesito armar el viaje. (Pensamiento) -> Busco clima en Google (Acción) -> Veo que llueve (Observación) -> Cambio la actividad (Respuesta)".
+                        <p class="text-sm">
+                            "Necesito saber el precio del Real Blue hoy (Acción: Buscar). Calcular el costo de peajes en reales (Razonamiento). Convertir a pesos (Acción). Definir precio del paquete (Respuesta)."
                         </p>
                     </div>
                 </div>
             </section>
 
             <section id="view-coding" class="view-section">
-                <h2 class="section-title">5. IA y Código (Para no programadores)</h2>
+                <h2 class="section-title">5. IA y Código (Uso Administrativo)</h2>
                 <p class="section-subtitle">
-                    La IA es el mejor traductor entre el lenguaje humano y el lenguaje de las máquinas.
+                    Resolviendo problemas de Excel y Sistemas sin ser programador.
                 </p>
                 <div class="info-card">
-                    <h3>Usos prácticos en la oficina</h3>
+                    <h3>Casos de uso en la oficina</h3>
                     <ul class="list-disc list-inside space-y-4 mt-4">
                         <li>
-                            <strong>Explicación de Macros:</strong> Si tienes un Excel viejo con una macro que nadie sabe qué hace, pega el código en la IA y dile: "Explícame qué hace esto en lenguaje simple".
+                            <strong>Fórmulas de Excel:</strong> "Tengo una lista de pasajeros en la Columna A y sus pagos en la B. Escribe una fórmula que pinte de rojo la celda si el pago es menor a $50.000".
                         </li>
                         <li>
-                            <strong>Creación de Fórmulas Complejas:</strong> En lugar de pelear con paréntesis en Excel, dile a la IA: "Necesito una fórmula que si la celda A1 es mayor a 100 y la B1 dice 'Pagado', me ponga 'Verde' en la C1".
+                            <strong>Limpieza de Datos:</strong> "Tengo este listado de DNI sucio con puntos y espacios (30.111.222). Escribe una macro o script para dejar solo los números".
                         </li>
                         <li>
-                            <strong>Generación de HTML/SQL:</strong> Puedes pedirle que genere código para un correo HTML bonito o una consulta a la base de datos de clientes sin saber programar una sola línea.
+                            <strong>SQL para Informes:</strong> "Necesito sacar del sistema una lista de los clientes que viajaron más de 3 veces el último año. Escribime la consulta SQL para pedirle al técnico".
                         </li>
                     </ul>
                 </div>
@@ -314,53 +364,44 @@
             <section id="view-ape" class="view-section">
                 <h2 class="section-title">6. Automatic Prompt Engineering (APE)</h2>
                 <p class="section-subtitle">
-                    Deja que la IA trabaje por ti optimizando las instrucciones.
+                    Cuando no sabemos cómo pedirle a la IA que redacte una promoción efectiva.
                 </p>
                 <div class="info-card border-l-4 border-yellow-500">
-                    <h3>El Prompt para generar Prompts</h3>
+                    <h3>Optimizando Ventas</h3>
                     <p class="mb-4">
-                        A veces nos bloqueamos y no sabemos cómo pedir algo. La técnica APE consiste en pedirle a la IA que actúe como un "Ingeniero de Prompts".
+                        Queremos vender los últimos 5 lugares a Mar del Plata. No sabemos qué copy usar.
                     </p>
                     <div class="bg-slate-800 p-4 rounded">
                         <p class="font-mono text-xs text-yellow-200">
-                            Prompt: "Actúa como un experto en Ingeniería de Prompts. Mi objetivo es [OBJETIVO]. Escribe los 5 mejores prompts posibles que yo podría darte para lograr este resultado con la mayor precisión. Evalúa cuál es el mejor y explícame por qué."
+                            Prompt: "Actúa como un experto en Copywriting Turístico. Mi objetivo es vender 5 asientos remanentes en 24 horas. Escribe 5 variantes de mensajes de WhatsApp: uno enfocado en urgencia, uno en precio, uno en relax. Evalúa cuál tendría mayor tasa de conversión."
                         </p>
                     </div>
-                    <p class="mt-4">
-                        Esto nos da variantes que quizás no se nos hubieran ocurrido, usando palabras clave técnicas que activan mejor las capacidades del modelo.
-                    </p>
                 </div>
             </section>
 
             <section id="view-security" class="view-section">
                 <h2 class="section-title">7. Seguridad de Datos en Grupo HER</h2>
                 <p class="section-subtitle">
-                    Protocolos críticos. Lo que se escribe en la IA, se queda en la nube.
+                    Protegiendo la información de nuestros pasajeros y choferes.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card bg-red-900/20 border border-red-500/50">
-                        <h3 class="text-red-400">Zona Roja: Datos Prohibidos</h3>
-                        <p class="mb-3 text-sm">
-                            Los modelos gratuitos (ChatGPT, Gemini versión pública) usan tus datos para entrenarse. Si subes una lista de pasajeros con DNI, esa información podría, teóricamente, ser recordada por el modelo.
-                        </p>
+                        <h3 class="text-red-400">Datos Críticos (No Compartir)</h3>
                         <ul class="list-disc list-inside text-sm mt-2 text-slate-300">
-                            <li>Tarjetas de Crédito / CBU.</li>
-                            <li>Contraseñas de sistemas.</li>
-                            <li>Datos médicos de choferes/pasajeros.</li>
-                            <li>Estrategias comerciales secretas.</li>
+                            <li>Listados de pasajeros (Manifiestos) con DNI.</li>
+                            <li>Números de CBU o Tarjetas de la empresa.</li>
+                            <li>Informes médicos de los choferes.</li>
+                            <li>Claves de acceso a plataformas (Plataforma 10, Central de Pasajes).</li>
                         </ul>
                     </div>
                     <div class="info-card bg-green-900/20 border border-green-500/50">
-                        <h3 class="text-green-400">Zona Verde: Sanitización</h3>
+                        <h3 class="text-green-400">Ejemplo de Sanitización</h3>
                         <p class="mb-3 text-sm">
-                            <strong>Sanitización (Anonimización):</strong> Es la técnica de reemplazar datos reales por "placeholders" o etiquetas.
+                            Si necesitamos que la IA analice una queja real:
                         </p>
                         <p class="text-sm font-mono bg-black/30 p-2 rounded">
-                            Texto Real: "Juan Pérez DNI 30111222..."<br>
-                            Texto Sanitizado: "[NOMBRE_CLIENTE] DNI [NUMERO]..."
-                        </p>
-                        <p class="mt-2 text-sm">
-                            La IA procesa la lógica (el reclamo, la consulta) perfectamente con los datos sanitizados, y tú mantienes la privacidad de la empresa segura.
+                            Original: "Soy María Gómez, DNI 12.345.678, viajé en el coche 404..."<br>
+                            Sanitizado: "Soy [PASAJERA], DNI [NUMERO], viajé en el coche [UNIDAD]..."
                         </p>
                     </div>
                 </div>
@@ -368,18 +409,15 @@
 
             <section id="view-conflict" class="view-section">
                 <h2 class="section-title">8. Resolución de Conflictos</h2>
-                <p class="section-subtitle">La IA como filtro emocional y estratégico en situaciones tensas.</p>
+                <p class="section-subtitle">Manejo de quejas por demoras o servicio a bordo.</p>
                 <div class="info-card">
-                    <h3>Pasos para responder una Queja Grave</h3>
+                    <h3>Protocolo de Respuesta con IA</h3>
                     <ol class="list-decimal list-inside mt-2 space-y-4 text-slate-300">
                         <li>
-                            <strong>Diagnóstico Emocional:</strong> Pega el correo del cliente y pide: "Analiza el sentimiento. ¿Está enojado, decepcionado o siendo sarcástico? ¿Cuál es el punto real de dolor?".
+                            <strong>Análisis Frío:</strong> "Analiza este mensaje de queja. Identifica si el reclamo es por el servicio del chofer, el estado de la unidad o la demora. Ignora los insultos y extrae el hecho objetivo."
                         </li>
                         <li>
-                            <strong>Generación de Opciones:</strong> "Actúa como un mediador experto. Redacta 3 opciones de respuesta: una opción empática (enfocada en disculpas), una opción técnica (explicando la causa) y una opción de compensación".
-                        </li>
-                        <li>
-                            <strong>Roleplay (Simulación):</strong> Antes de enviar, pregúntale a la IA: "Si yo soy este cliente y recibo esta respuesta, ¿cómo reaccionaría? ¿Qué objeción pondría?". Esto te permite blindar tu mensaje.
+                            <strong>Redacción Empática:</strong> "Redacta una respuesta formal pidiendo disculpas por la demora ocasionada por el piquete. Aclara que fue fuerza mayor, pero ofrece un descuento en el próximo viaje como gesto de buena voluntad."
                         </li>
                     </ol>
                 </div>
@@ -388,107 +426,64 @@
             <section id="view-automation-dev" class="view-section">
                 <h2 class="section-title">9. Estrategias de Automatización</h2>
                 <p class="section-subtitle">
-                    Dos caminos para resolver los problemas planteados: soluciones que puedes hacer hoy y soluciones de ingeniería avanzada.
+                    Soluciones para hoy (Simples) y soluciones para escalar (Expertas).
                 </p>
-                
                 <div class="space-y-8">
                     <div class="info-card border-l-4 border-purple-600">
                         <h3 class="text-white text-xl mb-4"><i class="fas fa-birthday-cake mr-2 text-purple-400"></i>Caso A: Saludos de Cumpleaños</h3>
-                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
                                 <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (No-Code)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Herramienta:</strong> Excel + Zapier (Plan Free).
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Herramienta:</strong> Excel + Zapier (Plan Free).</p>
                                 <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
-                                    <li>Tener un Google Sheet con columna "Fecha Nacimiento" y "Email".</li>
-                                    <li>Crear una cuenta en <strong>Zapier.com</strong>.</li>
-                                    <li>Usar el Trigger "Schedule by Zapier" (Diario a las 9 AM).</li>
-                                    <li>Acción: "Find Row" en Google Sheet (buscar fecha de hoy).</li>
-                                    <li>Acción: "Send Email" via Gmail con una plantilla "Feliz Cumpleaños".</li>
+                                    <li>Tener un Google Sheet con "Fecha Nacimiento" y "Email".</li>
+                                    <li>En Zapier: Trigger "Schedule" (Diario 9 AM).</li>
+                                    <li>Acción: "Find Row" (buscar fecha hoy).</li>
+                                    <li>Acción: "Send Email" (Plantilla Feliz Cumpleaños).</li>
                                 </ol>
                             </div>
-
                             <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
                                 <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Tecnología:</strong> Base de Datos SQL + Cron Job + WhatsApp API.
-                                </p>
-                                <div class="code-block">
-                                    CRON: 0 9 * * *<br>
-                                    SQL: SELECT phone FROM users WHERE dob = CURDATE();<br>
-                                    API: POST /v1/messages (Meta API)
-                                </div>
-                                <p class="text-xs text-slate-400 mt-2">
-                                    Requiere servidor dedicado. Maneja miles de envíos, evita bloqueos de SPAM y reporta errores en un dashboard.
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Tecnología:</strong> SQL + Cron Job + API WhatsApp.</p>
+                                <div class="code-block">CRON: 0 9 * * *<br>SQL: SELECT phone FROM users WHERE dob = CURDATE();<br>API: POST /v1/messages</div>
                             </div>
                         </div>
                     </div>
-
                     <div class="info-card border-l-4 border-blue-600">
                         <h3 class="text-white text-xl mb-4"><i class="fas fa-bus mr-2 text-blue-400"></i>Caso B: Alertas de Reprogramación</h3>
-                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
                                 <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (Semi-Auto)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Herramienta:</strong> Generador de Enlaces WhatsApp.
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Herramienta:</strong> Fórmula Excel WhatsApp.</p>
                                 <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
-                                    <li>En el Excel de pasajeros, crear una fórmula: <code>="https://wa.me/" & CELULAR & "?text=Tu viaje cambió a las " & HORA</code>.</li>
-                                    <li>Al filtrar los pasajeros afectados, la fórmula genera un link azul para cada uno.</li>
-                                    <li>El operador hace clic en cada link y envía. Es manual pero ahorra redactar y buscar el contacto.</li>
+                                    <li>Fórmula: <code>="https://wa.me/" & CELULAR & "?text=Tu viaje pasa a las " & HORA</code>.</li>
+                                    <li>Filtrar pasajeros del servicio afectado.</li>
+                                    <li>Clic manual en cada link para enviar.</li>
                                 </ol>
                             </div>
-
                             <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
                                 <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Tecnología:</strong> Webhooks + Message Queues.
-                                </p>
-                                <div class="code-block">
-                                    Webhook: listen(TRIP_CHANGE_EVENT)<br>
-                                    Queue: RabbitMQ (Delay 2-5 sec)<br>
-                                    Action: Broadcast Template HSM
-                                </div>
-                                <p class="text-xs text-slate-400 mt-2">
-                                    Totalmente invisible. Al cambiar la hora en el sistema, dispara alertas masivas gestionando colas para evitar baneos de WhatsApp.
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Tecnología:</strong> Webhooks + Colas de Mensajería.</p>
+                                <div class="code-block">Webhook: TRIP_CHANGE<br>Queue: RabbitMQ (Delay anti-spam)<br>Action: Broadcast HSM</div>
                             </div>
                         </div>
                     </div>
-
                     <div class="info-card border-l-4 border-yellow-600">
                         <h3 class="text-white text-xl mb-4"><i class="fas fa-money-bill-wave mr-2 text-yellow-400"></i>Caso C: Gestión de Devoluciones</h3>
-                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
                                 <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (Google)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Herramienta:</strong> Google Forms + Notificaciones.
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Herramienta:</strong> Google Forms + Alertas.</p>
                                 <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
-                                    <li>Crear un Formulario Google "Solicitud de Reintegro" (pide CBU, Monto, Ticket).</li>
-                                    <li>Configurar el Formulario para que avise por mail a Administración cada vez que alguien lo llena.</li>
-                                    <li>Administración entra al Sheet, valida y transfiere manualmente.</li>
+                                    <li>Formulario "Solicitud Reintegro" (Pide CBU).</li>
+                                    <li>Alerta mail a Administración al completarse.</li>
+                                    <li>Transferencia manual desde Homebanking.</li>
                                 </ol>
                             </div>
-
                             <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
                                 <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
-                                <p class="text-sm text-slate-300">
-                                    <strong>Tecnología:</strong> Tokens de Seguridad + API Bancaria.
-                                </p>
-                                <div class="code-block">
-                                    Token: JWT (Enlace único temporal)<br>
-                                    Validation: API Coelsa (Valida CUIT/CBU)<br>
-                                    Batch: Genera TXT Interbanking
-                                </div>
-                                <p class="text-xs text-slate-400 mt-2">
-                                    Valida identidad contra el banco en tiempo real y sube el lote de pagos automáticamente para firma, eliminando error humano.
-                                </p>
+                                <p class="text-sm text-slate-300"><strong>Tecnología:</strong> Validación Bancaria API.</p>
+                                <div class="code-block">Validation: API Coelsa (Match CUIT)<br>Batch: Generación TXT Interbanking<br>Upload: SFTP Seguro</div>
                             </div>
                         </div>
                     </div>
@@ -498,7 +493,6 @@
             <section id="view-auto-new" class="view-section">
                 <h2 class="section-title">10. Nuevas Oportunidades de Automatización</h2>
                 <p class="section-subtitle">Tres nuevos procesos para optimizar la operación diaria.</p>
-                
                 <div class="space-y-6">
                     <div class="info-card border-l-4 border-blue-500">
                         <h3 class="text-blue-300">A. Cierre de Caja Digital</h3>
@@ -515,55 +509,248 @@
                 </div>
             </section>
 
-            <section id="view-news" class="view-section">
-                <h2 class="section-title">Novedades del Sector</h2>
-                <p class="section-subtitle">Selección de artículos reales y relevantes para el contexto actual.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <section id="view-tone" class="view-section">
+                <h2 class="section-title">11. Tono y Voz de Marca</h2>
+                <p class="section-subtitle">
+                    Definiendo la personalidad de Grupo HER en cada interacción automática.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card border-t-4 border-purple-500">
+                        <h3>La Voz de "Turismo"</h3>
+                        <p class="text-sm mt-2">Cercana, inspiradora, aventurera. Usa emojis, habla de "experiencias" y "recuerdos".</p>
+                        <p class="text-xs bg-slate-800 p-2 mt-2 rounded italic">Prompt: "Usa un tono cálido, invita a soñar, usa emojis de viaje."</p>
+                    </div>
+                    <div class="info-card border-t-4 border-blue-500">
+                        <h3>La Voz de "Logística/Empresas"</h3>
+                        <p class="text-sm mt-2">Profesional, eficiente, segura. Datos concretos, puntualidad, sin rodeos.</p>
+                        <p class="text-xs bg-slate-800 p-2 mt-2 rounded italic">Prompt: "Usa un tono corporativo, directo, prioriza la precisión horaria."</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-crisis" class="view-section">
+                <h2 class="section-title">12. Manejo de Crisis</h2>
+                <p class="section-subtitle">
+                    Prompts de emergencia para situaciones críticas (Accidentes, Paros, Roturas en ruta).
+                </p>
+                <div class="info-card border-l-4 border-red-600">
+                    <h3>Comunicado de Contingencia</h3>
+                    <p class="mb-4">
+                        Cuando ocurre un imprevisto grave, la velocidad y claridad son vitales.
+                    </p>
+                    <div class="bg-slate-800 p-4 rounded">
+                        <p class="font-mono text-xs text-red-200">
+                            Prompt: "Actúa como Gerente de Comunicación de Crisis. Un bus se rompió en Ruta 14. Los pasajeros están esperando el transbordo que llega en 2 horas. Redacta un mensaje de WhatsApp para enviar a los familiares que llaman preocupados. <br>Objetivo: Transmitir calma, informar que todos están bien, están en un parador seguro y el refuerzo va en camino. Tono: Serio pero tranquilizador."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-docs" class="view-section">
+                <h2 class="section-title">13. Documentación de Prompts</h2>
+                <p class="section-subtitle">
+                    Capitalizando el conocimiento: No reinventar la rueda cada vez.
+                </p>
+                <div class="info-card">
+                    <h3>La "Biblioteca de Prompts" de Grupo HER</h3>
+                    <p class="mb-4">
+                        Es vital tener un Excel compartido con los prompts que ya se probaron y funcionan.
+                    </p>
+                    <table class="w-full text-sm text-left text-slate-300">
+                        <thead class="text-xs text-slate-400 uppercase bg-slate-800">
+                            <tr>
+                                <th class="px-4 py-2">Nombre</th>
+                                <th class="px-4 py-2">Objetivo</th>
+                                <th class="px-4 py-2">Prompt Probado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <tr>
+                                <td class="px-4 py-2">Reclamo Equipaje</td>
+                                <td class="px-4 py-2">Responder por pérdida</td>
+                                <td class="px-4 py-2 italic">"Actúa como legal... cita art 123..."</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">Promo Verano</td>
+                                <td class="px-4 py-2">Venta rápida WhatsApp</td>
+                                <td class="px-4 py-2 italic">"Genera urgencia... quedan 5 lugares..."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="view-multimodal" class="view-section">
+                <h2 class="section-title">14. Prompting Multimodal</h2>
+                <p class="section-subtitle">
+                    La IA ya no solo lee texto. Ahora "ve" imágenes y "escucha" audios.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
-                        <h3 class="text-orange-400 text-sm font-bold">Amazon: Robótica e IA</h3>
-                        <p class="text-xs mt-2">Cómo los robots "Sequoia" aceleran el inventario un 75%.</p>
-                        <a href="https://www.aboutamazon.com/news/operations/amazon-introduces-new-robotics-solutions" target="_blank" class="news-link">Leer en AboutAmazon</a>
+                        <h3 class="text-pink-400">Analizando Fotos de Taller</h3>
+                        <p class="mb-2">
+                            Los choferes pueden enviar fotos de repuestos rotos o tickets de combustible manuscritos.
+                        </p>
+                        <div class="diagram-box">
+                            <i class="fas fa-image text-2xl text-slate-400"></i> 
+                            <i class="fas fa-long-arrow-alt-right flow-arrow"></i> 
+                            <i class="fas fa-eye text-2xl text-pink-400"></i> (GPT-4V / Gemini)
+                            <i class="fas fa-long-arrow-alt-right flow-arrow"></i> 
+                            <i class="fas fa-file-alt text-2xl text-slate-400"></i> JSON Data
+                        </div>
+                        <p class="mt-2 text-sm italic text-slate-400">Prompt: "Analiza esta imagen del ticket. Extrae: Fecha, Monto, Litros y Estación de Servicio."</p>
                     </div>
                     <div class="info-card">
-                        <h3 class="text-orange-400 text-sm font-bold">Tendencias Turismo 2025</h3>
-                        <p class="text-xs mt-2">La hiper-personalización y la IA generativa definen el futuro.</p>
-                        <a href="https://www.forbes.com/sites/suzannerowankelleher/2024/01/24/generative-ai-travel-trends-2024/" target="_blank" class="news-link">Leer en Forbes</a>
+                        <h3 class="text-pink-400">Transcribiendo Audios de Novedades</h3>
+                        <p class="mb-2">
+                            Choferes reportando novedades por audio de WhatsApp mientras conducen.
+                        </p>
+                        <p class="text-sm mt-2">
+                            Usando herramientas como Whisper (OpenAI), el audio se convierte en texto y luego la IA lo resume: "Novedad: Demora de 15 min por tráfico en acceso norte. Pasajeros avisados."
+                        </p>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-orange-400 text-sm font-bold">Logística Autónoma</h3>
-                        <p class="text-xs mt-2">El impacto de la IA en la cadena de suministro global.</p>
-                        <a href="https://www.dhl.com/global-en/home/insights-and-innovation/thought-leadership/trend-reports/artificial-intelligence.html" target="_blank" class="news-link">Reporte DHL</a>
+                </div>
+            </section>
+
+            <section id="view-eval" class="view-section">
+                <h2 class="section-title">15. Evaluación y Métricas</h2>
+                <p class="section-subtitle">
+                    ¿Cómo sabemos si nuestro prompt es bueno? Midiendo el resultado.
+                </p>
+                <div class="info-card">
+                    <h3>El Ciclo de Mejora del Prompt</h3>
+                    <div class="diagram-box">
+                        1. Diseñar <i class="fas fa-arrow-right flow-arrow"></i> 
+                        2. Probar (Test) <i class="fas fa-arrow-right flow-arrow"></i> 
+                        3. Evaluar (Humano) <i class="fas fa-arrow-right flow-arrow"></i> 
+                        4. Refinar
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-blue-400 text-sm font-bold">Argentina: Pagos Digitales</h3>
-                        <p class="text-xs mt-2">Crecimiento exponencial de QR y billeteras en transporte.</p>
-                        <a href="https://www.bcra.gob.ar/Noticias/Pagos-con-QR.asp" target="_blank" class="news-link">BCRA Oficial</a>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                            <strong class="text-orange-300">Pruebas A/B:</strong>
+                            <p class="text-xs text-slate-400 mt-1">Prueba dos versiones de un mensaje de venta. Envía la versión A a 50 clientes y la B a otros 50. ¿Cuál generó más ventas?</p>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                            <strong class="text-orange-300">Feedback Humano:</strong>
+                            <p class="text-xs text-slate-400 mt-1">El operador debe tener un botón de "Pulgar Arriba/Abajo" en la respuesta de la IA para marcar si fue útil o si alucinó.</p>
+                        </div>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-blue-400 text-sm font-bold">Regulación IA Latam</h3>
-                        <p class="text-xs mt-2">Avances legislativos sobre el uso de IA en empresas.</p>
-                        <a href="https://caf.com/es/actualidad/noticias/2024/05/inteligencia-artificial-en-america-latina/" target="_blank" class="news-link">Reporte CAF</a>
+                </div>
+            </section>
+
+            <section id="view-repaso" class="view-section">
+                <h2 class="section-title">Repaso Integral del Programa</h2>
+                <p class="section-subtitle">Un recorrido por todo lo que hemos logrado juntos en estos 4 módulos.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                    <div class="info-card bg-slate-800 border-sky-500/50 border-t-4">
+                        <h3 class="text-sky-400 text-lg">Módulo 1</h3>
+                        <p class="text-xs mt-2 text-slate-400">Fundamentos. Entendimos qué es la IA Generativa, cómo funciona un LLM y perdimos el miedo a la herramienta.</p>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-blue-400 text-sm font-bold">Sustentabilidad Flotas</h3>
-                        <p class="text-xs mt-2">Estrategias de reducción de huella de carbono en buses.</p>
-                        <a href="https://www.scania.com/ar/es/home/about-scania/sustainability.html" target="_blank" class="news-link">Caso Scania Arg</a>
+                    <div class="info-card bg-slate-800 border-purple-500/50 border-t-4">
+                        <h3 class="text-purple-400 text-lg">Módulo 2</h3>
+                        <p class="text-xs mt-2 text-slate-400">Datos. Aprendimos a limpiar Excel, estructurar CSVs y preparar la información de la empresa para ser analizada.</p>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-green-400 text-sm font-bold">Futuro del Trabajo</h3>
-                        <p class="text-xs mt-2">Cómo la IA está redefiniendo los roles administrativos.</p>
-                        <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2023/" target="_blank" class="news-link">World Economic Forum</a>
+                    <div class="info-card bg-slate-800 border-emerald-500/50 border-t-4">
+                        <h3 class="text-emerald-400 text-lg">Módulo 3</h3>
+                        <p class="text-xs mt-2 text-slate-400">Automatización. Pasamos de "hacer" a "diseñar". Vimos Triggers, Acciones y el concepto de Human-in-the-loop.</p>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-green-400 text-sm font-bold">Ciberseguridad PYME</h3>
-                        <p class="text-xs mt-2">Aumento de ataques y cómo protegerse en 2025.</p>
-                        <a href="https://www.welivesecurity.com/la-es/2024/01/15/tendencias-ciberseguridad-2024/" target="_blank" class="news-link">Reporte ESET</a>
+                    <div class="info-card bg-slate-800 border-orange-500/50 border-t-4">
+                        <h3 class="text-orange-400 text-lg">Módulo 4</h3>
+                        <p class="text-xs mt-2 text-slate-400">Ingeniería. Refinamos la técnica con Prompting avanzado, seguridad de datos y resolución de conflictos reales.</p>
                     </div>
-                    <div class="info-card">
-                        <h3 class="text-green-400 text-sm font-bold">Gen Alpha y Consumo</h3>
-                        <p class="text-xs mt-2">Qué esperan las nuevas generaciones de las marcas de viaje.</p>
-                        <a href="https://nrf.com/blog/generation-alpha-new-consumer" target="_blank" class="news-link">NRF Insights</a>
+                </div>
+            </section>
+
+            <section id="view-resources" class="view-section">
+                <h2 class="section-title">Caja de Herramientas y Recursos</h2>
+                <p class="section-subtitle">Dónde informarse y qué herramientas usar para seguir avanzando.</p>
+                
+                <div class="grid grid-cols-1 gap-8 mt-8">
+                    
+                    <div>
+                        <h3 class="text-xl text-white font-bold mb-4 border-l-4 border-orange-500 pl-3">¿Dónde buscar información confiable?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <a href="https://www.hosteltur.com/tag/inteligencia-artificial" target="_blank" class="info-card hover:border-orange-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-hotel text-2xl text-orange-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-orange-300">Hosteltur (Turismo)</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Noticias específicas de IA aplicada a turismo y hotelería en español.</p>
+                            </a>
+
+                            <a href="https://www.xataka.com/categoria/inteligencia-artificial" target="_blank" class="info-card hover:border-orange-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-newspaper text-2xl text-orange-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-orange-300">Xataka IA</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Actualidad tecnológica general explicada de forma sencilla.</p>
+                            </a>
+
+                            <a href="https://www.producthunt.com/topics/artificial-intelligence" target="_blank" class="info-card hover:border-orange-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-rocket text-2xl text-orange-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-orange-300">Product Hunt</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Para descubrir herramientas nuevas todos los días (En inglés).</p>
+                            </a>
+                        </div>
                     </div>
+
+                    <div>
+                        <h3 class="text-xl text-white font-bold mb-4 border-l-4 border-blue-500 pl-3">Herramientas Recomendadas</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            
+                            <a href="https://www.perplexity.ai/" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-search text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">Perplexity</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Buscador inteligente. Cita fuentes. Ideal para investigar leyes o datos.</p>
+                            </a>
+
+                            <a href="https://claude.ai/" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-robot text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">Claude (Anthropic)</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Competidor de GPT. Mejor redacción y estilo más "humano" para correos.</p>
+                            </a>
+
+                            <a href="https://gamma.app/" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-presentation text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">Gamma</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Crea presentaciones (PPT) y documentos web en segundos con IA.</p>
+                            </a>
+
+                            <a href="https://zapier.com/" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-bolt text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">Zapier</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Conecta aplicaciones (Gmail, Sheets, WhatsApp) sin saber programar.</p>
+                            </a>
+
+                            <a href="https://leonardo.ai/" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-image text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">Leonardo.ai</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Generación de imágenes de alta calidad para marketing turístico.</p>
+                            </a>
+
+                            <a href="https://www.tldr.tech/ai" target="_blank" class="info-card hover:border-blue-500 transition-colors group">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-envelope text-2xl text-blue-400 mr-3"></i>
+                                    <h4 class="font-bold text-white group-hover:text-blue-300">TLDR AI</h4>
+                                </div>
+                                <p class="text-xs text-slate-400">Newsletter diario resumen (en inglés) para leer en 5 minutos.</p>
+                            </a>
+
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -572,64 +759,64 @@
                 <p class="section-subtitle">Pon a prueba lo aprendido. Haz clic para ver la solución sugerida.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="info-card">
-                        <h3>1. Few-Shot Prompting</h3>
-                        <p>Crea un prompt que clasifique quejas usando 3 ejemplos previos.</p>
+                        <h3>1. Few-Shot: Clasificar Reclamos</h3>
+                        <p>Crea un prompt para clasificar mensajes de pasajeros en WhatsApp.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza este mensaje. <br>Ejemplos: <br>- 'Lento' -> Queja. <br>- 'Genial' -> Felicitación. <br>- 'El bus se rompió' -> Queja.<br>Mensaje nuevo: 'El aire no andaba' -> ?"</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Clasifica el mensaje. <br>Ej: '¿Llegan a tiempo?' -> Consulta. <br>Ej: 'El aire no anda' -> Reclamo. <br>Mensaje: 'Quiero devolver pasaje' -> ?"</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>2. Chain of Thought</h3>
-                        <p>Calcula un presupuesto de viaje pidiendo "paso a paso".</p>
+                        <h3>2. CoT: Presupuesto Contingente</h3>
+                        <p>Calcula el costo de un viaje a Carlos Paz para 40 personas.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Calcula el costo total para 4 pax a Brasil. <br>Piensa paso a paso: <br>1. Calcula alojamiento (7 noches). <br>2. Calcula comida por día. <br>3. Suma traslados. <br>Dame el total final."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Calcula el costo total. <br>Piensa paso a paso: <br>1. Km totales x costo gasoil. <br>2. Hotel x 40 pax. <br>3. Viáticos choferes. <br>Dame el total."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>3. Role Prompting (Mediador)</h3>
-                        <p>Redacta una respuesta a una queja actuando como un mediador experto.</p>
+                        <h3>3. Role: Respuesta Legal</h3>
+                        <p>Responde a una carta documento por pérdida de equipaje.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como un mediador de conflictos corporativo. Redacta una respuesta a un cliente enojado por una demora. Tono: Empático pero firme, sin admitir culpa legal, ofreciendo un voucher de café."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como abogado de transporte. Redacta respuesta formal citando la ley de seguros y solicitando el ticket de despacho del equipaje."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>4. Sanitización de Datos</h3>
-                        <p>Escribe cómo anonimizarías este texto: "Juan Pérez DNI 30111222 reclama..."</p>
+                        <h3>4. Sanitización: Lista Pasajeros</h3>
+                        <p>Cómo procesar una lista con DNI reales.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Texto Sanitizado: "[NOMBRE_CLIENTE] con DNI [NUMERO_DNI] reclama...". <br>Nunca enviar datos reales a la IA pública.</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">"Reemplazar todos los DNI por [DNI_XX] y Nombres por [PASAJERO_XX] antes de subir a ChatGPT."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>5. Traducción de Código</h3>
-                        <p>Pide traducir una lógica de Excel ("SI A1>10 ENTONCES...") a SQL.</p>
+                        <h3>5. Coding: Fórmula Excel</h3>
+                        <p>Fórmula para detectar pagos vencidos.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Traduce esta lógica de Excel a una consulta SQL: <br>IF(Ventas > 1000, 'Bonus', 'Nada') <br>-> CASE WHEN ventas > 1000 THEN 'Bonus' ELSE 'Nada' END"</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Escribe una fórmula de Excel que si la fecha en A1 es menor a HOY y B1 dice 'Impago', ponga 'VENCIDO' en rojo."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>6. Generación APE</h3>
-                        <p>Pide a la IA que cree el mejor prompt para ventas.</p>
+                        <h3>6. APE: Prompt de Ventas</h3>
+                        <p>Mejorar el texto de venta de temporada.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como ingeniero de prompts. Escribe 5 variantes de un prompt para convencer a un cliente indeciso de comprar un paquete a Cataratas. Evalúa cuál es el más persuasivo."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como experto en Copy. Escribe 5 variantes de un mensaje de WhatsApp para vender los últimos 5 lugares a Brasil con sentido de urgencia."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>7. JSON Output</h3>
-                        <p>Extrae datos de un pasaje en formato JSON.</p>
+                        <h3>7. JSON: Datos de Boletería</h3>
+                        <p>Estructurar consulta de pasaje.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Lee este texto de pasaje. Extrae: Origen, Destino, Hora. <br>Formato de salida: JSON estricto con claves 'origin', 'destination', 'time'."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Extrae de este texto: Origen, Destino y Precio. Formato salida: JSON estricto."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>8. Tree of Thoughts</h3>
-                        <p>Plantea 3 rutas logísticas y elige la mejor.</p>
+                        <h3>8. ToT: Desvío por Corte</h3>
+                        <p>Elegir ruta alternativa ante un piquete.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Propón 3 rutas distintas para ir de Paraná a Mendoza. Para cada una, analiza: Estado de ruta, Peajes y Kilómetros. Luego, compáralas y dime cuál es la más eficiente para un bus doble piso."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza 3 rutas alternativas. Evalúa: Estado camino, Seguridad y Km extra. Elige la mejor para un bus doble piso."</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>9. Análisis de Sentimiento</h3>
-                        <p>Detecta la emoción en una reseña de Google.</p>
+                        <h3>9. Sentimiento: Encuesta</h3>
+                        <p>Analizar queja difusa.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza la siguiente reseña: 'El viaje bien, pero el aire congelaba'. <br>Dime: 1. Sentimiento general (Positivo/Negativo/Mixto). <br>2. Qué aspecto específico criticó."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza el sentimiento: 'El viaje bien, pero el baño un desastre'. ¿Es positivo o negativo? ¿Qué área debe intervenir?"</p></div>
                     </div>
                     <div class="info-card">
-                        <h3>10. Debugging</h3>
-                        <p>Encuentra el error en una instrucción confusa.</p>
+                        <h3>10. Debugging: Error Sistema</h3>
+                        <p>Entender un error de software.</p>
                         <button class="ejercicio-toggle-btn">Ver Solución</button>
-                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Esta instrucción es ambigua: 'Mandar el bus mañana'. <br>¿Por qué puede fallar? <br>Respuesta: Falta fecha exacta, hora y número de unidad. Corrige la instrucción para que sea inequívoca."</p></div>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Explícame este error: 'Error 404 API Timeout'. ¿Es problema de mi internet o del servidor de pasajes?"</p></div>
                     </div>
                 </div>
             </section>
