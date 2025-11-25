@@ -19,6 +19,15 @@
                     },
                     colors: {
                         ramux: '#F76B1C',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -39,7 +48,6 @@
             background-size: cover;
         }
 
-        /* === CONFIGURACIÓN GENERAL === */
         html, body {
             height: 100%;
             margin: 0;
@@ -73,14 +81,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Tarjeta Deshabilitada */
-        .glass-card-disabled {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            opacity: 0.75;
-        }
-
-        /* Títulos Hero */
         .hero-title {
             background: linear-gradient(to right, #f8fafc, #94a3b8);
             -webkit-background-clip: text;
@@ -88,7 +88,6 @@
             color: #f8fafc; 
         }
 
-        /* Iconos Sociales */
         .social-icon {
             transition: all 0.3s ease;
             color: #94a3b8;
@@ -97,150 +96,260 @@
             color: #38bdf8;
             transform: scale(1.1);
         }
+
+        /* Inputs de Login */
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .login-input:focus {
+            border-color: #F76B1C;
+            box-shadow: 0 0 0 2px rgba(247, 107, 28, 0.2);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .hidden { display: none; }
     </style>
 </head>
-<body class="antialiased selection:bg-sky-500/30">
+<body class="antialiased selection:bg-sky-500/30 flex flex-col min-h-screen justify-between">
 
     <div class="fixed-background"></div>
 
-    <div class="min-h-screen flex flex-col justify-between pt-[13rem] md:pt-28 pb-10">
-        
-        <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
-                
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/3 justify-center md:justify-start order-1 md:order-1">
-                    <span class="font-semibold text-slate-200 tracking-wide text-sm">Fernando Silguero</span>
-                    <span class="text-[10px] text-slate-400 uppercase tracking-widest font-medium mt-0.5">CEO & Founder</span>
-                </div>
-
-                <div class="flex flex-col items-center justify-center w-full md:w-1/3 text-center group order-2 md:order-2 my-2 md:my-0">
-                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="flex items-center gap-1.5 mb-1 hover:opacity-80 transition-opacity">
-                        <span class="font-extrabold text-2xl text-slate-100 tracking-wide">RAMUX<span class="text-ramux">.</span></span>
-                    </a>
-                    <p class="text-xs text-slate-400 tracking-widest uppercase">Comunicación – Gestión – Desarrollo</p>
-                </div>
-
-                <div class="flex items-center justify-center md:justify-end gap-6 w-full md:w-1/3 order-3 md:order-3">
-                    <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" title="WhatsApp" class="social-icon text-xl">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" title="Instagram" class="social-icon text-xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" title="LinkedIn" class="social-icon text-xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" title="Sitio Web" class="social-icon text-xl">
-                        <i class="fas fa-globe"></i>
-                    </a>
-                </div>
-
-            </div>
-        </header>
-
-        <main class="flex-grow flex flex-col items-center px-4 text-center max-w-6xl mx-auto w-full z-10">
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
             
-            <div class="inline-block animate-pulse mb-6">
-                <span class="px-4 py-1.5 rounded-full bg-sky-900/40 border border-sky-500/30 text-sky-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(14,165,233,0.3)]">
-                    Programa de Capacitación Interna 2025
-                </span>
+            <div class="flex flex-col items-center md:items-start w-full md:w-1/3 justify-center md:justify-start order-1">
+                <span id="header-username" class="font-semibold text-slate-200 tracking-wide text-sm">Bienvenido/a</span>
+                <span id="header-status" class="text-[10px] text-slate-500 uppercase tracking-widest font-medium mt-0.5">Identifícate para acceder</span>
             </div>
 
-            <h2 class="hero-title text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-lg">
-                Inteligencia Artificial <br class="hidden md:block"> Aplicada a la Gestión
-            </h2>
-            
-            <p class="text-lg text-slate-300 max-w-2xl mb-12 leading-relaxed font-light">
-                Optimización de procesos, análisis de datos y automatización para transformar la productividad diaria dentro de tu organización.
-            </p>
+            <div class="flex flex-col items-center justify-center w-full md:w-1/3 text-center group order-2 my-2 md:my-0">
+                <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" class="flex items-center gap-1.5 mb-1 hover:opacity-80 transition-opacity">
+                    <span class="font-extrabold text-2xl text-slate-100 tracking-wide">RAMUX<span class="text-ramux">.</span></span>
+                </a>
+                <p class="text-xs text-slate-400 tracking-widest uppercase">Comunicación – Gestión – Desarrollo</p>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left mb-8">
+            <div class="flex items-center justify-center md:justify-end gap-6 w-full md:w-1/3 order-3">
+                <button id="logout-btn" onclick="logout()" class="hidden text-xs text-red-400 hover:text-red-300 border border-red-900/50 px-3 py-1 rounded bg-red-900/20 transition-colors mr-4">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Salir
+                </button>
+
+                <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" title="WhatsApp" class="social-icon text-xl"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" title="Instagram" class="social-icon text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" title="LinkedIn" class="social-icon text-xl"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex-grow flex flex-col justify-center items-center w-full pt-[140px] pb-10 px-4 relative z-10">
+
+        <section id="login-section" class="w-full max-w-md animate-fade-in">
+            <div class="glass-card p-8 rounded-2xl text-center border-t-4 border-ramux">
+                <div class="mb-8">
+                    <div class="w-16 h-16 bg-ramux/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-ramux/30">
+                        <i class="fas fa-lock text-2xl text-ramux"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Acceso Privado</h2>
+                    <p class="text-slate-400 text-sm mt-2">Capacitación Interna Grupo HER</p>
+                </div>
                 
-                <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                <form id="login-form" class="text-left">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1 uppercase tracking-wider font-bold ml-1">Tu Nombre</label>
+                            <div class="relative">
+                                <i class="fas fa-user absolute left-3 top-3.5 text-slate-500 text-sm"></i>
+                                <input type="text" id="user-name" class="login-input pl-10" placeholder="Ej: Juan Pérez" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1 uppercase tracking-wider font-bold ml-1">Código de Acceso</label>
+                            <div class="relative">
+                                <i class="fas fa-key absolute left-3 top-3.5 text-slate-500 text-sm"></i>
+                                <input type="password" id="access-code" class="login-input pl-10" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p id="error-msg" class="text-red-400 text-sm mt-2 hidden text-center bg-red-900/20 py-2 rounded border border-red-900/50">
+                        <i class="fas fa-exclamation-triangle mr-1"></i> Código incorrecto
+                    </p>
+
+                    <button type="submit" class="w-full mt-6 bg-gradient-to-r from-orange-600 to-ramux hover:from-orange-500 hover:to-orange-400 text-white font-bold py-3 rounded-lg transition-all shadow-lg shadow-orange-900/40 transform hover:scale-[1.02]">
+                        Ingresar al Portal
+                    </button>
+                </form>
+                <p class="text-xs text-slate-600 mt-6">Área exclusiva para colaboradores autorizados.</p>
+            </div>
+        </section>
+
+        <section id="course-content" class="hidden w-full max-w-6xl animate-fade-in">
+            
+            <div class="text-center mb-12">
+                <div class="inline-block animate-pulse mb-6">
+                    <span class="px-4 py-1.5 rounded-full bg-sky-900/40 border border-sky-500/30 text-sky-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                        Programa 2025 - Grupo HER
+                    </span>
+                </div>
+
+                <h2 class="hero-title text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-lg">
+                    Inteligencia Artificial <br class="hidden md:block"> Aplicada a la Gestión
+                </h2>
+                
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed font-light">
+                    Optimización de procesos, análisis de datos y automatización para transformar la productividad diaria dentro de tu organización.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left">
+                
+                <a href="modulo1.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full hover:border-sky-500/50">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-brain text-8xl text-sky-400"></i>
                     </div>
                     <div class="relative z-10 flex flex-col h-full">
-                        <div>
-                            <span class="text-sky-400 font-bold text-[10px] uppercase tracking-wider border border-sky-400/30 px-2 py-1 rounded bg-sky-400/10">Módulo 1</span>
-                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-sky-300 transition-colors">Fundamentos de IA</h3>
-                            <p class="text-slate-400 text-sm mb-6">
-                                Introducción a IA Generativa, Prompt Engineering y redacción automática de documentos.
-                            </p>
-                        </div>
-                        <div class="mt-auto flex items-center gap-2 text-sky-300 font-semibold text-sm group-hover:gap-4 transition-all">
-                            Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                        <span class="text-sky-400 font-bold text-[10px] uppercase tracking-wider border border-sky-400/30 px-2 py-1 rounded bg-sky-400/10 w-fit">Módulo 1</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-sky-300 transition-colors">Fundamentos de IA</h3>
+                        <p class="text-slate-400 text-sm mb-6">Introducción a IA Generativa, Prompt Engineering y redacción automática.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sky-300 font-semibold text-sm group-hover:gap-4 transition-all">Acceder <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 </a>
 
-                <a href="modulo2.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                <a href="modulo2.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full hover:border-purple-500/50">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-chart-pie text-8xl text-purple-400"></i>
                     </div>
                     <div class="relative z-10 flex flex-col h-full">
-                        <div>
-                            <span class="text-purple-400 font-bold text-[10px] uppercase tracking-wider border border-purple-400/30 px-2 py-1 rounded bg-purple-400/10">Módulo 2</span>
-                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-purple-300 transition-colors">Inteligencia de Negocios</h3>
-                            <p class="text-slate-400 text-sm mb-6">
-                                Extracción de datos de Tango/Excel, limpieza de CSVs y creación de reportes dinámicos.
-                            </p>
-                        </div>
-                        <div class="mt-auto flex items-center gap-2 text-purple-300 font-semibold text-sm group-hover:gap-4 transition-all">
-                            Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                        <span class="text-purple-400 font-bold text-[10px] uppercase tracking-wider border border-purple-400/30 px-2 py-1 rounded bg-purple-400/10 w-fit">Módulo 2</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-purple-300 transition-colors">Inteligencia de Negocios</h3>
+                        <p class="text-slate-400 text-sm mb-6">Extracción de datos, limpieza de CSVs y reportes dinámicos.</p>
+                        <div class="mt-auto flex items-center gap-2 text-purple-300 font-semibold text-sm group-hover:gap-4 transition-all">Acceder <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 </a>
 
-                <a href="modulo3.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                <a href="modulo3.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full hover:border-emerald-500/50">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-robot text-8xl text-emerald-400"></i>
                     </div>
                     <div class="relative z-10 flex flex-col h-full">
-                        <div>
-                            <span class="text-emerald-400 font-bold text-[10px] uppercase tracking-wider border border-emerald-400/30 px-2 py-1 rounded bg-emerald-400/10">Módulo 3</span>
-                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-emerald-300 transition-colors">Automatización de Tareas</h3>
-                            <p class="text-slate-400 text-sm mb-6">
-                                Programación de correos, generación automática de documentos y productividad.
-                            </p>
-                        </div>
-                        <div class="mt-auto flex items-center gap-2 text-emerald-300 font-semibold text-sm group-hover:gap-4 transition-all">
-                            Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                        <span class="text-emerald-400 font-bold text-[10px] uppercase tracking-wider border border-emerald-400/30 px-2 py-1 rounded bg-emerald-400/10 w-fit">Módulo 3</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-emerald-300 transition-colors">Automatización</h3>
+                        <p class="text-slate-400 text-sm mb-6">Programación de correos, generación de documentos y productividad.</p>
+                        <div class="mt-auto flex items-center gap-2 text-emerald-300 font-semibold text-sm group-hover:gap-4 transition-all">Acceder <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 </a>
 
-                <a href="modulo4.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full">
+                <a href="modulo4.html" class="glass-card p-8 rounded-2xl group cursor-pointer relative overflow-hidden block h-full hover:border-orange-500/50">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
                         <i class="fa-solid fa-wand-magic-sparkles text-8xl text-orange-400"></i>
                     </div>
                     <div class="relative z-10 flex flex-col h-full">
-                        <div>
-                            <span class="text-orange-400 font-bold text-[10px] uppercase tracking-wider border border-orange-400/30 px-2 py-1 rounded bg-orange-400/10">Módulo 4</span>
-                            <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-orange-300 transition-colors">Prompt Engineering</h3>
-                            <p class="text-slate-400 text-sm mb-6">
-                                Técnicas avanzadas, seguridad de datos y resolución de conflictos complejos con IA.
-                            </p>
-                        </div>
-                        <div class="mt-auto flex items-center gap-2 text-orange-400 font-semibold text-sm group-hover:gap-4 transition-all">
-                            Acceder al Módulo <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                        <span class="text-orange-400 font-bold text-[10px] uppercase tracking-wider border border-orange-400/30 px-2 py-1 rounded bg-orange-400/10 w-fit">Módulo 4</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-2 group-hover:text-orange-300 transition-colors">Prompt Engineering</h3>
+                        <p class="text-slate-400 text-sm mb-6">Técnicas avanzadas, seguridad de datos y resolución de conflictos.</p>
+                        <div class="mt-auto flex items-center gap-2 text-orange-400 font-semibold text-sm group-hover:gap-4 transition-all">Acceder <i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 </a>
 
             </div>
-
-        </main>
-
-        <footer class="w-full p-6 text-center border-t border-slate-800/50 bg-slate-900/50 relative z-10">
-            <p class="text-sm font-medium text-slate-300 mb-1">Escuela de Gestión y Negocios</p>
-            <p class="text-xs text-slate-500">Facultad de Cs. Económicas - UNER</p>
-            <div class="mt-4 text-xs text-slate-600">
-                Desarrollado con <span class="text-sky-500 animate-pulse">❤</span> por Ramux.
-            </div>
-        </footer>
+        </section>
 
     </div>
+
+    <footer class="w-full py-10 px-6 border-t border-slate-800/50 bg-slate-900/80 relative z-10 mt-auto backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4">
+            
+            <div class="text-center md:text-left w-full md:w-1/3 order-2 md:order-1">
+                <p class="text-sm font-semibold text-slate-300 tracking-wide">Escuela de Gestión y Negocios</p>
+                <p class="text-xs text-slate-500 mt-1 font-medium">Facultad de Cs. Económicas - UNER</p>
+            </div>
+
+            <div class="text-center w-full md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-center">
+                <p class="text-xl font-bold text-slate-100 mb-1">
+                    Desarrollado por <span class="text-ramux">RAMUX</span> <i class="fas fa-heart text-red-500 animate-pulse mx-1"></i>
+                </p>
+                <p class="text-[10px] text-slate-600 uppercase tracking-[0.2em] font-semibold">Todos los derechos reservados</p>
+            </div>
+
+            <div class="text-center md:text-right w-full md:w-1/3 order-3 md:order-3">
+                <p class="text-sm font-semibold text-slate-300 tracking-wide">Fernando Silguero</p>
+                <p class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-bold">CEO & Founder</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // === CLAVE DE ACCESO ===
+        const CODIGO_SECRETO = "GRUPOHER2025"; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginSection = document.getElementById('login-section');
+            const courseContent = document.getElementById('course-content');
+            const form = document.getElementById('login-form');
+            const errorMsg = document.getElementById('error-msg');
+            const headerUsername = document.getElementById('header-username');
+            const headerStatus = document.getElementById('header-status');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // 1. Verificar sesión guardada
+            const storedName = localStorage.getItem('ramux_user_name');
+            const storedAuth = localStorage.getItem('ramux_auth');
+
+            if (storedAuth === 'true' && storedName) {
+                mostrarContenido(storedName);
+            }
+
+            // 2. Manejar Login
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('user-name').value;
+                const codeInput = document.getElementById('access-code').value;
+
+                if (codeInput === CODIGO_SECRETO) {
+                    // Guardar sesión
+                    localStorage.setItem('ramux_user_name', nameInput);
+                    localStorage.setItem('ramux_auth', 'true');
+                    mostrarContenido(nameInput);
+                } else {
+                    // Error
+                    errorMsg.classList.remove('hidden');
+                    const card = loginSection.querySelector('.glass-card');
+                    card.classList.add('animate-[bounce_0.5s_ease-in-out]');
+                    setTimeout(() => card.classList.remove('animate-[bounce_0.5s_ease-in-out]'), 500);
+                }
+            });
+
+            // Función para cambiar la vista
+            function mostrarContenido(nombre) {
+                loginSection.classList.add('hidden');     // Oculta Login
+                courseContent.classList.remove('hidden'); // Muestra Curso
+                
+                // Actualizar Header
+                headerUsername.textContent = "Hola, " + nombre;
+                headerUsername.classList.add('text-ramux');
+                headerStatus.textContent = "Usuario Autorizado";
+                headerStatus.classList.add('text-green-400');
+                logoutBtn.classList.remove('hidden'); // Mostrar botón salir
+            }
+        });
+
+        // Función de Salir
+        function logout() {
+            localStorage.removeItem('ramux_user_name');
+            localStorage.removeItem('ramux_auth');
+            location.reload(); 
+        }
+    </script>
 
 </body>
 </html>
