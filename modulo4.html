@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Prompt Engineering - Grupo HER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0; /* text-slate-200 */
+            overscroll-behavior: none;
+        }
+
+        .main-container { display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar */
+        .sidebar-nav {
+            width: 280px;
+            background-color: #1e293b;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-right: 1px solid #334155;
+            padding: 1.5rem; 
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem; 
+            border-radius: 0.375rem; 
+            color: #cbd5e1; 
+            font-weight: 600; 
+            transition: all 0.2s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover { background-color: #334155; color: #ffffff; }
+        .nav-link.active { background-color: #f97316; color: #ffffff; } /* Naranja RAMUX */
+
+        /* Footer Sidebar */
+        .sidebar-footer { border-top: 1px solid #334155; padding-top: 1.5rem; margin-top: 1.5rem; }
+        .footer-title { font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; }
+        .footer-text-main { color: #f1f5f9; font-weight: 600; }
+        .footer-text-sub { display: block; font-size: 0.875rem; color: #94a3b8; }
+        .footer-link-main { color: #f1f5f9; font-weight: 600; text-decoration: none; }
+        .footer-link-main:hover { color: #fb923c; }
+        .social-link-sidebar { color: #94a3b8; font-size: 1.25rem; text-decoration: none; transition: color 0.2s; }
+        .social-link-sidebar:hover { color: #e2e8f0; }
+
+        /* Contenido */
+        .content-scroll-area { flex-grow: 1; overflow-y: auto; padding: 2.5rem; }
+        .view-section { padding-bottom: 4rem; margin-bottom: 4rem; border-bottom: 1px solid #334155; }
+        .view-section:last-child { border-bottom: none; }
+
+        .section-title { font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 1.1rem; color: #cbd5e1; max-width: 800px; line-height: 1.6; margin-bottom: 2rem; }
+
+        /* Tarjetas */
+        .info-card {
+            background-color: #1e293b; 
+            border-radius: 0.5rem; 
+            padding: 1.5rem; 
+            border: 1px solid #334155; 
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card h3 { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.75rem; }
+        .info-card p, .info-card li { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* Código */
+        .code-block {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        /* Botones y Enlaces */
+        .news-link { margin-top: auto; padding-top: 1rem; color: #fb923c; font-weight: 600; text-decoration: none; font-size: 0.85rem; }
+        .news-link:hover { text-decoration: underline; }
+
+        .ejercicio-toggle-btn {
+            background-color: #f97316; color: #ffffff; font-weight: 600; 
+            padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer; transition: 0.2s; width: 100%; margin-top: 1rem;
+        }
+        .ejercicio-toggle-btn:hover { background-color: #ea580c; }
+        .ejercicio-solucion { margin-top: 1rem; padding: 1rem; border-top: 1px solid #334155; background-color: #0f172a; border-radius: 0.375rem; }
+
+        /* Quiz */
+        .quiz-question-card { background-color: #1e293b; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #334155; }
+        .quiz-question { font-size: 1.1rem; font-weight: 600; color: #f1f5f9; margin-bottom: 1rem; }
+        .quiz-input, .quiz-textarea {
+            width: 100%; background-color: #0f172a; border: 1px solid #334155; color: #f1f5f9; 
+            padding: 0.75rem; border-radius: 0.375rem; margin-bottom: 1rem;
+        }
+        .quiz-input:focus, .quiz-textarea:focus { outline: none; border-color: #f97316; box-shadow: 0 0 0 2px #f97316; }
+        .quiz-textarea { min-height: 100px; resize: vertical; }
+        
+        .quiz-options label {
+            display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; 
+            background-color: #334155; border-radius: 0.375rem; cursor: pointer; margin-bottom: 0.5rem; transition: 0.2s;
+        }
+        .quiz-options label:hover { background-color: #475569; }
+        .rating-label { display: flex; flex-direction: column; align-items: center; cursor: pointer; flex: 1; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+
+        <nav class="sidebar-nav">
+            <div>
+                <div class="nav-header mb-6">
+                    <a href="index.html" class="text-sm text-orange-400 hover:text-orange-200">&larr; Volver al Inicio</a>
+                    <h1 class="text-white text-2xl font-bold mt-2">Módulo 4</h1>
+                    <p class="text-orange-400">Prompt Engineering Avanzado</p>
+                </div>
+                
+                <ul id="mainNav" class="space-y-1">
+                    <li><a href="#view-basics" class="nav-link">1. Fundamentos (Zero/Few Shot)</a></li>
+                    <li><a href="#view-structure" class="nav-link">2. Estructura (System/Role)</a></li>
+                    <li><a href="#view-reasoning" class="nav-link">3. Razonamiento (CoT)</a></li>
+                    <li><a href="#view-complex" class="nav-link">4. Complejidad (ToT/ReAct)</a></li>
+                    <li><a href="#view-coding" class="nav-link">5. IA & Código</a></li>
+                    <li><a href="#view-ape" class="nav-link">6. Auto-Prompting (APE)</a></li>
+                    <li><a href="#view-security" class="nav-link text-orange-300">7. Seguridad de Datos</a></li>
+                    <li><a href="#view-conflict" class="nav-link text-orange-300">8. Resolución de Conflictos</a></li>
+                    
+                    <li><a href="#view-automation-dev" class="nav-link text-blue-300 font-bold">9. Estrategias de Automatización</a></li>
+                    <li><a href="#view-auto-new" class="nav-link text-blue-300">10. Nuevos Ejemplos</a></li>
+
+                    <li class="border-t border-slate-700 my-2"></li>
+                    
+                    <li><a href="#view-news" class="nav-link">Novedades del Sector</a></li>
+                    <li><a href="#view-ejercicios" class="nav-link">Ejercicios (10)</a></li>
+                    <li><a href="#view-quiz-vf" class="nav-link">Autoevaluación (V/F)</a></li>
+                    <li><a href="#view-quiz-mc" class="nav-link">Autoevaluación (M.C.)</a></li>
+                    
+                    <li class="mt-4"><a href="#view-survey" class="nav-link bg-green-900/30 text-green-400 border border-green-800 hover:bg-green-900/50 text-center">Encuesta Final ⭐</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div>
+                    <p class="footer-title">Facilitador</p>
+                    <p class="footer-text-main">Fernando Silguero</p>
+                </div>
+                <div>
+                    <p class="footer-title">Consultora</p>
+                    <a href="https://holaramux.wixsite.com/ramux/inicio" target="_blank" rel="noopener noreferrer" class="footer-link-main">
+                        RAMUX
+                        <span class="footer-text-sub">Comunicación, Gestión y Desarrollo de Proyectos</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://wa.me/message/WATOKPKLCBMPK1" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/ramuxconsultora/?hl=es-la" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ramuxconsultora" target="_blank" rel="noopener noreferrer" class="social-link-sidebar" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-700">
+                    <p class="footer-title">Organiza</p>
+                    <p class="footer-text-main text-sm">Escuela de Gestión y Negocios</p>
+                    <p class="footer-text-sub text-xs">Facultad de Cs. Económicas - UNER</p>
+                </div>
+            </div>
+        </nav>
+
+        <main id="content-scroll-area" class="content-scroll-area">
+
+            <section id="view-basics" class="view-section">
+                <h2 class="section-title">1. Fundamentos: Zero-Shot y Few-Shot</h2>
+                <p class="section-subtitle">
+                    En el núcleo de la ingeniería de prompts está la capacidad de enseñar al modelo lo que queremos en el momento.
+                </p>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="info-card">
+                        <h3 class="text-orange-400">Zero-Shot (Sin ejemplos)</h3>
+                        <p class="mb-4">
+                            Es la técnica más básica: simplemente le das la instrucción al modelo sin contexto previo. Funciona bien para tareas donde el modelo ya tiene un entrenamiento masivo, como resumir textos conocidos, traducciones simples o preguntas de cultura general.
+                        </p>
+                        <p class="italic text-slate-400 border-l-2 border-slate-500 pl-2">
+                            Prompt: "Escribe una lista de los 5 destinos turísticos más populares de Argentina."
+                        </p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-orange-400">Few-Shot (Aprendizaje con Ejemplos)</h3>
+                        <p class="mb-4">
+                            Aquí es donde comienza la verdadera "ingeniería". Los modelos son excelentes detectores de patrones. Si le das 3 ejemplos de cómo quieres que responda, el modelo copiará ese estilo, formato y lógica para la nueva pregunta. Es vital para clasificar correos o estructurar datos de manera específica.
+                        </p>
+                        <div class="bg-slate-800 p-4 rounded">
+                            <p class="text-sm font-mono text-slate-300">
+                                Prompt:<br>
+                                "Analiza el tono del cliente."<br>
+                                Mensaje: 'Gracias, todo perfecto' -> Tono: Feliz<br>
+                                Mensaje: 'El bus llegó tarde' -> Tono: Queja<br>
+                                Mensaje: 'El aire acondicionado goteaba' -> Tono: [COMPLETAR]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-structure" class="view-section">
+                <h2 class="section-title">2. Estructura: System, Role & Context</h2>
+                <p class="section-subtitle">
+                    Para obtener resultados de nivel empresarial, un prompt debe tener una arquitectura definida.
+                </p>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="info-card border-l-4 border-blue-500">
+                        <h3>System Prompting (El Marco)</h3>
+                        <p>
+                            Define el propósito general y las restricciones inquebrantables. Es la "constitución" del chat. En herramientas avanzadas, se configura en un campo separado del chat. Le dice a la IA quién es y qué límites tiene. Por ejemplo: "Eres un asistente útil que SOLO responde en formato JSON".
+                        </p>
+                    </div>
+                    <div class="info-card border-l-4 border-purple-500">
+                        <h3>Role Prompting (La Persona)</h3>
+                        <p>
+                            Asignar un "Rol" cambia todo el sesgo cognitivo de la respuesta. Si le pides a la IA que actúe como un "Experto en Marketing", usará palabras persuasivas. Si le pides que sea un "Auditor Contable", será analítico y frío. Para Grupo HER, usar roles como "Agente de Viajes Senior" o "Experto en Logística" mejora la calidad.
+                        </p>
+                    </div>
+                    <div class="info-card border-l-4 border-green-500">
+                        <h3>Contextual Prompting (La Situación)</h3>
+                        <p>
+                            La IA no sabe qué día es ni dónde estás, a menos que se lo digas. El contexto incluye: fecha actual, ubicación, restricciones vigentes (ej. "Hay paro de transporte"), y el historial del cliente. Sin contexto, la respuesta es genérica e inútil.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-reasoning" class="view-section">
+                <h2 class="section-title">3. Técnicas de Razonamiento (CoT)</h2>
+                <p class="section-subtitle">
+                    Cómo evitar que la IA "alucine" respuestas rápidas e incorrectas en tareas lógicas.
+                </p>
+                <div class="info-card">
+                    <h3>Chain of Thought (Cadena de Pensamiento)</h3>
+                    <p class="mb-4">
+                        Los modelos de lenguaje predicen la siguiente palabra, no "piensan". Por eso fallan en matemáticas simples (ej. "2+2"). La técnica <strong>Chain of Thought</strong> consiste en obligar al modelo a escribir los pasos intermedios. Al escribir el paso a paso, el modelo se "auto-corrige".
+                    </p>
+                    <div class="bg-slate-800 p-3 rounded border border-slate-700 mb-4">
+                        <p class="text-sm italic text-slate-300">
+                            <strong>Instrucción Clave:</strong> "Piensa paso a paso. Antes de darme el total del presupuesto, desglosa el costo de combustible, choferes y peajes por separado."
+                        </p>
+                    </div>
+                    <h4 class="text-orange-300 font-bold">Step-Back Prompting</h4>
+                    <p>
+                        Esta técnica pide a la IA que "dé un paso atrás" y primero recuerde los principios teóricos generales antes de resolver el problema específico. Ejemplo: "Primero explica las leyes de tránsito sobre horas de descanso de choferes. Luego, analiza si este diagrama de viaje es legal".
+                    </p>
+                </div>
+            </section>
+
+            <section id="view-complex" class="view-section">
+                <h2 class="section-title">4. Resolución Compleja: ToT y ReAct</h2>
+                <p class="section-subtitle">
+                    Estrategias para cuando no hay una única respuesta correcta.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3 class="text-orange-400">Tree of Thoughts (ToT)</h3>
+                        <p class="mb-3">
+                            Imagina que la IA crea un "árbol" de decisiones. Genera 3 posibles soluciones (ramas), evalúa los pros y contras de cada una, descarta las malas y sigue desarrollando la mejor.
+                        </p>
+                        <p class="text-sm text-slate-400">
+                            <strong>Uso:</strong> Planificación de rutas nuevas. "Genera 3 itinerarios posibles. Evalúa costo, seguridad y tiempo. Elige el mejor".
+                        </p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-orange-400">ReAct (Reason & Act)</h3>
+                        <p class="mb-3">
+                            Combina el razonamiento verbal con la capacidad de ejecutar acciones en herramientas externas (buscar en Google, leer una base de datos). Es el principio básico de los "Agentes Autónomos".
+                        </p>
+                        <p class="text-sm text-slate-400">
+                            <strong>Uso:</strong> "Necesito armar el viaje. (Pensamiento) -> Busco clima en Google (Acción) -> Veo que llueve (Observación) -> Cambio la actividad (Respuesta)".
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-coding" class="view-section">
+                <h2 class="section-title">5. IA y Código (Para no programadores)</h2>
+                <p class="section-subtitle">
+                    La IA es el mejor traductor entre el lenguaje humano y el lenguaje de las máquinas.
+                </p>
+                <div class="info-card">
+                    <h3>Usos prácticos en la oficina</h3>
+                    <ul class="list-disc list-inside space-y-4 mt-4">
+                        <li>
+                            <strong>Explicación de Macros:</strong> Si tienes un Excel viejo con una macro que nadie sabe qué hace, pega el código en la IA y dile: "Explícame qué hace esto en lenguaje simple".
+                        </li>
+                        <li>
+                            <strong>Creación de Fórmulas Complejas:</strong> En lugar de pelear con paréntesis en Excel, dile a la IA: "Necesito una fórmula que si la celda A1 es mayor a 100 y la B1 dice 'Pagado', me ponga 'Verde' en la C1".
+                        </li>
+                        <li>
+                            <strong>Generación de HTML/SQL:</strong> Puedes pedirle que genere código para un correo HTML bonito o una consulta a la base de datos de clientes sin saber programar una sola línea.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="view-ape" class="view-section">
+                <h2 class="section-title">6. Automatic Prompt Engineering (APE)</h2>
+                <p class="section-subtitle">
+                    Deja que la IA trabaje por ti optimizando las instrucciones.
+                </p>
+                <div class="info-card border-l-4 border-yellow-500">
+                    <h3>El Prompt para generar Prompts</h3>
+                    <p class="mb-4">
+                        A veces nos bloqueamos y no sabemos cómo pedir algo. La técnica APE consiste en pedirle a la IA que actúe como un "Ingeniero de Prompts".
+                    </p>
+                    <div class="bg-slate-800 p-4 rounded">
+                        <p class="font-mono text-xs text-yellow-200">
+                            Prompt: "Actúa como un experto en Ingeniería de Prompts. Mi objetivo es [OBJETIVO]. Escribe los 5 mejores prompts posibles que yo podría darte para lograr este resultado con la mayor precisión. Evalúa cuál es el mejor y explícame por qué."
+                        </p>
+                    </div>
+                    <p class="mt-4">
+                        Esto nos da variantes que quizás no se nos hubieran ocurrido, usando palabras clave técnicas que activan mejor las capacidades del modelo.
+                    </p>
+                </div>
+            </section>
+
+            <section id="view-security" class="view-section">
+                <h2 class="section-title">7. Seguridad de Datos en Grupo HER</h2>
+                <p class="section-subtitle">
+                    Protocolos críticos. Lo que se escribe en la IA, se queda en la nube.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card bg-red-900/20 border border-red-500/50">
+                        <h3 class="text-red-400">Zona Roja: Datos Prohibidos</h3>
+                        <p class="mb-3 text-sm">
+                            Los modelos gratuitos (ChatGPT, Gemini versión pública) usan tus datos para entrenarse. Si subes una lista de pasajeros con DNI, esa información podría, teóricamente, ser recordada por el modelo.
+                        </p>
+                        <ul class="list-disc list-inside text-sm mt-2 text-slate-300">
+                            <li>Tarjetas de Crédito / CBU.</li>
+                            <li>Contraseñas de sistemas.</li>
+                            <li>Datos médicos de choferes/pasajeros.</li>
+                            <li>Estrategias comerciales secretas.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card bg-green-900/20 border border-green-500/50">
+                        <h3 class="text-green-400">Zona Verde: Sanitización</h3>
+                        <p class="mb-3 text-sm">
+                            <strong>Sanitización (Anonimización):</strong> Es la técnica de reemplazar datos reales por "placeholders" o etiquetas.
+                        </p>
+                        <p class="text-sm font-mono bg-black/30 p-2 rounded">
+                            Texto Real: "Juan Pérez DNI 30111222..."<br>
+                            Texto Sanitizado: "[NOMBRE_CLIENTE] DNI [NUMERO]..."
+                        </p>
+                        <p class="mt-2 text-sm">
+                            La IA procesa la lógica (el reclamo, la consulta) perfectamente con los datos sanitizados, y tú mantienes la privacidad de la empresa segura.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-conflict" class="view-section">
+                <h2 class="section-title">8. Resolución de Conflictos</h2>
+                <p class="section-subtitle">La IA como filtro emocional y estratégico en situaciones tensas.</p>
+                <div class="info-card">
+                    <h3>Pasos para responder una Queja Grave</h3>
+                    <ol class="list-decimal list-inside mt-2 space-y-4 text-slate-300">
+                        <li>
+                            <strong>Diagnóstico Emocional:</strong> Pega el correo del cliente y pide: "Analiza el sentimiento. ¿Está enojado, decepcionado o siendo sarcástico? ¿Cuál es el punto real de dolor?".
+                        </li>
+                        <li>
+                            <strong>Generación de Opciones:</strong> "Actúa como un mediador experto. Redacta 3 opciones de respuesta: una opción empática (enfocada en disculpas), una opción técnica (explicando la causa) y una opción de compensación".
+                        </li>
+                        <li>
+                            <strong>Roleplay (Simulación):</strong> Antes de enviar, pregúntale a la IA: "Si yo soy este cliente y recibo esta respuesta, ¿cómo reaccionaría? ¿Qué objeción pondría?". Esto te permite blindar tu mensaje.
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="view-automation-dev" class="view-section">
+                <h2 class="section-title">9. Estrategias de Automatización</h2>
+                <p class="section-subtitle">
+                    Dos caminos para resolver los problemas planteados: soluciones que puedes hacer hoy y soluciones de ingeniería avanzada.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="info-card border-l-4 border-purple-600">
+                        <h3 class="text-white text-xl mb-4"><i class="fas fa-birthday-cake mr-2 text-purple-400"></i>Caso A: Saludos de Cumpleaños</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
+                                <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (No-Code)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Herramienta:</strong> Excel + Zapier (Plan Free).
+                                </p>
+                                <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
+                                    <li>Tener un Google Sheet con columna "Fecha Nacimiento" y "Email".</li>
+                                    <li>Crear una cuenta en <strong>Zapier.com</strong>.</li>
+                                    <li>Usar el Trigger "Schedule by Zapier" (Diario a las 9 AM).</li>
+                                    <li>Acción: "Find Row" en Google Sheet (buscar fecha de hoy).</li>
+                                    <li>Acción: "Send Email" via Gmail con una plantilla "Feliz Cumpleaños".</li>
+                                </ol>
+                            </div>
+
+                            <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
+                                <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Tecnología:</strong> Base de Datos SQL + Cron Job + WhatsApp API.
+                                </p>
+                                <div class="code-block">
+                                    CRON: 0 9 * * *<br>
+                                    SQL: SELECT phone FROM users WHERE dob = CURDATE();<br>
+                                    API: POST /v1/messages (Meta API)
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">
+                                    Requiere servidor dedicado. Maneja miles de envíos, evita bloqueos de SPAM y reporta errores en un dashboard.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card border-l-4 border-blue-600">
+                        <h3 class="text-white text-xl mb-4"><i class="fas fa-bus mr-2 text-blue-400"></i>Caso B: Alertas de Reprogramación</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
+                                <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (Semi-Auto)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Herramienta:</strong> Generador de Enlaces WhatsApp.
+                                </p>
+                                <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
+                                    <li>En el Excel de pasajeros, crear una fórmula: <code>="https://wa.me/" & CELULAR & "?text=Tu viaje cambió a las " & HORA</code>.</li>
+                                    <li>Al filtrar los pasajeros afectados, la fórmula genera un link azul para cada uno.</li>
+                                    <li>El operador hace clic en cada link y envía. Es manual pero ahorra redactar y buscar el contacto.</li>
+                                </ol>
+                            </div>
+
+                            <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
+                                <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Tecnología:</strong> Webhooks + Message Queues.
+                                </p>
+                                <div class="code-block">
+                                    Webhook: listen(TRIP_CHANGE_EVENT)<br>
+                                    Queue: RabbitMQ (Delay 2-5 sec)<br>
+                                    Action: Broadcast Template HSM
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">
+                                    Totalmente invisible. Al cambiar la hora en el sistema, dispara alertas masivas gestionando colas para evitar baneos de WhatsApp.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card border-l-4 border-yellow-600">
+                        <h3 class="text-white text-xl mb-4"><i class="fas fa-money-bill-wave mr-2 text-yellow-400"></i>Caso C: Gestión de Devoluciones</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-green-900/20 p-4 rounded border border-green-500/30">
+                                <h4 class="text-green-400 font-bold mb-2">🟢 Solución Simple (Google)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Herramienta:</strong> Google Forms + Notificaciones.
+                                </p>
+                                <ol class="list-decimal list-inside text-xs text-slate-400 mt-2 space-y-1">
+                                    <li>Crear un Formulario Google "Solicitud de Reintegro" (pide CBU, Monto, Ticket).</li>
+                                    <li>Configurar el Formulario para que avise por mail a Administración cada vez que alguien lo llena.</li>
+                                    <li>Administración entra al Sheet, valida y transfiere manualmente.</li>
+                                </ol>
+                            </div>
+
+                            <div class="bg-red-900/20 p-4 rounded border border-red-500/30">
+                                <h4 class="text-red-400 font-bold mb-2">🔴 Solución Experta (Ingeniería)</h4>
+                                <p class="text-sm text-slate-300">
+                                    <strong>Tecnología:</strong> Tokens de Seguridad + API Bancaria.
+                                </p>
+                                <div class="code-block">
+                                    Token: JWT (Enlace único temporal)<br>
+                                    Validation: API Coelsa (Valida CUIT/CBU)<br>
+                                    Batch: Genera TXT Interbanking
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">
+                                    Valida identidad contra el banco en tiempo real y sube el lote de pagos automáticamente para firma, eliminando error humano.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-auto-new" class="view-section">
+                <h2 class="section-title">10. Nuevas Oportunidades de Automatización</h2>
+                <p class="section-subtitle">Tres nuevos procesos para optimizar la operación diaria.</p>
+                
+                <div class="space-y-6">
+                    <div class="info-card border-l-4 border-blue-500">
+                        <h3 class="text-blue-300">A. Cierre de Caja Digital</h3>
+                        <p><strong>Paso a paso:</strong> Boletero sube fotos de tickets de gastos (café, limpieza) -> IA (OCR) lee montos y conceptos -> Sistema resta gastos al total de ventas -> Genera reporte de "Efectivo Esperado en Caja".</p>
+                    </div>
+                    <div class="info-card border-l-4 border-blue-500">
+                        <h3 class="text-blue-300">B. Encuesta Post-Viaje Inmediata</h3>
+                        <p><strong>Paso a paso:</strong> Trigger (Horario llegada bus) -> Espera 30 min -> Envía WhatsApp "¿Cómo viajaste?" -> Si califica bajo (1-3), abre chat soporte. Si califica alto (4-5), pide review en Google.</p>
+                    </div>
+                    <div class="info-card border-l-4 border-blue-500">
+                        <h3 class="text-blue-300">C. Vencimientos de Documentación (Flota)</h3>
+                        <p><strong>Paso a paso:</strong> Base única de VTV/LINTI -> Semáforo de Alertas (60 días RRHH, 30 días Chofer, 7 días Gerencia) -> Bloqueo automático de asignación si vence.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-news" class="view-section">
+                <h2 class="section-title">Novedades del Sector</h2>
+                <p class="section-subtitle">Selección de artículos reales y relevantes para el contexto actual.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <div class="info-card">
+                        <h3 class="text-orange-400 text-sm font-bold">Amazon: Robótica e IA</h3>
+                        <p class="text-xs mt-2">Cómo los robots "Sequoia" aceleran el inventario un 75%.</p>
+                        <a href="https://www.aboutamazon.com/news/operations/amazon-introduces-new-robotics-solutions" target="_blank" class="news-link">Leer en AboutAmazon</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-orange-400 text-sm font-bold">Tendencias Turismo 2025</h3>
+                        <p class="text-xs mt-2">La hiper-personalización y la IA generativa definen el futuro.</p>
+                        <a href="https://www.forbes.com/sites/suzannerowankelleher/2024/01/24/generative-ai-travel-trends-2024/" target="_blank" class="news-link">Leer en Forbes</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-orange-400 text-sm font-bold">Logística Autónoma</h3>
+                        <p class="text-xs mt-2">El impacto de la IA en la cadena de suministro global.</p>
+                        <a href="https://www.dhl.com/global-en/home/insights-and-innovation/thought-leadership/trend-reports/artificial-intelligence.html" target="_blank" class="news-link">Reporte DHL</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-blue-400 text-sm font-bold">Argentina: Pagos Digitales</h3>
+                        <p class="text-xs mt-2">Crecimiento exponencial de QR y billeteras en transporte.</p>
+                        <a href="https://www.bcra.gob.ar/Noticias/Pagos-con-QR.asp" target="_blank" class="news-link">BCRA Oficial</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-blue-400 text-sm font-bold">Regulación IA Latam</h3>
+                        <p class="text-xs mt-2">Avances legislativos sobre el uso de IA en empresas.</p>
+                        <a href="https://caf.com/es/actualidad/noticias/2024/05/inteligencia-artificial-en-america-latina/" target="_blank" class="news-link">Reporte CAF</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-blue-400 text-sm font-bold">Sustentabilidad Flotas</h3>
+                        <p class="text-xs mt-2">Estrategias de reducción de huella de carbono en buses.</p>
+                        <a href="https://www.scania.com/ar/es/home/about-scania/sustainability.html" target="_blank" class="news-link">Caso Scania Arg</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-green-400 text-sm font-bold">Futuro del Trabajo</h3>
+                        <p class="text-xs mt-2">Cómo la IA está redefiniendo los roles administrativos.</p>
+                        <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2023/" target="_blank" class="news-link">World Economic Forum</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-green-400 text-sm font-bold">Ciberseguridad PYME</h3>
+                        <p class="text-xs mt-2">Aumento de ataques y cómo protegerse en 2025.</p>
+                        <a href="https://www.welivesecurity.com/la-es/2024/01/15/tendencias-ciberseguridad-2024/" target="_blank" class="news-link">Reporte ESET</a>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-green-400 text-sm font-bold">Gen Alpha y Consumo</h3>
+                        <p class="text-xs mt-2">Qué esperan las nuevas generaciones de las marcas de viaje.</p>
+                        <a href="https://nrf.com/blog/generation-alpha-new-consumer" target="_blank" class="news-link">NRF Insights</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-ejercicios" class="view-section">
+                <h2 class="section-title">10 Ejercicios Prácticos</h2>
+                <p class="section-subtitle">Pon a prueba lo aprendido. Haz clic para ver la solución sugerida.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="info-card">
+                        <h3>1. Few-Shot Prompting</h3>
+                        <p>Crea un prompt que clasifique quejas usando 3 ejemplos previos.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza este mensaje. <br>Ejemplos: <br>- 'Lento' -> Queja. <br>- 'Genial' -> Felicitación. <br>- 'El bus se rompió' -> Queja.<br>Mensaje nuevo: 'El aire no andaba' -> ?"</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>2. Chain of Thought</h3>
+                        <p>Calcula un presupuesto de viaje pidiendo "paso a paso".</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Calcula el costo total para 4 pax a Brasil. <br>Piensa paso a paso: <br>1. Calcula alojamiento (7 noches). <br>2. Calcula comida por día. <br>3. Suma traslados. <br>Dame el total final."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>3. Role Prompting (Mediador)</h3>
+                        <p>Redacta una respuesta a una queja actuando como un mediador experto.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como un mediador de conflictos corporativo. Redacta una respuesta a un cliente enojado por una demora. Tono: Empático pero firme, sin admitir culpa legal, ofreciendo un voucher de café."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>4. Sanitización de Datos</h3>
+                        <p>Escribe cómo anonimizarías este texto: "Juan Pérez DNI 30111222 reclama..."</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Texto Sanitizado: "[NOMBRE_CLIENTE] con DNI [NUMERO_DNI] reclama...". <br>Nunca enviar datos reales a la IA pública.</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>5. Traducción de Código</h3>
+                        <p>Pide traducir una lógica de Excel ("SI A1>10 ENTONCES...") a SQL.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Traduce esta lógica de Excel a una consulta SQL: <br>IF(Ventas > 1000, 'Bonus', 'Nada') <br>-> CASE WHEN ventas > 1000 THEN 'Bonus' ELSE 'Nada' END"</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>6. Generación APE</h3>
+                        <p>Pide a la IA que cree el mejor prompt para ventas.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Actúa como ingeniero de prompts. Escribe 5 variantes de un prompt para convencer a un cliente indeciso de comprar un paquete a Cataratas. Evalúa cuál es el más persuasivo."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>7. JSON Output</h3>
+                        <p>Extrae datos de un pasaje en formato JSON.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Lee este texto de pasaje. Extrae: Origen, Destino, Hora. <br>Formato de salida: JSON estricto con claves 'origin', 'destination', 'time'."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>8. Tree of Thoughts</h3>
+                        <p>Plantea 3 rutas logísticas y elige la mejor.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Propón 3 rutas distintas para ir de Paraná a Mendoza. Para cada una, analiza: Estado de ruta, Peajes y Kilómetros. Luego, compáralas y dime cuál es la más eficiente para un bus doble piso."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>9. Análisis de Sentimiento</h3>
+                        <p>Detecta la emoción en una reseña de Google.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Analiza la siguiente reseña: 'El viaje bien, pero el aire congelaba'. <br>Dime: 1. Sentimiento general (Positivo/Negativo/Mixto). <br>2. Qué aspecto específico criticó."</p></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>10. Debugging</h3>
+                        <p>Encuentra el error en una instrucción confusa.</p>
+                        <button class="ejercicio-toggle-btn">Ver Solución</button>
+                        <div class="ejercicio-solucion hidden"><p class="text-xs italic">Prompt: "Esta instrucción es ambigua: 'Mandar el bus mañana'. <br>¿Por qué puede fallar? <br>Respuesta: Falta fecha exacta, hora y número de unidad. Corrige la instrucción para que sea inequívoca."</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-quiz-vf" class="view-section">
+                <h2 class="section-title">Autoevaluación V/F (10 Preguntas)</h2>
+                <form id="form-vf" action="https://formspree.io/f/xyzvrzoy" method="POST" class="quiz-question-card space-y-4">
+                    <input type="text" name="alumno" class="quiz-input" placeholder="Tu Nombre" required>
+                    <input type="hidden" name="quiz_id" value="M4-VF">
+                    <input type="hidden" id="score-vf" name="calificacion">
+
+                    <div><p class="text-white font-bold">1. Few-Shot significa dar ejemplos.</p><div class="quiz-options"><label><input type="radio" name="q1" value="v" required> V</label><label><input type="radio" name="q1" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">2. Es seguro poner tarjetas de crédito en ChatGPT.</p><div class="quiz-options"><label><input type="radio" name="q2" value="v"> V</label><label><input type="radio" name="q2" value="f" required> F</label></div></div>
+                    <div><p class="text-white font-bold">3. Chain of Thought ayuda en matemáticas.</p><div class="quiz-options"><label><input type="radio" name="q3" value="v" required> V</label><label><input type="radio" name="q3" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">4. JSON ayuda a reducir alucinaciones.</p><div class="quiz-options"><label><input type="radio" name="q4" value="v" required> V</label><label><input type="radio" name="q4" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">5. Role Prompting define la identidad.</p><div class="quiz-options"><label><input type="radio" name="q5" value="v" required> V</label><label><input type="radio" name="q5" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">6. ReAct combina pensar y actuar.</p><div class="quiz-options"><label><input type="radio" name="q6" value="v" required> V</label><label><input type="radio" name="q6" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">7. APE significa Automatic Prompt Engineering.</p><div class="quiz-options"><label><input type="radio" name="q7" value="v" required> V</label><label><input type="radio" name="q7" value="f"> F</label></div></div>
+                    <div><p class="text-white font-bold">8. Sanitizar es borrar datos para siempre.</p><div class="quiz-options"><label><input type="radio" name="q8" value="v"> V</label><label><input type="radio" name="q8" value="f" required> F</label></div></div>
+                    <div><p class="text-white font-bold">9. Temperature 0 es más creativo.</p><div class="quiz-options"><label><input type="radio" name="q9" value="v"> V</label><label><input type="radio" name="q9" value="f" required> F</label></div></div>
+                    <div><p class="text-white font-bold">10. ToT explora múltiples ramas.</p><div class="quiz-options"><label><input type="radio" name="q10" value="v" required> V</label><label><input type="radio" name="q10" value="f"> F</label></div></div>
+
+                    <button type="submit" class="ejercicio-toggle-btn">Finalizar V/F</button>
+                </form>
+                <div id="res-vf" class="info-card mt-4 hidden text-center"><h3 class="text-xl">Resultados</h3><p class="text-4xl font-bold text-orange-400"></p></div>
+            </section>
+
+            <section id="view-quiz-mc" class="view-section">
+                <h2 class="section-title">Autoevaluación M.C. (10 Preguntas)</h2>
+                <form id="form-mc" action="https://formspree.io/f/xzzwnzqp" method="POST" class="quiz-question-card space-y-4">
+                    <input type="text" name="alumno" class="quiz-input" placeholder="Tu Nombre" required>
+                    <input type="hidden" name="quiz_id" value="M4-MC">
+                    <input type="hidden" id="score-mc" name="calificacion">
+
+                    <div><p class="text-white font-bold">1. Mejor técnica para lógica:</p><div class="quiz-options-vertical"><label><input type="radio" name="m1" value="a" required> Chain of Thought</label><label><input type="radio" name="m1" value="b"> Zero Shot</label><label><input type="radio" name="m1" value="c"> Temperature High</label></div></div>
+                    <div><p class="text-white font-bold">2. Formato de salida estructurado:</p><div class="quiz-options-vertical"><label><input type="radio" name="m2" value="a"> TXT</label><label><input type="radio" name="m2" value="b" required> JSON</label><label><input type="radio" name="m2" value="c"> MP3</label></div></div>
+                    <div><p class="text-white font-bold">3. Reemplazar datos reales por etiquetas:</p><div class="quiz-options-vertical"><label><input type="radio" name="m3" value="a" required> Sanitización</label><label><input type="radio" name="m3" value="b"> Encriptación</label><label><input type="radio" name="m3" value="c"> Eliminación</label></div></div>
+                    <div><p class="text-white font-bold">4. Temperatura para tareas precisas (math):</p><div class="quiz-options-vertical"><label><input type="radio" name="m4" value="a"> 1.0</label><label><input type="radio" name="m4" value="b" required> 0.0</label><label><input type="radio" name="m4" value="c"> 0.7</label></div></div>
+                    <div><p class="text-white font-bold">5. Técnica que pide a la IA escribir prompts:</p><div class="quiz-options-vertical"><label><input type="radio" name="m5" value="a"> RPG</label><label><input type="radio" name="m5" value="b" required> APE</label><label><input type="radio" name="m5" value="c"> API</label></div></div>
+                    <div><p class="text-white font-bold">6. Prompt para explorar múltiples soluciones:</p><div class="quiz-options-vertical"><label><input type="radio" name="m6" value="a"> Lineal</label><label><input type="radio" name="m6" value="b" required> Tree of Thoughts</label><label><input type="radio" name="m6" value="c"> Greedy</label></div></div>
+                    <div><p class="text-white font-bold">7. System Prompt define:</p><div class="quiz-options-vertical"><label><input type="radio" name="m7" value="a" required> El rol y reglas generales</label><label><input type="radio" name="m7" value="b"> La fecha</label><label><input type="radio" name="m7" value="c"> El usuario</label></div></div>
+                    <div><p class="text-white font-bold">8. Few-Shot usa:</p><div class="quiz-options-vertical"><label><input type="radio" name="m8" value="a"> 0 ejemplos</label><label><input type="radio" name="m8" value="b" required> Varios ejemplos</label><label><input type="radio" name="m8" value="c"> Millones de ejemplos</label></div></div>
+                    <div><p class="text-white font-bold">9. ReAct permite:</p><div class="quiz-options-vertical"><label><input type="radio" name="m9" value="a"> Solo pensar</label><label><input type="radio" name="m9" value="b" required> Usar herramientas externas</label><label><input type="radio" name="m9" value="c"> Dormir</label></div></div>
+                    <div><p class="text-white font-bold">10. Mejor práctica en instrucciones:</p><div class="quiz-options-vertical"><label><input type="radio" name="m10" value="a"> Usar negativas</label><label><input type="radio" name="m10" value="b" required> Usar instrucciones positivas</label><label><input type="radio" name="m10" value="c"> Ser ambiguo</label></div></div>
+
+                    <button type="submit" class="ejercicio-toggle-btn">Finalizar M.C.</button>
+                </form>
+                <div id="res-mc" class="info-card mt-4 hidden text-center"><h3 class="text-xl">Resultados</h3><p class="text-4xl font-bold text-orange-400"></p></div>
+            </section>
+
+            <section id="view-survey" class="view-section">
+                <h2 class="section-title">Encuesta de Satisfacción</h2>
+                <p class="section-subtitle">Ayúdanos a mejorar. Escala: 1 (Bajo) a 5 (Excelente).</p>
+                <form action="https://formspree.io/f/xzzwnzkz" method="POST" class="quiz-question-card space-y-6">
+                    <input type="text" name="nombre" class="quiz-input" placeholder="Nombre (Opcional)">
+                    
+                    <div><p class="text-slate-300 font-bold mb-2">1. Calidad del Material</p><div class="flex text-orange-400 text-xl px-4 justify-between"><label>1<input type="radio" name="material" value="1"></label><label>2<input type="radio" name="material" value="2"></label><label>3<input type="radio" name="material" value="3"></label><label>4<input type="radio" name="material" value="4"></label><label>5<input type="radio" name="material" value="5" checked></label></div></div>
+                    <div><p class="text-slate-300 font-bold mb-2">2. Claridad de Explicación</p><div class="flex text-orange-400 text-xl px-4 justify-between"><label>1<input type="radio" name="claridad" value="1"></label><label>2<input type="radio" name="claridad" value="2"></label><label>3<input type="radio" name="claridad" value="3"></label><label>4<input type="radio" name="claridad" value="4"></label><label>5<input type="radio" name="claridad" value="5" checked></label></div></div>
+                    <div><p class="text-slate-300 font-bold mb-2">3. Relevancia para la Empresa</p><div class="flex text-orange-400 text-xl px-4 justify-between"><label>1<input type="radio" name="relevancia" value="1"></label><label>2<input type="radio" name="relevancia" value="2"></label><label>3<input type="radio" name="relevancia" value="3"></label><label>4<input type="radio" name="relevancia" value="4"></label><label>5<input type="radio" name="relevancia" value="5" checked></label></div></div>
+                    <div><p class="text-slate-300 font-bold mb-2">4. Generación de Nuevas Ideas</p><div class="flex text-orange-400 text-xl px-4 justify-between"><label>1<input type="radio" name="ideas" value="1"></label><label>2<input type="radio" name="ideas" value="2"></label><label>3<input type="radio" name="ideas" value="3"></label><label>4<input type="radio" name="ideas" value="4"></label><label>5<input type="radio" name="ideas" value="5" checked></label></div></div>
+                    <div><p class="text-slate-300 font-bold mb-2">5. Desempeño del Capacitador</p><div class="flex text-orange-400 text-xl px-4 justify-between"><label>1<input type="radio" name="capacitador" value="1"></label><label>2<input type="radio" name="capacitador" value="2"></label><label>3<input type="radio" name="capacitador" value="3"></label><label>4<input type="radio" name="capacitador" value="4"></label><label>5<input type="radio" name="capacitador" value="5" checked></label></div></div>
+                    
+                    <div class="border-t border-slate-600 pt-4">
+                        <p class="text-white font-bold text-lg text-center mb-2">Calificación GENERAL</p>
+                        <div class="flex text-yellow-400 text-2xl px-4 justify-between"><label>★<input type="radio" name="general" value="1"></label><label>★★<input type="radio" name="general" value="2"></label><label>★★★<input type="radio" name="general" value="3"></label><label>★★★★<input type="radio" name="general" value="4"></label><label>★★★★★<input type="radio" name="general" value="5" checked></label></div>
+                    </div>
+
+                    <textarea name="comentarios" class="quiz-textarea" placeholder="Comentarios adicionales..."></textarea>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded">Enviar Encuesta</button>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 2. Botones de Solución (Lógica Módulo 3) ---
+            try {
+                document.querySelectorAll('.ejercicio-toggle-btn').forEach(button => {
+                    if(button.getAttribute('type') === 'submit') return;
+                    const card = button.closest('.info-card');
+                    if (!card) return;
+                    const solucion = card.querySelector('.ejercicio-solucion');
+                    if (solucion) {
+                        const originalText = button.textContent;
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            solucion.classList.toggle('hidden');
+                            button.textContent = solucion.classList.contains('hidden') ? originalText : 'Ocultar Solución';
+                        });
+                    }
+                });
+            } catch (e) { console.error("Error botones:", e); }
+
+            // Lógica Quiz Genérica
+            function setupQuiz(formId, resId, answers) {
+                const form = document.getElementById(formId);
+                if(!form) return;
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    let score = 0;
+                    for(let [k, v] of Object.entries(answers)) {
+                        if(formData.get(k) === v) score++;
+                    }
+                    const percent = Math.round((score / Object.keys(answers).length) * 100);
+                    const resDiv = document.getElementById(resId);
+                    
+                    // Mostrar resultado local
+                    resDiv.querySelector('p').textContent = `${percent}%`;
+                    resDiv.classList.remove('hidden');
+                    form.classList.add('hidden');
+                    
+                    // Enviar a Formspree
+                    formData.append('score_calculado', `${percent}%`);
+                    fetch(form.action, { method: 'POST', body: formData, headers: {'Accept': 'application/json'} });
+                });
+            }
+
+            // Respuestas VF
+            setupQuiz('form-vf', 'res-vf', {
+                'q1':'v','q2':'f','q3':'v','q4':'v','q5':'v','q6':'v','q7':'v','q8':'f','q9':'f','q10':'v'
+            });
+
+            // Respuestas MC
+            setupQuiz('form-mc', 'res-mc', {
+                'm1':'a','m2':'b','m3':'a','m4':'b','m5':'b','m6':'a','m7':'a','m8':'b','m9':'b','m10':'b'
+            });
+        });
+    </script>
+</body>
+</html>
